@@ -10,7 +10,7 @@ footer {
         align-items: center;
     }
 
-    .fixed {
+    &.fixed {
         position: fixed;
         bottom: 0;
         left: 0;
