@@ -1,9 +1,9 @@
-.best-collection {
+.grid-collection {
     padding: 40px 20px;
 
-    .collection-title {
+    .title {
         text-align: center;
-        font-family: $font-poppins;
+        font-family: $font-poppins !important;
         font-weight: $font-weight-semibold;
         font-size: 38px;
         color: $color-dark-2;
@@ -34,7 +34,7 @@
         }
     }
 
-    .collection-grid {
+    .grid {
         margin-top: 40px;
         display: grid;
         grid-template-columns: repeat(1, 1fr);

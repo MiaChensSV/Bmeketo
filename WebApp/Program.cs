@@ -1,3 +1,5 @@
+using WebApp.Services;
+
 namespace WebApp
 {
     public class Program
@@ -8,6 +10,7 @@ namespace WebApp
 
             // Add services to the container.
             builder.Services.AddControllersWithViews();
+            builder.Services.AddScoped<ShowcaseService>();//new ShowcaseService
 
             var app = builder.Build();
 
