@@ -914,3 +914,143 @@ footer.fixed {
     justify-self: flex-start;
   }
 }
+
+.login-form {
+  padding: 20px 0 60px 0;
+}
+@media (min-width: 992px) {
+  .login-form {
+    padding: 60px 0;
+  }
+}
+.login-form .container {
+  border: 0px solid #E1E1E1;
+  padding: 30px;
+}
+@media (min-width: 768px) {
+  .login-form .container {
+    border: 1px solid #E1E1E1;
+    width: 80%;
+  }
+}
+.login-form .title {
+  margin-bottom: 40px;
+}
+.login-form form {
+  display: grid;
+  column-gap: 30px;
+  row-gap: 30px;
+  grid-template-columns: 1fr;
+  grid-template-areas: "message" "email" "password" "rememberme" "button";
+}
+.login-form form .validation-summary-errors {
+  grid-area: message;
+  margin: 10px 0;
+}
+.login-form form .validation-summary-errors ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  font-size: 1.4rem;
+}
+.login-form form .email {
+  grid-area: email;
+}
+.login-form form .password {
+  grid-area: password;
+}
+.login-form form .rememberme {
+  grid-area: rememberme;
+  margin: 10px 0;
+}
+.login-form form button {
+  grid-area: button;
+}
+@media (min-width: 992px) {
+  .login-form form button {
+    display: flex;
+    justify-self: flex-start;
+  }
+}
+
+.register-form {
+  padding: 20px 0 60px 0;
+}
+@media (min-width: 992px) {
+  .register-form {
+    padding: 60px 0;
+  }
+}
+.register-form .container {
+  border: 0px solid #E1E1E1;
+  padding: 30px;
+}
+@media (min-width: 768px) {
+  .register-form .container {
+    border: 1px solid #E1E1E1;
+  }
+}
+.register-form .title {
+  margin-bottom: 40px;
+}
+.register-form form {
+  display: grid;
+  column-gap: 30px;
+  row-gap: 30px;
+  grid-template-columns: 1fr;
+  grid-template-areas: "firstname" "lastname" "streetname" "PostalCode" "City" "phoneNumber" "companyName" "email" "password" "confirmedpassword" "profilemage" "terms" "button";
+}
+@media (min-width: 992px) {
+  .register-form form {
+    grid-template-columns: 1fr 1fr;
+    grid-template-areas: "firstname lastname" "streetname streetname" "PostalCode City" "phoneNumber companyName" "email email" "password password" "confirmedpassword confirmedpassword" "profilemage profilemage" "terms terms" "button button";
+  }
+}
+.register-form form .firstname {
+  grid-area: firstname;
+}
+.register-form form .lastname {
+  grid-area: lastname;
+}
+.register-form form .streetname {
+  grid-area: streetname;
+}
+.register-form form .PostalCode {
+  grid-area: PostalCode;
+}
+.register-form form .City {
+  grid-area: City;
+}
+.register-form form .phoneNumber {
+  grid-area: phoneNumber;
+}
+.register-form form .companyName {
+  grid-area: companyName;
+}
+.register-form form .email {
+  grid-area: email;
+}
+.register-form form .password {
+  grid-area: password;
+}
+.register-form form .confirmedpassword {
+  grid-area: confirmedpassword;
+}
+.register-form form .profilemage {
+  grid-area: profilemage;
+}
+.register-form form .terms {
+  grid-area: terms;
+  margin: 10px 0;
+}
+.register-form form button {
+  grid-area: button;
+}
+@media (min-width: 992px) {
+  .register-form form button {
+    display: flex;
+    justify-self: flex-start;
+  }
+}

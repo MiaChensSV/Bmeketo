@@ -16,17 +16,17 @@ public class HomeController : Controller
 
             BestCollection = new GridCollectionViewModel()
             {
-                Title = "bEST collectjion",
+                Title = "BEST collectjion",
                 Categories = new List<string> { "all", "bags", "dresses", "decorations" },
                 GridItems = new List<GridCollectionItemViewModel>
                 {
                     new GridCollectionItemViewModel()
                     {
-                        Id="1",Title="aPPLE WATH COLLECTION",Price=30,ImageUrl="images/placeholders/270*295.svg"
+                        Id="1",Title="aPPLE WATH COLLECTION",Price=30,ImageUrl="images/placeholders/270x295.svg"
                     },
                         new GridCollectionItemViewModel()
                     {
-                        Id="2",Title="samsung WATH COLLECTION",Price=30,ImageUrl="images/placeholders/270*295.svg"
+                        Id="2",Title="samsung WATH COLLECTION",Price=30,ImageUrl="images/placeholders/270x295.svg"
                     },
                 },
             },

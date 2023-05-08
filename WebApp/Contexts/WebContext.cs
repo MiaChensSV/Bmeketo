@@ -1,14 +1,15 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using WebApp.Models.Entity;
 
-namespace WebApp.Data
+namespace WebApp.Contexts
 {
-    public class DataContext:DbContext
+    public class WebContext:DbContext
     {
-		
-        public DataContext(DbContextOptions<DataContext> options) : base(options)
+        public WebContext(DbContextOptions<WebContext> options) : base(options)
         {
         }
+
         public DbSet<ShowcaseEntity> Showcases { get; set; }
+
     }
 }
