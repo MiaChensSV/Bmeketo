@@ -1,12 +1,11 @@
 ﻿using WebApp.Contexts;
 using WebApp.Models.Entity;
 
-namespace WebApp.Helper.Repositories
+namespace WebApp.Helper.Repositories;
+
+public class UserAddressRepository : IdentityRepository<UserAddressEntity>
 {
-	public class UserAddressRepository : Repository<UserAddressEntity>
+	public UserAddressRepository(IdentityContext identityContext) : base(identityContext)
 	{
-		public UserAddressRepository(IdentityContext identityContext) : base(identityContext)
-		{
-		}
 	}
 }

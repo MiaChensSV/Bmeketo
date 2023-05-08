@@ -1,12 +1,11 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 
-namespace WebApp.Controllers
+namespace WebApp.Controllers;
+
+public class DeniedController : Controller
 {
-	public class DeniedController : Controller
+	public IActionResult Index()
 	{
-		public IActionResult Index()
-		{
-			return View();
-		}
+		return View();
 	}
 }

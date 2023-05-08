@@ -1,8 +1,7 @@
-﻿namespace WebApp.ViewModels
+﻿namespace WebApp.ViewModels;
+
+public class ProductsIndexViewModel
 {
-	public class ProductsIndexViewModel
-	{
-		public string Title { get; set; } 
-		public GridCollectionViewModel All { get; set; } = null!;
-	}
+	public string Title { get; set; } 
+	public GridCollectionViewModel All { get; set; } = null!;
 }
