@@ -1,8 +1,6 @@
 ﻿using System.Linq.Expressions;
-using System.Runtime.CompilerServices;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
-using WebApp.Contexts;
 using WebApp.Models.Identity;
 using WebApp.Services;
 using WebApp.ViewModels;
@@ -12,13 +10,16 @@ namespace WebApp.Helper.Services;
 public class AuthService
 {
     private readonly UserManager<AppIdentityUser> _userManager;
+    private readonly SignInManager<AppIdentityUser> _signInManager;
     private readonly AddressService _addressService;
 
-    public AuthService(UserManager<AppIdentityUser> userManager, AddressService addressService)
-    {
-        _userManager = userManager;
-        _addressService = addressService;
-    }
+
+	public AuthService(UserManager<AppIdentityUser> userManager, AddressService addressService, SignInManager<AppIdentityUser> signInManager)
+	{
+		_userManager = userManager;
+		_addressService = addressService;
+		_signInManager = signInManager;
+	}
 
 	public async Task<bool> UserExistAsync(Expression<Func<AppIdentityUser, bool>> expression)
 	{
@@ -39,7 +40,17 @@ public class AuthService
                 return true;
             }
         }
-        return false;
-    
+        return false;    
     }   
+
+    public async Task<bool> LoginAsync(LoginViewModel viewmodel)
+    {
+        var appUser=await _userManager.Users.FirstOrDefaultAsync(x=>x.Email== viewmodel.Email);
+        if(appUser!= null)
+        {
+            var result=await _signInManager.PasswordSignInAsync(appUser, viewmodel.Password,viewmodel.RememberMe,false);
+            return result.Succeeded;
+        }
+        return false;
+	}
 }

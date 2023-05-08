@@ -14,7 +14,7 @@
 	<section class="login-form">
 		<div class="container">
 			<div class="title">@ViewData["Title"]</div>
-			<form method="post" novalidate>
+			<form method="post" novalidate asp-route-ReturnUrl="@Model.ReturnUrl">
 				<div asp-validation-summary="ModelOnly" class="text-danger"></div>
 			
 				<div class="name form-group">

@@ -1,26 +1,38 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using WebApp.Helper.Services;
 using WebApp.ViewModels;
 
 namespace WebApp.Controllers;
 
 public class LoginController : Controller
 {
-    public IActionResult Index()
+	private readonly AuthService _auth;
+
+	public LoginController(AuthService auth)
+	{
+		_auth = auth;
+	}
+
+	public IActionResult Index(string ReturnUrl=null!)
     {
-        return View();
+		var viewmodel=new LoginViewModel();
+		if (ReturnUrl != null)
+		{
+			viewmodel.ReturnUrl = ReturnUrl;
+		}
+        return View(viewmodel);
     }
     [HttpPost]
-	public IActionResult Index(LoginViewModel viewmodel)
+	public async Task<IActionResult> IndexAsync(LoginViewModel viewmodel)
 	{
         if(ModelState.IsValid)
         {
-			return View();
-
+			if (await _auth.LoginAsync(viewmodel))
+			{
+				return LocalRedirect(viewmodel.ReturnUrl);
+			}
+			ModelState.AddModelError("", "Invaild email or password");
 		}
-		
-            ModelState.AddModelError("", "Invaild email or password");
-			return View(viewmodel);
-
-		
+		return View(viewmodel);		
 	}
 }

@@ -1,9 +1,13 @@
-﻿@using WebApp.ViewModels;
+﻿@using Microsoft.AspNetCore.Identity;
+@using WebApp.Models.Identity;
+@using WebApp.ViewModels;
 @using WebApp.Services;
 @using WebApp.Models;
 @using WebApp.Models.Entity;
 @using WebApp.Helper.Services;
 @inject ShowcaseService showcaseService
+@inject SignInManager<AppIdentityUser> signInManager
+@inject UserManager<AppIdentityUser> userManager
 
 
 
