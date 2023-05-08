@@ -12,13 +12,15 @@ public class AuthService
     private readonly UserManager<AppIdentityUser> _userManager;
     private readonly SignInManager<AppIdentityUser> _signInManager;
     private readonly AddressService _addressService;
+    private readonly SeedRoleService _seeds;
 
 
-	public AuthService(UserManager<AppIdentityUser> userManager, AddressService addressService, SignInManager<AppIdentityUser> signInManager)
+	public AuthService(UserManager<AppIdentityUser> userManager, AddressService addressService, SignInManager<AppIdentityUser> signInManager, SeedRoleService seeds)
 	{
 		_userManager = userManager;
 		_addressService = addressService;
 		_signInManager = signInManager;
+		_seeds = seeds;
 	}
 
 	public async Task<bool> UserExistAsync(Expression<Func<AppIdentityUser, bool>> expression)
@@ -29,11 +31,18 @@ public class AuthService
 
 	public async Task<bool> RegisterUserAsync(RegistrationViewModel viewmodel)
     {
+        await _seeds.SeedRoleAsync();
+        var _roleName = "user";
+        if(!await _userManager.Users.AnyAsync())
+        {
+            _roleName= "admin";
+        }
         AppIdentityUser appUser = viewmodel;
         var result = await _userManager.CreateAsync(appUser, viewmodel.Password);
         if (result.Succeeded)
         {
-            var addressEntity =await _addressService.GetOrCreateAsync(viewmodel);
+			await _userManager.AddToRoleAsync(appUser, _roleName);
+			var addressEntity =await _addressService.GetOrCreateAsync(viewmodel);
             if (addressEntity != null)
             {
                 await _addressService.AddAdressAsync(appUser, addressEntity);

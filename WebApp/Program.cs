@@ -16,6 +16,7 @@ namespace WebApp
 
             // Add services to the container.
             builder.Services.AddControllersWithViews();
+            builder.Services.AddScoped<SeedRoleService>();
             builder.Services.AddScoped<ShowcaseService>();
             builder.Services.AddScoped<AddressService>();
             builder.Services.AddScoped<AuthService>();
@@ -27,7 +28,9 @@ namespace WebApp
                 x.SignIn.RequireConfirmedAccount = false;
                 x.Password.RequiredLength= 8;
                 x.User.RequireUniqueEmail= true;
-            }).AddEntityFrameworkStores<IdentityContext>();
+            })
+                .AddEntityFrameworkStores<IdentityContext>()
+                .AddClaimsPrincipalFactory<CustomClaimsPricipalFactory>();
 
             builder.Services.ConfigureApplicationCookie(x =>
             {

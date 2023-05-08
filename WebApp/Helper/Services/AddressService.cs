@@ -24,8 +24,10 @@ public class AddressService
 			x.PostalCode == addressEntity.PostalCode && 
 			x.City == addressEntity.City
 			);
-		
-		entity ??=await _addressRepo.AddAsync(addressEntity);			
+		if(entity != null) 
+		{
+			await _addressRepo.AddAsync(addressEntity);
+		}		
 		
 		return entity!;
 	}
