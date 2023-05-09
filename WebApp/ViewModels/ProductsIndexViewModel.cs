@@ -2,6 +2,6 @@
 
 public class ProductsIndexViewModel
 {
-	public string Title { get; set; } 
+	public string Title { get; set; } = null!;
 	public GridCollectionViewModel All { get; set; } = null!;
 }

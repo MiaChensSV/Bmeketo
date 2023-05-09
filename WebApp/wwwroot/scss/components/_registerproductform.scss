@@ -1,0 +1,71 @@
+﻿.registerproduct-form {
+    padding: 20px 0 60px 0;
+
+    @include lg {
+        padding: 60px 0;
+    }
+
+    .container {
+        border: 0px solid $color-dark-5;
+        padding: 30px;
+
+        @include md {
+            border: 1px solid $color-dark-5;
+        }
+    }
+
+    .title {
+        margin-bottom: 40px;
+    }
+
+    form {
+        display: grid;
+        column-gap: 30px;
+        row-gap: 30px;
+        grid-template-columns: 1fr;
+        grid-template-areas: "title" "description" "price" "imagefile" "category" "tag" "button";
+
+        @include lg {
+            grid-template-columns: 1fr 1fr;
+            grid-template-areas: "title title" "description description" "price price" "imagefile imagefile" "category category" "tag tag" "button button";
+        }
+
+        .title {
+            grid-area: title;
+        }
+
+        .description {
+            grid-area: description;
+        }
+
+        .price {
+            grid-area: price;
+        }
+
+        .imagefile {
+            grid-area: imagefile;
+        }
+
+        .category {
+            grid-area: category;
+        }
+
+        .tag {
+            grid-area: tag;
+        }
+
+        textarea {
+            height: 100px;
+            resize: none;
+        }
+
+        button {
+            grid-area: button;
+
+            @include lg {
+                display: flex;
+                justify-self: flex-start;
+            }
+        }
+    }
+}

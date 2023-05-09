@@ -21,13 +21,21 @@ public class Program
         builder.Services.AddScoped<AddressService>();
         builder.Services.AddScoped<AuthService>();
         builder.Services.AddScoped<TagService>();
+		builder.Services.AddScoped<ProductService>();
+		builder.Services.AddScoped<CategoryService>();
 
-        builder.Services.AddScoped<AddressRepository>();
+
+		builder.Services.AddScoped<AddressRepository>();
 		builder.Services.AddScoped<UserAddressRepository>();
         builder.Services.AddScoped<TagRepository>();
+		builder.Services.AddScoped<ProductRepository>();
+		builder.Services.AddScoped<ProductTagRepository>();
+		builder.Services.AddScoped<CategoryRepository>();
 
 
-        builder.Services.AddIdentity<AppIdentityUser, IdentityRole>(x =>
+
+
+		builder.Services.AddIdentity<AppIdentityUser, IdentityRole>(x =>
         {
             x.SignIn.RequireConfirmedAccount = false;
             x.Password.RequiredLength= 8;

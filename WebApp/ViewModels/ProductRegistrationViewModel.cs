@@ -14,8 +14,10 @@ public class ProductRegistrationViewModel
     public string? Description { get; set; }
 	[Display(Name = "Price*")]
 	public decimal Price { get; set; }
-	[Display(Name = "Image (option)")]
-	public string? ImageUrl { get; set; }
+
+	[Display(Name = "Upload Product Image(options)")]
+	[DataType(DataType.Upload)]
+	public IFormFile? ImageFile { get; set; }
 	[Display(Name = "Category Name")]
 	public string CategoryName { get; set; }=null!;
 
@@ -26,8 +28,7 @@ public class ProductRegistrationViewModel
             Title = viewmodel.Title,
             Description = viewmodel.Description,
             Price = viewmodel.Price,
-            ImageUrl = viewmodel.ImageUrl
-        };
+		};
     }
     public static implicit operator CategoryEntity(ProductRegistrationViewModel viewmodel)
     {

@@ -20,7 +20,7 @@
         color: $color-dark-2;
     }
 
-    ul {
+    .ul-links {
         list-style: none;
         margin: 0;
         padding: 0;
@@ -31,9 +31,10 @@
         font-weight: $font-weight-regular;
         font-family: $font-poppins;
 
-        li {
-            padding: 0;
-            margin: 0 10px 0 0;
+        link {
+            padding: 20px 0;
+            margin: 20px;
+            color: $color-theme-1;
         }
     }
 }

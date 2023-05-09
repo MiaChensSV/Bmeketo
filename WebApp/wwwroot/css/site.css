@@ -480,7 +480,7 @@ footer.fixed {
   font-weight: 700;
   color: #292929;
 }
-.breadcrumb ul {
+.breadcrumb .ul-links {
   list-style: none;
   margin: 0;
   padding: 0;
@@ -491,9 +491,10 @@ footer.fixed {
   font-weight: 400;
   font-family: "Poppins", sans-serif;
 }
-.breadcrumb ul li {
-  padding: 0;
-  margin: 0 10px 0 0;
+.breadcrumb .ul-links link {
+  padding: 20px 0;
+  margin: 20px;
+  color: #FA3150;
 }
 
 .map iframe {
@@ -1050,6 +1051,71 @@ footer.fixed {
 }
 @media (min-width: 992px) {
   .register-form form button {
+    display: flex;
+    justify-self: flex-start;
+  }
+}
+
+.registerproduct-form {
+  padding: 20px 0 60px 0;
+}
+@media (min-width: 992px) {
+  .registerproduct-form {
+    padding: 60px 0;
+  }
+}
+.registerproduct-form .container {
+  border: 0px solid #E1E1E1;
+  padding: 30px;
+}
+@media (min-width: 768px) {
+  .registerproduct-form .container {
+    border: 1px solid #E1E1E1;
+  }
+}
+.registerproduct-form .title {
+  margin-bottom: 40px;
+}
+.registerproduct-form form {
+  display: grid;
+  column-gap: 30px;
+  row-gap: 30px;
+  grid-template-columns: 1fr;
+  grid-template-areas: "title" "description" "price" "imagefile" "category" "tag" "button";
+}
+@media (min-width: 992px) {
+  .registerproduct-form form {
+    grid-template-columns: 1fr 1fr;
+    grid-template-areas: "title title" "description description" "price price" "imagefile imagefile" "category category" "tag tag" "button button";
+  }
+}
+.registerproduct-form form .title {
+  grid-area: title;
+}
+.registerproduct-form form .description {
+  grid-area: description;
+}
+.registerproduct-form form .price {
+  grid-area: price;
+}
+.registerproduct-form form .imagefile {
+  grid-area: imagefile;
+}
+.registerproduct-form form .category {
+  grid-area: category;
+}
+.registerproduct-form form .tag {
+  grid-area: tag;
+}
+.registerproduct-form form textarea {
+  height: 100px;
+  resize: none;
+}
+.registerproduct-form form button {
+  grid-area: button;
+}
+@media (min-width: 992px) {
+  .registerproduct-form form button {
     display: flex;
     justify-self: flex-start;
   }
