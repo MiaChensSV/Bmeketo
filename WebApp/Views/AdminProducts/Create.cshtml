@@ -7,15 +7,21 @@
 <partial name="~/Views/Partials/_Breadcrumb.cshtml" />
 <section class="registerproduct-form">
 	<div class="bg-body-tertiary container">
+		<div class="title">@ViewData["Title"]</div>
 		<form method="post" enctype="multipart/form-data" novalidate>
 			<div asp-validation-summary="ModelOnly" class="text-danger"></div>
+			<div class="articleNumber form-group">
+				<label asp-for="ArticleNumber"></label>
+				<input asp-for="ArticleNumber" />
+				<span asp-validation-for="ArticleNumber" class="small text-danger"></span>
+			</div>
 			<div class="title form-group">
-				<label asp-for="Title">Title</label>
+				<label asp-for="Title"></label>
 				<input asp-for="Title" />
 				<span asp-validation-for="Title" class="small text-danger"></span>
 			</div>
 			<div class="description form-group">
-				<label asp-for="Description">Description</label>
+				<label asp-for="Description"></label>
 				<textarea asp-for="Description"></textarea>
 				<span asp-validation-for="Description" class="small text-danger"></span>
 			</div>

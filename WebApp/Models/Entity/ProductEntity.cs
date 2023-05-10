@@ -1,12 +1,18 @@
-﻿using Microsoft.EntityFrameworkCore.Metadata.Internal;
+﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Metadata.Internal;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace WebApp.Models.Entity;
+[Index(nameof(ArticleNumber), IsUnique = true)]
 
 public class ProductEntity
 {
     public Guid Id { get; set; }= Guid.NewGuid();
-    public string Title { get; set; } = null!;
+
+	[Display(Name = "Article Number*")]
+	public string ArticleNumber { get; set; } = null!;
+	public string Title { get; set; } = null!;
     public string? Description { get; set; }
 
     [Column(TypeName = "money")]

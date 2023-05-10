@@ -21,11 +21,12 @@ public class CategoryService
 		var _categoryEntity = await _categoryRepo.GetAsync(x => x.CategoryName.ToUpper() == viewmodel.CategoryName.ToUpper());
 		if(_categoryEntity == null )
 		{
-			await _categoryRepo.AddAsync(new CategoryEntity
-			{
-				CategoryName = viewmodel.CategoryName,
-				Description = null!
-			}) ; 
+			_categoryEntity = await _categoryRepo.AddAsync(new CategoryEntity
+							{
+								CategoryName = viewmodel.CategoryName,
+								Description = null!
+							}) ;
+
 		}
 		return _categoryEntity!;
 	}

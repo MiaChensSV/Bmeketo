@@ -23,11 +23,15 @@
         column-gap: 30px;
         row-gap: 30px;
         grid-template-columns: 1fr;
-        grid-template-areas: "title" "description" "price" "imagefile" "category" "tag" "button";
+        grid-template-areas: "articleNumber" "title" "description" "price" "imagefile" "category" "tag" "button";
 
         @include lg {
             grid-template-columns: 1fr 1fr;
-            grid-template-areas: "title title" "description description" "price price" "imagefile imagefile" "category category" "tag tag" "button button";
+            grid-template-areas: "articleNumber articleNumber" "title title" "description description" "price price" "imagefile imagefile" "category category" "tag tag" "button button";
+        }
+
+        .articleNumber {
+            grid-area: articleNumber;
         }
 
         .title {

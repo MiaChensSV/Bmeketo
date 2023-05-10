@@ -27,9 +27,9 @@ public abstract class IdentityRepository<TEntity> where TEntity : class
 		}
 		else return null!;
 	}
-	public virtual async Task<IEnumerable<TEntity>> GetAllAsync(Expression<Func<TEntity, bool>> expression)
+	public virtual async Task<IEnumerable<TEntity>> GetAllAsync()
 	{
-		return await _identityContext.Set<TEntity>().Where(expression).ToListAsync();
+		return await _identityContext.Set<TEntity>().ToListAsync();
 	
 	}
 	public virtual async Task<TEntity> UpdateAsync(TEntity entity)

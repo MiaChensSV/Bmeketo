@@ -23,6 +23,7 @@ public class Program
         builder.Services.AddScoped<TagService>();
 		builder.Services.AddScoped<ProductService>();
 		builder.Services.AddScoped<CategoryService>();
+		builder.Services.AddScoped<UserService>();
 
 
 		builder.Services.AddScoped<AddressRepository>();
@@ -31,6 +32,8 @@ public class Program
 		builder.Services.AddScoped<ProductRepository>();
 		builder.Services.AddScoped<ProductTagRepository>();
 		builder.Services.AddScoped<CategoryRepository>();
+		builder.Services.AddScoped<UserRepository>();
+
 
 
 

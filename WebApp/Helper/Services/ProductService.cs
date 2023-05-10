@@ -1,6 +1,7 @@
 ﻿using WebApp.Helper.Repositories;
 using WebApp.Models.Entity;
 using WebApp.ViewModels;
+using WebApp.ViewModels.Admin.Products;
 
 namespace WebApp.Helper.Services;
 
@@ -8,22 +9,27 @@ public class ProductService
 {
 	private readonly ProductRepository _productRepo;
 	private readonly ProductTagRepository _productTagRepo;
-
-	public ProductService(ProductRepository productRepo, ProductTagRepository productTagRepo, CategoryRepository categoryRepo)
+	private readonly CategoryRepository _categoryRepo;
+	private readonly CategoryService _categoryService;
+	public ProductService(ProductRepository productRepo, ProductTagRepository productTagRepo, CategoryRepository categoryRepo, CategoryService categoryService)
 	{
 		_productRepo = productRepo;
 		_productTagRepo = productTagRepo;
+		_categoryRepo = categoryRepo;
+		_categoryService = categoryService;
 	}
-	public async Task<bool> CreateAsync(ProductEntity entity)
+	public async Task<bool> CreateAsync(ProductRegistrationViewModel viewmodel)
 	{
-		var _entity = await _productRepo.GetAsync(x=>x.Id==entity.Id);
-		if (_entity == null)
+		var _productEntity = await _productRepo.GetAsync(x=>x.ArticleNumber== viewmodel.ArticleNumber);
+		if (_productEntity == null)
 		{
-			_entity=await _productRepo.AddAsync(entity);
-			if(_entity!=null)
-				return true;
+			var _categoryEntity = _categoryService.GetOrCreateCategoryAsync(viewmodel).Result;
+			viewmodel.CatagoryId = _categoryEntity.Id.ToString();
+			
+			_productEntity = await _productRepo.AddAsync(viewmodel);
+			return true;
 		}
-		return false;
+		else return false;
 	}
 
 	public async Task<IEnumerable<ProductEntity>> GetAllAsync()
@@ -56,16 +62,22 @@ public class ProductService
 			return true;
 		}return false;
 	}
-	public async Task AddProductTagsAsync(ProductEntity entity, string[]tags)
+	public async Task AddProductTagsAsync(ProductRegistrationViewModel viewmodel, string[]tags)
 	{
-		foreach (var tag in tags)
+		var _productEntity = await _productRepo.GetAsync(x => x.ArticleNumber == viewmodel.ArticleNumber);
+		if(_productEntity != null)
 		{
-			await _productTagRepo.AddAsync(new ProductTagEntity
+			foreach (var tag in tags)
 			{
-				ProductId = entity.Id,
-				TagId=int.Parse(tag),
-			});
+				await _productTagRepo.AddAsync(new ProductTagEntity
+				{
+					ProductId = _productEntity.Id,
+					TagId = int.Parse(tag),
+				});
+			}
 		}
+
+		
 	}
 	
 }
