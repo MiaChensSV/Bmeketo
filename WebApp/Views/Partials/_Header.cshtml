@@ -7,9 +7,10 @@
             <a class="link" asp-controller="Contacts" asp-action="Index">CONTACT</a>
         </nav>
         @if (signInManager.IsSignedIn(User) && User.IsInRole("admin"))
-        {
-            <a asp-action="Index" asp-controller="Admin">Admin</a>
-            <a class="link" asp-controller="Logout" asp-action="Index">Logout</a>
+        {   <nav class="menu-icons">
+                <a class="link" asp-action="Index" asp-controller="Admin">Admin</a>
+                <a class="link" asp-controller="Logout" asp-action="Index">Logout</a>
+            </nav>
         }else
         {
             <nav class="menu-icons">

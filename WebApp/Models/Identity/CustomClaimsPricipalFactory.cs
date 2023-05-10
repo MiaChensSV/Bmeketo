@@ -17,6 +17,9 @@ public class CustomClaimsPricipalFactory : UserClaimsPrincipalFactory<AppIdentit
 	{
 		var claimsIdentity=await base.GenerateClaimsAsync(user);
 		claimsIdentity.AddClaim(new Claim("DisplayName", $"{user.FirstName} {user.LastName}"));
+		var roles = await UserManager.GetRolesAsync(user);
+
+		claimsIdentity.AddClaims(roles.Select(x => new Claim(ClaimTypes.Role, x)));
 		return claimsIdentity;
 	}
 }
