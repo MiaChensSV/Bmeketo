@@ -2,7 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using WebApp.Models.Identity;
 
-namespace WebApp.Controllers;
+namespace WebApp.Controllers.Account;
 
 public class LogoutController : Controller
 {

@@ -2,8 +2,8 @@
 
 public class CategoryEntity
 {
-    public int Id { get; set; }
+    public Guid Id { get; set; } = new Guid();
     public string CategoryName { get; set; } = null!;
-    public string Description { get; set; } = null!;
+    public string? Description { get; set; }
     public ICollection<ProductEntity> Products { get; set; } = new HashSet<ProductEntity>();
 }

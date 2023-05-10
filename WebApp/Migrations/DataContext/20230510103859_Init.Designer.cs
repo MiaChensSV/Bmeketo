@@ -12,8 +12,8 @@ using WebApp.Contexts;
 namespace WebApp.Migrations.DataContext
 {
     [DbContext(typeof(WebContext))]
-    [Migration("20230508203708_product-category-tag")]
-    partial class productcategorytag
+    [Migration("20230510103859_Init")]
+    partial class Init
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -27,11 +27,9 @@ namespace WebApp.Migrations.DataContext
 
             modelBuilder.Entity("WebApp.Models.Entity.CategoryEntity", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("CategoryName")
                         .IsRequired()
@@ -52,8 +50,8 @@ namespace WebApp.Migrations.DataContext
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<int>("CategoryId")
-                        .HasColumnType("int");
+                    b.Property<Guid>("CategoryId")
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("Description")
                         .HasColumnType("nvarchar(max)");

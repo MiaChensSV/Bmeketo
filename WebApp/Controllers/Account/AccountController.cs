@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
-namespace WebApp.Controllers;
+namespace WebApp.Controllers.Account;
 [Authorize]
 public class AccountController : Controller
 {

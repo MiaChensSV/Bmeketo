@@ -1,12 +1,14 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using WebApp.Helper.Services;
-using WebApp.ViewModels;
+using WebApp.ViewModels.Account;
+using WebApp.ViewModels.Admin;
 
 namespace WebApp.Controllers;
 
 public class RegisterController : Controller
 {
 	private readonly AuthService _auth;
+	
 
 	public RegisterController(AuthService auth)
 	{
@@ -31,5 +33,5 @@ public class RegisterController : Controller
 		}
 		ModelState.AddModelError("", "Invaild input");
 		return View(viewmodel);
-	}
+	}	
 }

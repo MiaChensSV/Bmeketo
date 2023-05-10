@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using WebApp.Models.Identity;
 using WebApp.Services;
-using WebApp.ViewModels;
+using WebApp.ViewModels.Account;
 
 namespace WebApp.Helper.Services;
 

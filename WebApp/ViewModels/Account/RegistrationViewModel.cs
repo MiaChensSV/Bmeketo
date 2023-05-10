@@ -2,7 +2,7 @@
 using WebApp.Models.Entity;
 using WebApp.Models.Identity;
 
-namespace WebApp.ViewModels;
+namespace WebApp.ViewModels.Account;
 
 public class RegistrationViewModel
 {
@@ -17,20 +17,20 @@ public class RegistrationViewModel
     [Display(Name = "Email Address")]
     [Required(ErrorMessage = "Email Address is required")]
     [DataType(DataType.EmailAddress)]
-    [RegularExpression(@"^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[A-Za-z]{2,}$",ErrorMessage="You Must provide an valid email address.")]
+    [RegularExpression(@"^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[A-Za-z]{2,}$", ErrorMessage = "You Must provide an valid email address.")]
     public string Email { get; set; } = null!;
 
     [Display(Name = "Phone Number(options)")]
     public string? PhoneNumber { get; set; }
 
-    [Display(Name ="Company Name(options)")]
+    [Display(Name = "Company Name(options)")]
     public string? CompanyName { get; set; }
 
     [Display(Name = "Password")]
     [Required(ErrorMessage = "Password is required")]
     [DataType(DataType.Password)]
-		[RegularExpression(@"^(?=.*[A-Z])(?=.*[a-z])(?=.*[0-9])(?=.*[^a-zA-Z0-9]).{8,}$", ErrorMessage = "You Must provide an valid password.")]
-		public string Password { get; set; } = null!;
+    [RegularExpression(@"^(?=.*[A-Z])(?=.*[a-z])(?=.*[0-9])(?=.*[^a-zA-Z0-9]).{8,}$", ErrorMessage = "You Must provide an valid password.")]
+    public string Password { get; set; } = null!;
 
     [Display(Name = "Confirm your Password")]
     [Required(ErrorMessage = "Confirm password is required")]
@@ -52,8 +52,8 @@ public class RegistrationViewModel
     public IFormFile? ImageFile { get; set; }
 
     [Display(Name = "I have read and accept the terms and agreements")]
-		[Required(ErrorMessage = "You must read and accept the terms and agreements")]
-		public bool TermsAndAgreement { get; set; } = false;
+    [Required(ErrorMessage = "You must read and accept the terms and agreements")]
+    public bool TermsAndAgreement { get; set; } = false;
 
     public static implicit operator AppIdentityUser(RegistrationViewModel viewModel)
     {

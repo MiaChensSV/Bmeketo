@@ -1,6 +1,6 @@
 ﻿using WebApp.Helper.Repositories;
 using WebApp.Models.Entity;
-using WebApp.ViewModels;
+using WebApp.ViewModels.Admin.Products;
 
 namespace WebApp.Helper.Services;
 
@@ -13,16 +13,21 @@ public class CategoryService
 		_categoryRepo = categoryRepo;
 	}
 
-	public async Task AddProductCategoryAsync(ProductRegistrationViewModel viewmodel)
+	
+
+
+	public async Task<CategoryEntity> GetOrCreateCategoryAsync(ProductRegistrationViewModel viewmodel)
 	{
-		var _category = await _categoryRepo.GetAsync(x => x.CategoryName.ToUpper() == viewmodel.CategoryName.ToUpper());
-		if (_category == null)
+		var _categoryEntity = await _categoryRepo.GetAsync(x => x.CategoryName.ToUpper() == viewmodel.CategoryName.ToUpper());
+		if(_categoryEntity == null )
 		{
 			await _categoryRepo.AddAsync(new CategoryEntity
 			{
 				CategoryName = viewmodel.CategoryName,
-			});
+				Description = null!
+			}) ; 
 		}
-
+		return _categoryEntity!;
 	}
+
 }

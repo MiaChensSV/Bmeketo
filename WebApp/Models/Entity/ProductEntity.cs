@@ -5,14 +5,14 @@ namespace WebApp.Models.Entity;
 
 public class ProductEntity
 {
-    public Guid Id { get; set; }
+    public Guid Id { get; set; }= Guid.NewGuid();
     public string Title { get; set; } = null!;
     public string? Description { get; set; }
 
     [Column(TypeName = "money")]
     public decimal Price { get; set; }
     public string? ImageUrl { get; set; }
-    public int CategoryId { get; set; }
+    public Guid CategoryId { get; set; }
     [ForeignKey("CategoryId")]
     public CategoryEntity Category { get; set; }=null!;
 
