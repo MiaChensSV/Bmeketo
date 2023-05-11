@@ -46,10 +46,11 @@ public class AuthService
             if (addressEntity != null)
             {
                 await _addressService.AddAdressAsync(appUser, addressEntity);
-                return true;
-            }
-        }
-        return false;    
+			}
+			return true;
+
+		}
+		return false;    
     }   
 
     public async Task<bool> LoginAsync(LoginViewModel viewmodel)

@@ -24,12 +24,19 @@ public class AddressService
 			x.PostalCode == addressEntity.PostalCode && 
 			x.City == addressEntity.City
 			);
-		if(entity != null) 
+		if(entity == null) 
 		{
-			await _addressRepo.AddAsync(addressEntity);
-		}		
-		
-		return entity!;
+			if (addressEntity.City!=null || addressEntity.StreetName!= null || addressEntity.PostalCode != null)
+			{
+				Console.Write("null adressenetity");
+
+				var newAdressEntity = await _addressRepo.AddAsync(addressEntity);
+				return newAdressEntity;
+			}
+			else return null!;
+
+
+		}		else return entity;
 	}
 
 	public async Task AddAdressAsync(AppIdentityUser appUser, AddressEntity addressEntity)
