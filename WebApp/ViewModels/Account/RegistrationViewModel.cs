@@ -57,7 +57,7 @@ public class RegistrationViewModel
 
     public static implicit operator AppIdentityUser(RegistrationViewModel viewModel)
     {
-        return new AppIdentityUser
+        var _newUser= new AppIdentityUser
         {
             UserName = viewModel.Email,
             FirstName = viewModel.FirstName,
@@ -65,6 +65,11 @@ public class RegistrationViewModel
             Email = viewModel.Email,
             PhoneNumber = viewModel.PhoneNumber,
         };
+        if(viewModel.ImageFile!= null )
+        {
+            _newUser.ProfileImageUrl = $"{viewModel.FirstName}_{viewModel.LastName}_{viewModel.ImageFile.FileName}";
+        }
+        return _newUser;
     }
     public static implicit operator AddressEntity(RegistrationViewModel viewModel)
     {

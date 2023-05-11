@@ -28,15 +28,13 @@ public class AddressService
 		{
 			if (addressEntity.City!=null || addressEntity.StreetName!= null || addressEntity.PostalCode != null)
 			{
-				Console.Write("null adressenetity");
-
 				var newAdressEntity = await _addressRepo.AddAsync(addressEntity);
 				return newAdressEntity;
 			}
 			else return null!;
 
 
-		}		else return entity;
+		}else return entity;
 	}
 
 	public async Task AddAdressAsync(AppIdentityUser appUser, AddressEntity addressEntity)

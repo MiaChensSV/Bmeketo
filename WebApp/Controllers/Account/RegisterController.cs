@@ -8,11 +8,12 @@ namespace WebApp.Controllers;
 public class RegisterController : Controller
 {
 	private readonly AuthService _auth;
-	
+	private readonly UserService _userService;
 
-	public RegisterController(AuthService auth)
+	public RegisterController(AuthService auth, UserService userService)
 	{
 		_auth = auth;
+		_userService = userService;
 	}
 
 	public IActionResult Index()
@@ -28,8 +29,17 @@ public class RegisterController : Controller
 			{
 				ModelState.AddModelError("", "Email is already exist");
 			}
-			if (await _auth.RegisterUserAsync(viewmodel))
-				return RedirectToAction("Index", "Login");
+			else
+			{
+				var _user = await _auth.RegisterUserAsync(viewmodel);
+				if (_user!=null)
+					if(viewmodel.ImageFile!=null)
+					{
+						await _userService.UploadImageAsync(_user,viewmodel.ImageFile);
+					}
+					return RedirectToAction("Index", "Login");
+			}
+			
 		}
 		ModelState.AddModelError("", "Invaild input");
 		return View(viewmodel);

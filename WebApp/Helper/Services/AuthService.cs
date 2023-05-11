@@ -1,6 +1,7 @@
 ﻿using System.Linq.Expressions;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using WebApp.Models;
 using WebApp.Models.Identity;
 using WebApp.Services;
 using WebApp.ViewModels.Account;
@@ -29,7 +30,7 @@ public class AuthService
 		return result;
 	}
 
-	public async Task<bool> RegisterUserAsync(RegistrationViewModel viewmodel)
+	public async Task<UserModel> RegisterUserAsync(RegistrationViewModel viewmodel)
     {
         await _seeds.SeedRoleAsync();
         var _roleName = "user";
@@ -47,10 +48,11 @@ public class AuthService
             {
                 await _addressService.AddAdressAsync(appUser, addressEntity);
 			}
-			return true;
+            
+			return appUser;
 
 		}
-		return false;    
+		return null!;    
     }   
 
     public async Task<bool> LoginAsync(LoginViewModel viewmodel)

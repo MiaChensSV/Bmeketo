@@ -17,4 +17,16 @@ public class AppIdentityUser:IdentityUser
     [ProtectedPersonalData]
     public string? ProfileImageUrl { get; set; }
     public ICollection <UserAddressEntity> Addresses { get; set; }=new HashSet<UserAddressEntity>();
+
+    public static implicit operator UserModel(AppIdentityUser user)
+    {
+        var _newUserModel=new UserModel
+        {
+            FirstName = user.FirstName,
+            LastName = user.LastName,
+            CompanyName = user.CompanyName,
+            ProfileImageUrl = user.ProfileImageUrl,
+        };
+        return _newUserModel;
+    }
 }

@@ -43,7 +43,7 @@ public class ProductRegistrationViewModel
         };
         if (viewmodel.ImageFile != null)
         {
-            _entity.ImageUrl = $"{viewmodel.ArticleNumber}_{viewmodel.ImageFile?.FileName}";
+            _entity.ImageUrl = $"{viewmodel.ArticleNumber}_{viewmodel.ImageFile.FileName}";
         }
         return _entity;
     }
