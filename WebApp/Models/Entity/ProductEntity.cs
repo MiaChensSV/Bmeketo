@@ -23,6 +23,24 @@ public class ProductEntity
     public CategoryEntity Category { get; set; }=null!;
 
     public ICollection<ProductTagEntity> Tags { get; set; }=new HashSet<ProductTagEntity>();
+
+    public static implicit operator ProductModel(ProductEntity entity)
+    {
+        var _productModel= new ProductModel
+        {
+            ArticleNumber = entity.ArticleNumber,
+            Title = entity.Title,
+            Description = entity.Description,
+            Price = entity.Price,
+            ImageUrl = entity.ImageUrl,
+		};
+
+        return _productModel;
+
+	}
+
+
+
 }
 
 

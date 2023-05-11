@@ -22,9 +22,10 @@ public class ProductRegistrationViewModel
 	[Required(ErrorMessage = "Price is required")]
 	public decimal Price { get; set; }
 
-    [Display(Name = "Upload Product Image(options)")]
+    [Display(Name = "Upload Product Image (options) ")]
     [DataType(DataType.Upload)]
     public IFormFile? ImageFile { get; set; }
+
     [Display(Name = "Category Name")]
 	[Required(ErrorMessage = "CategoryName is required")]
 	public string CategoryName { get; set; } = null!;
@@ -32,15 +33,19 @@ public class ProductRegistrationViewModel
 
     public static implicit operator ProductEntity(ProductRegistrationViewModel viewmodel)
     {
-        return new ProductEntity
+        var _entity= new ProductEntity
         {
             ArticleNumber = viewmodel.ArticleNumber,
             Title = viewmodel.Title,
             Description = viewmodel.Description,
             Price = viewmodel.Price,
-            ImageUrl = viewmodel.ImageFile?.FileName,
             CategoryId = Guid.Parse(viewmodel.CatagoryId!),
         };
+        if (viewmodel.ImageFile != null)
+        {
+            _entity.ImageUrl = $"{viewmodel.ArticleNumber}_{viewmodel.ImageFile?.FileName}";
+        }
+        return _entity;
     }
 	public static implicit operator CategoryEntity(ProductRegistrationViewModel viewmodel)
 	{

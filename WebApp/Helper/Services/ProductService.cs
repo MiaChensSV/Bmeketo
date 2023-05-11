@@ -1,6 +1,7 @@
-﻿using WebApp.Helper.Repositories;
+﻿using Microsoft.AspNetCore.Mvc.ModelBinding.Binders;
+using WebApp.Helper.Repositories;
+using WebApp.Models;
 using WebApp.Models.Entity;
-using WebApp.ViewModels;
 using WebApp.ViewModels.Admin.Products;
 
 namespace WebApp.Helper.Services;
@@ -9,16 +10,16 @@ public class ProductService
 {
 	private readonly ProductRepository _productRepo;
 	private readonly ProductTagRepository _productTagRepo;
-	private readonly CategoryRepository _categoryRepo;
 	private readonly CategoryService _categoryService;
-	public ProductService(ProductRepository productRepo, ProductTagRepository productTagRepo, CategoryRepository categoryRepo, CategoryService categoryService)
+	private readonly IWebHostEnvironment _webHostEnvironment;
+	public ProductService(ProductRepository productRepo, ProductTagRepository productTagRepo, CategoryRepository categoryRepo, CategoryService categoryService, IWebHostEnvironment webHostEnvironment)
 	{
 		_productRepo = productRepo;
 		_productTagRepo = productTagRepo;
-		_categoryRepo = categoryRepo;
 		_categoryService = categoryService;
+		_webHostEnvironment = webHostEnvironment;
 	}
-	public async Task<bool> CreateAsync(ProductRegistrationViewModel viewmodel)
+	public async Task<ProductModel> CreateAsync(ProductRegistrationViewModel viewmodel)
 	{
 		var _productEntity = await _productRepo.GetAsync(x=>x.ArticleNumber== viewmodel.ArticleNumber);
 		if (_productEntity == null)
@@ -27,9 +28,9 @@ public class ProductService
 			viewmodel.CatagoryId = _categoryEntity.Id.ToString();
 			
 			_productEntity = await _productRepo.AddAsync(viewmodel);
-			return true;
+			return _productEntity;
 		}
-		else return false;
+		else return null!;
 	}
 
 	public async Task<IEnumerable<ProductEntity>> GetAllAsync()
@@ -79,5 +80,16 @@ public class ProductService
 
 		
 	}
-	
+
+	public async Task<bool> UploadImageAsync(ProductModel product,IFormFile imageFile)
+	{
+		try
+		{
+			string imagePath = $"{_webHostEnvironment.WebRootPath}/images/products/{product.ImageUrl}";
+			await imageFile.CopyToAsync(new FileStream(imagePath,FileMode.Create));
+			return true;
+		}
+		catch { return false; }
+		
+	}
 }

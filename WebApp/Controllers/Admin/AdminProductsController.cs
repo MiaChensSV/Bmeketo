@@ -24,7 +24,7 @@ public class AdminProductsController : Controller
 	}
 
 	[HttpGet]
-	[Route("admin/products/create")]
+	[Route("create")]
 	public async Task<IActionResult> CreateAsync()
 	{
 		ViewBag.Tags = await _tagService.GetTagsAsync();
@@ -32,14 +32,18 @@ public class AdminProductsController : Controller
 	}
 
 	[HttpPost]
-	[Route("admin/products/create")]
+	[Route("create")]
 	public async Task<IActionResult> CreateAsync(ProductRegistrationViewModel viewmodel, string[] tags)
 	{
 		if (ModelState.IsValid)
 		{
-			var result = await _productService.CreateAsync(viewmodel);
-			if (result)
+			var product = await _productService.CreateAsync(viewmodel);
+			if (product!=null)
 			{
+				if(viewmodel.ImageFile!= null)
+				{
+					await _productService.UploadImageAsync(product, viewmodel.ImageFile!);
+				}				
 				await _productService.AddProductTagsAsync(viewmodel, tags);
 				return RedirectToAction("Index", "AdminProducts");
 			}

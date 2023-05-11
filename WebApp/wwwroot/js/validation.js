@@ -9,14 +9,9 @@ for(let element of elements){
                 passwordValidator(e.target.value)
                 break;
             case 'FirstName':
-                console.log('first')
                 firstnameValidator(e.target.value)
                 break;
-
             case 'LastName':
-
-                console.log('last')
-
                 lastnameValidator(e.target.value)
                 break;
 
@@ -51,7 +46,6 @@ function firstnameValidator(value) {
         document.querySelector('[data-valmsg-for="FirstName"]').innerHTML = "Input is invaild.FirstName's length should between 2 to 30 characters and can not include special character "
     }
     return nameRegEx.test(value);
-
 }
 function lastnameValidator(value) {
     const nameRegEx = /^[a-zA-Z]{2,30}$/
@@ -61,5 +55,4 @@ function lastnameValidator(value) {
         document.querySelector('[data-valmsg-for="LastName"]').innerHTML = "Input is invaild.LastName's length should between 2 to 30 characters and can not include special character "
     }
     return nameRegEx.test(value);
-
 }
