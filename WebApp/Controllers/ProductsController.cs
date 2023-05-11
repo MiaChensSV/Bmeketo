@@ -11,7 +11,7 @@ public class ProductsController : Controller
 	{
 		return View();
 	}
-	[Route("{id}")]
+
 	public IActionResult Details(string id)
 	{
 		return View();

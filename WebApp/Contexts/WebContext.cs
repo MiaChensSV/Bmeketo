@@ -13,5 +13,8 @@ public class WebContext:DbContext
     public DbSet<ProductTagEntity> ProductTags { get; set; }    
     public DbSet<TagEntity> Tags { get; set; }  
     public DbSet<ShowcaseEntity> Showcases { get; set; }
-
+    public DbSet<OrderRowEntity> OrderRows { get; set; }
+    public DbSet<OrderEntity> Orders { get; set; }
+    public DbSet<InvoiceRowEntity> InvoiceRows { get; set; }
+    public DbSet<InvoiceEntity> Invoices { get; set; }
 }

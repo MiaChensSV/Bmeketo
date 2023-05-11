@@ -1,7 +1,12 @@
 ﻿@model ProductsIndexViewModel
 
+<partial name="~/Views/Partials/_Breadcrumb.cshtml" />
+
 <div class="mt-5 container">
 	<div style="padding-top:200px">
 		Products
+		<div>@Model.Title</div>
+		<div>@Model.All.GridItems</div>
+		<div>@Model.All.Categories</div>
 	</div>
 </div>

@@ -24,7 +24,7 @@ public class AdminProductsController : Controller
 	}
 
 	[HttpGet]
-	[Route("create")]
+	[Route("admin/products/create")]
 	public async Task<IActionResult> CreateAsync()
 	{
 		ViewBag.Tags = await _tagService.GetTagsAsync();
@@ -32,7 +32,7 @@ public class AdminProductsController : Controller
 	}
 
 	[HttpPost]
-	[Route("create")]
+	[Route("admin/products/create")]
 	public async Task<IActionResult> CreateAsync(ProductRegistrationViewModel viewmodel, string[] tags)
 	{
 		if (ModelState.IsValid)
