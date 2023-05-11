@@ -1,7 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using WebApp.Helper.Services;
 using WebApp.ViewModels.Account;
-using WebApp.ViewModels.Admin;
 
 namespace WebApp.Controllers;
 

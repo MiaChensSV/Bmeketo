@@ -24,7 +24,6 @@ public class CategoryService
 			_categoryEntity = await _categoryRepo.AddAsync(new CategoryEntity
 							{
 								CategoryName = viewmodel.CategoryName,
-								Description = null!
 							}) ;
 
 		}

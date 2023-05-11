@@ -1,6 +1,7 @@
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using WebApp.Contexts;
+using WebApp.Helper;
 using WebApp.Helper.Repositories;
 using WebApp.Helper.Services;
 using WebApp.Models.Identity;
@@ -16,6 +17,7 @@ public class Program
 
         // Add services to the container.
         builder.Services.AddControllersWithViews();
+        builder.Services.AddScoped<SeedService>();
         builder.Services.AddScoped<SeedRoleService>();
         builder.Services.AddScoped<ShowcaseService>();
         builder.Services.AddScoped<AddressService>();
@@ -53,14 +55,37 @@ public class Program
             x.LogoutPath = "/";
             x.AccessDeniedPath = "/denied";
         });
-			builder.Services.AddDbContext<WebContext>(x => x.UseSqlServer(builder.Configuration.GetConnectionString("Sql")));
+
+		builder.Services.AddDbContext<WebContext>(x => x.UseSqlServer(builder.Configuration.GetConnectionString("Sql")));
         builder.Services.AddDbContext<IdentityContext>(x => x.UseSqlServer(builder.Configuration.GetConnectionString("IdentitySql")));
 
         var app = builder.Build();
 
         app.UseHsts();
-        
-        app.UseHttpsRedirection();
+
+		using (var scope = app.Services.CreateScope())
+		{
+			var services = scope.ServiceProvider;
+			try
+			{
+				Console.WriteLine("数据库开始初始化。");
+				var context = services.GetRequiredService<WebContext>();
+				// requires using Microsoft.EntityFrameworkCore;
+				context.Database.Migrate();
+				// Requires using BlazorAppDemo.Models;
+				SeedService.Initialize(services);
+				Console.WriteLine("数据库初始化结束。");
+			}
+
+			catch (Exception ex)
+			{
+				var logger = services.GetRequiredService<ILogger<Program>>();
+				logger.LogError(ex, "数据库数据初始化错误.");
+			}
+
+		}
+
+		app.UseHttpsRedirection();
         app.UseStaticFiles();
 
         app.UseRouting();
@@ -72,5 +97,8 @@ public class Program
             pattern: "{controller=Home}/{action=Index}/{id?}");
 
         app.Run();
-    }
+
+	
+
+	}
 }
