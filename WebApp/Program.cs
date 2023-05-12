@@ -63,24 +63,21 @@ public class Program
 
         app.UseHsts();
 
+        //seeds database
 		using (var scope = app.Services.CreateScope())
 		{
 			var services = scope.ServiceProvider;
 			try
 			{
-				Console.WriteLine("数据库开始初始化。");
 				var context = services.GetRequiredService<WebContext>();
-				// requires using Microsoft.EntityFrameworkCore;
 				context.Database.Migrate();
-				// Requires using BlazorAppDemo.Models;
 				SeedService.Initialize(services);
-				Console.WriteLine("数据库初始化结束。");
 			}
 
 			catch (Exception ex)
 			{
 				var logger = services.GetRequiredService<ILogger<Program>>();
-				logger.LogError(ex, "数据库数据初始化错误.");
+				logger.LogError(ex, "Initialize Database failed.");
 			}
 
 		}

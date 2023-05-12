@@ -72,7 +72,7 @@ public class ProductService
 			{
 				await _productTagRepo.AddAsync(new ProductTagEntity
 				{
-					ProductId = _productEntity.Id,
+					ArticleNumber = _productEntity.ArticleNumber,
 					TagId = int.Parse(tag),
 				});
 			}
