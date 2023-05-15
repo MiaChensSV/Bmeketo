@@ -54,41 +54,41 @@ public class AdminProductsController : Controller
 		return RedirectToAction("Create", "AdminProducts");
 	}
 
-	//[HttpGet]
-	//[Route("edit")]
-	//public async Task<IActionResult> EditAsync(Guid id)
-	//{
-	//	if (ModelState.IsValid)
-	//	{
-	//		var _productEntity = await _productService.GetAsync(id);
-	//		if (_productEntity != null)
-	//		{
-	//			return View(_productEntity);
-	//		}
-	//	}
-	//	return RedirectToAction("Admin", "AdminProducts");
-	//}
+	[HttpGet]
+	[Route("edit")]
+	public async Task<IActionResult> EditAsync(string articleNumber)
+	{
+		if (ModelState.IsValid)
+		{
+			var _productEntity = await _productService.GetAsync(articleNumber);
+			if (_productEntity != null)
+			{
+				return View(_productEntity);
+			}
+		}
+		return RedirectToAction("Admin", "AdminProducts");
+	}
 
-	//[HttpPost]
-	//[Route("edit")]
-	//public async Task<IActionResult> EditAsync(ProductRegistrationViewModel viewmodel, string[] tags)
-	//{
-	//	if (ModelState.IsValid)
-	//	{
-	//		await _categoryService.GetOrCreateCategoryAsync(viewmodel);
+	[HttpPost]
+	[Route("edit")]
+	public async Task<IActionResult> EditAsync(ProductRegistrationViewModel viewmodel, string[] tags)
+	{
+		if (ModelState.IsValid)
+		{
+			await _categoryService.GetOrCreateCategoryAsync(viewmodel);
 
-	//		var result = await _productService.UpdateAsync(viewmodel);
-	//		if (result)
-	//		{
-	//			await _productService.AddProductTagsAsync(viewmodel, tags);
-	//			return RedirectToAction("Index", "AdminProducts");
-	//		}
-	//		ModelState.AddModelError("", "Something went wrong");
+			var result = await _productService.UpdateAsync(viewmodel);
+			if (result)
+			{
+				await _productService.AddProductTagsAsync(viewmodel, tags);
+				return RedirectToAction("Index", "AdminProducts");
+			}
+			ModelState.AddModelError("", "Something went wrong");
 
-	//	}
-	//	ViewBag.Tags = await _tagService.GetTagsAsync(tags);
-	//	return RedirectToAction("Create", "AdminProducts");
-	//}
+		}
+		ViewBag.Tags = await _tagService.GetTagsAsync(tags);
+		return RedirectToAction("Index", "AdminProducts");
+	}
 
 	//[HttpGet]
 	//[Route("remove")]
@@ -98,24 +98,39 @@ public class AdminProductsController : Controller
 	//}
 
 	//[HttpPost]
-	//[Route("create")]
-	//public async Task<IActionResult> RemoveAsync(ProductRegistrationViewModel viewmodel, string[] tags)
+	//[Route("remove")]
+	//public async Task<IActionResult> RemoveAsync(string articleNumber)
 	//{
 	//	if (ModelState.IsValid)
 	//	{
-	//		await _categoryService.GetOrCreateCategoryAsync(viewmodel);
-
-	//		var result = await _productService.CreateAsync(viewmodel);
-	//		if (result)
+	//		var _product= await _productService.GetAsync(articleNumber);
+	//		if (_product != null)
 	//		{
-	//			await _productService.AddProductTagsAsync(viewmodel, tags);
+	//			await _productService.DeleteAsync(articleNumber);
 	//			return RedirectToAction("Index", "AdminProducts");
 	//		}
 	//		ModelState.AddModelError("", "Something went wrong");
 
 	//	}
-	//	ViewBag.Tags = await _tagService.GetTagsAsync(tags);
-	//	return RedirectToAction("Create", "AdminProducts");
+	//	return RedirectToAction("Index", "AdminProducts");
 	//}
+
+//	if (ModelState.IsValid)
+//		{
+//			var product = await _productService.CreateAsync(viewmodel);
+//			if (product!=null)
+//			{
+//				if(viewmodel.ImageFile!= null)
+//				{
+//					await _productService.UploadImageAsync(product, viewmodel.ImageFile!);
+//}
+//await _productService.AddProductTagsAsync(viewmodel, tags);
+//				return RedirectToAction("Index", "AdminProducts");
+//			}
+//			ModelState.AddModelError("", "Something went wrong");
+
+//		}
+//		ViewBag.Tags = await _tagService.GetTagsAsync(tags);
+//return RedirectToAction("Create", "AdminProducts");
 
 }

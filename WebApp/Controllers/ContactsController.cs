@@ -25,6 +25,9 @@ public class ContactsController : Controller
         {
             await _contactService.RegisterAsync(viewmodel);
             return RedirectToAction("Index");
+        }else
+        {
+            ModelState.AddModelError("", ModelState.ValidationState.ToString());
         }
         return View(viewmodel);
 

@@ -7,10 +7,8 @@ namespace WebApp.ViewModels;
 public class ContactFormViewModel
 {
     [Display(Name = "Your Name*")]
-    [Required(ErrorMessage = "First name is required")]
+    [Required(ErrorMessage = "Your name is required")]
     public string Name { get; set; } = null!;
-
-    public string LastName { get; set;} = null!;
 
     [Display(Name = "Your Email*")]
     [Required(ErrorMessage = "Email Address is required")]

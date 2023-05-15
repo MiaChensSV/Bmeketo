@@ -8,7 +8,7 @@
 <section class="registerproduct-form">
 	<div class="bg-body-tertiary container">
 		<div class="title">@ViewData["Title"]</div>
-		<form method="post" asp-action="Create" enctype="multipart/form-data" novalidate>
+		<form method="post" asp-controller="adminProducts" asp-action="Index" enctype="multipart/form-data" novalidate>
 			<div asp-validation-summary="ModelOnly" class="text-danger"></div>
 			<div class="articleNumber form-group">
 				<label asp-for="ArticleNumber"></label>

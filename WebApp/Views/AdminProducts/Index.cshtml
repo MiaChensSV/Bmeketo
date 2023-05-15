@@ -12,12 +12,11 @@
 						<img height="60" width="60" src="/images/products/@item.ImageUrl" alt="@item.Title" />
 						<div class="ms-2">
 							<div class="display-6"><strong>@item.Title</strong></div>
-							<div>@item.Description</div>
 						</div>
 					</div>
 					<div>
-						<a asp-route-id="@item.Id" asp-action="edit" asp-controller="adminproducts" class="btn-theme" style="text-decoration:none"> Update</a>
-						<a asp-route-id="@item.Id" asp-action="remove" asp-controller="adminproducts" class="btn-theme" style="text-decoration:none">delete</a>
+						<a asp-route-articleNumber="@item.ArticleNumber" asp-action="edit" asp-controller="adminproducts" class="btn-theme" style="text-decoration:none"> Update</a>
+						<a asp-route-articleNumber="@item.ArticleNumber" asp-action="remove" asp-controller="adminproducts" class="btn-theme" style="text-decoration:none">delete</a>
 					</div>
 				</div>
 			</div>

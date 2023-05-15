@@ -6,6 +6,7 @@ using WebApp.ViewModels;
 
 namespace WebApp.Models.Entity;
 [Index(nameof(ArticleNumber), IsUnique = true)]
+[PrimaryKey(nameof(ArticleNumber))]
 
 public class ProductEntity
 {
@@ -40,20 +41,6 @@ public class ProductEntity
 
         return _productModel;
 	}
-
-    public static implicit operator GridCollectionItemViewModel(ProductEntity entity)
-    {
-        var _gridCollectionItemViewModel = new GridCollectionItemViewModel
-        {
-            Id = entity.ArticleNumber,
-            ImageUrl = entity.ImageUrl,
-            Title = entity.Title,
-            Price = entity.Price,
-        };
-        return _gridCollectionItemViewModel;
-    }
-
-
 
 }
 
