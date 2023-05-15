@@ -14,7 +14,9 @@ for(let element of elements){
             case 'LastName':
                 lastnameValidator(e.target.value)
                 break;
-
+            case 'Name':
+                lastnameValidator(e.target.value)
+                break;
         }
     })
 }
@@ -53,6 +55,16 @@ function lastnameValidator(value) {
         document.querySelector('[data-valmsg-for="LastName"]').innerHTML = ""
     } else {
         document.querySelector('[data-valmsg-for="LastName"]').innerHTML = "Input is invaild.LastName's length should between 2 to 30 characters and can not include special character "
+    }
+    return nameRegEx.test(value);
+}
+
+function nameValidator(value) {
+    const nameRegEx = /^[a-zA-Z]{2,30}$/
+    if (nameRegEx.test(value)) {
+        document.querySelector('[data-valmsg-for="Name"]').innerHTML = ""
+    } else {
+        document.querySelector('[data-valmsg-for="Name"]').innerHTML = "Input is invaild. Name's length should between 2 to 30 characters and can not include special character "
     }
     return nameRegEx.test(value);
 }

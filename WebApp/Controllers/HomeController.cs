@@ -32,7 +32,6 @@ public class HomeController : Controller
 				Title = entity.Title,
 				Price = entity.Price,
 			});
-
 		});
 
 		var viewModel = new HomeViewModel
@@ -44,12 +43,7 @@ public class HomeController : Controller
 
 				GridItems = gridList,
 				LoadMore = false,
-
-
 			}
-
-
-
 		};
 		return View(viewModel);
 	}
