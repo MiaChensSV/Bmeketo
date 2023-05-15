@@ -30,4 +30,8 @@ public class CategoryService
 		return _categoryEntity!;
 	}
 
+	public async Task<IEnumerable<CategoryEntity>> GetAllAsync()
+	{
+		return await _categoryRepo.GetAllAsync();
+	}
 }

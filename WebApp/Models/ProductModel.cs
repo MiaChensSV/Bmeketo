@@ -13,8 +13,6 @@ public class ProductModel
 	public string? Description { get; set; }
 	public decimal Price { get; set; }
 	public string? ImageUrl { get; set; }
-	public string? CatagoryId { get; set; }
 	public string CategoryName { get; set; } = null!;
-	public int TagId { get; set; }
-	public string TagName { get; set; } = null!;
+	public List<string> Tags { get; set; } = new List<string>();
 }

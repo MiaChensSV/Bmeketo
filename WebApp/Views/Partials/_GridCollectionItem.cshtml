@@ -1,7 +1,7 @@
 ﻿@model GridCollectionItemViewModel
 
 
-<a asp-controller="products" asp-action="details" asp-route-id="@Model.Id"  class="collection-item">
+<a asp-controller="products" asp-action="details" asp-route-articleNumber="@Model.Id"  class="collection-item">
     <img src="@Model.ImageUrl" alt="@Model.Title">
     <div class="body">
         <div class="title">

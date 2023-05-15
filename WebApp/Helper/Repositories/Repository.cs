@@ -24,9 +24,13 @@ public abstract class Repository<TEntity>where TEntity : class
         var entity = await _webContext.Set<TEntity>().FirstOrDefaultAsync(expression);
         return entity!;
     }
-    public virtual async Task<IEnumerable<TEntity>> GetAllAsync()
+	public virtual async Task<IEnumerable<TEntity>> GetAllAsync()
+	{
+		return await _webContext.Set<TEntity>().ToListAsync();
+	}
+	public virtual async Task<IEnumerable<TEntity>> GetAllAsync(Expression<Func<TEntity, bool>> expression)
     {
-        return await _webContext.Set<TEntity>().ToListAsync();
+        return await _webContext.Set<TEntity>().Where(expression).ToListAsync();
     }
     public virtual async Task<TEntity> UpdateAsync(TEntity entity)
     {

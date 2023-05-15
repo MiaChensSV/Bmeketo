@@ -37,10 +37,35 @@ public class ProductService
 	{
 		return await _productRepo.GetAllAsync();
 	}
-
-	public async Task<ProductEntity> GetAsync(Guid id)
+	public async Task<IEnumerable<ProductModel>> GetAllByTagNameAsync()
 	{
-		return await _productRepo.GetAsync(x=>x.Id==id);
+		var items = await _productRepo.GetAllAsync();
+		var list = new List<ProductModel>();
+
+		foreach (var item in items)
+		{
+			var tagList = new List<string>();
+				foreach(var tag in item.Tags) 
+				{					
+					tagList.Add(tag.Tag.TagName);
+				}
+			list.Add(new ProductModel
+			{
+				ArticleNumber = item.ArticleNumber,
+				Title = item.Title,
+				Description = item.Description,
+				CategoryName = item.Category.CategoryName,
+				Price = item.Price,
+				ImageUrl = item.ImageUrl,
+				Tags = tagList,
+			});
+		}
+		return list;
+	}
+
+	public async Task<ProductModel> GetAsync(string articleNumber)
+	{
+		return await _productRepo.GetAsync(x=>x.ArticleNumber == articleNumber);
 	}
 	public async Task<bool> UpdateAsync(ProductEntity entity)
 	{

@@ -26,15 +26,18 @@ public class Program
 		builder.Services.AddScoped<ProductService>();
 		builder.Services.AddScoped<CategoryService>();
 		builder.Services.AddScoped<UserService>();
+        builder.Services.AddScoped<ContactService>();
 
 
-		builder.Services.AddScoped<AddressRepository>();
+
+        builder.Services.AddScoped<AddressRepository>();
 		builder.Services.AddScoped<UserAddressRepository>();
         builder.Services.AddScoped<TagRepository>();
 		builder.Services.AddScoped<ProductRepository>();
 		builder.Services.AddScoped<ProductTagRepository>();
 		builder.Services.AddScoped<CategoryRepository>();
 		builder.Services.AddScoped<UserRepository>();
+        builder.Services.AddScoped<ContactRepository>();
 
 
 
@@ -58,6 +61,7 @@ public class Program
 
 		builder.Services.AddDbContext<WebContext>(x => x.UseSqlServer(builder.Configuration.GetConnectionString("Sql")));
         builder.Services.AddDbContext<IdentityContext>(x => x.UseSqlServer(builder.Configuration.GetConnectionString("IdentitySql")));
+
 
         var app = builder.Build();
 

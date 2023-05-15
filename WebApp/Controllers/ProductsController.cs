@@ -6,15 +6,23 @@ namespace WebApp.Controllers;
 
 public class ProductsController : Controller
 {
-    
-	public IActionResult Index()
+
+	private readonly ProductService _productService;
+
+    public ProductsController(ProductService productService)
+    {
+        _productService = productService;
+    }
+
+    public IActionResult Index()
 	{
 		return View();
 	}
 
-	public IActionResult Details(string id)
+	public async Task<IActionResult> Details(string articleNumber)
 	{
-		return View();
+		var _product = await _productService.GetAsync(articleNumber);
+		return View(_product);
 	}
 
 }

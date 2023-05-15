@@ -6,9 +6,9 @@ public class ShowcaseService
 {
     private ShowcaseModel showcasemodel = new ShowcaseModel
     {
-        Ingress = "Welcome",
-        Title = "Exclusive",
-        ImageUrl = "/images/placeholders/625x647.svg",
+        Ingress = "Welcome to Bmekerto Shop",
+        Title = "Exclusive Chair gold Collection.",
+        ImageUrl = "/images/Showcases/black-friday.jpg",
         Button = new LinkButtonModel
         {
             LinkText = "ShopNow",

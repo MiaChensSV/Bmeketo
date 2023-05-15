@@ -2,6 +2,7 @@
 using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using WebApp.ViewModels;
 
 namespace WebApp.Models.Entity;
 [Index(nameof(ArticleNumber), IsUnique = true)]
@@ -24,23 +25,37 @@ public class ProductEntity
 
     public ICollection<ProductTagEntity> Tags { get; set; }=new HashSet<ProductTagEntity>();
 
-    public static implicit operator ProductModel(ProductEntity entity)
+
+	public static implicit operator ProductModel(ProductEntity entity)
     {
         var _productModel= new ProductModel
         {
-            ArticleNumber = entity.ArticleNumber,
-            Title = entity.Title,
-            Description = entity.Description,
-            Price = entity.Price,
-            ImageUrl = entity.ImageUrl,
+			Id = entity.Id,
+			ArticleNumber = entity.ArticleNumber,
+			Title = entity.Title,
+			Description = entity.Description,
+			Price = entity.Price,
+			ImageUrl = entity.ImageUrl,
 		};
 
         return _productModel;
-
 	}
+
+    public static implicit operator GridCollectionItemViewModel(ProductEntity entity)
+    {
+        var _gridCollectionItemViewModel = new GridCollectionItemViewModel
+        {
+            Id = entity.ArticleNumber,
+            ImageUrl = entity.ImageUrl,
+            Title = entity.Title,
+            Price = entity.Price,
+        };
+        return _gridCollectionItemViewModel;
+    }
 
 
 
 }
+
 
 

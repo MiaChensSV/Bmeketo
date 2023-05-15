@@ -1,42 +1,50 @@
-﻿@{
+﻿@model ContactFormViewModel
+
+@{
     ViewData["Title"] = "Contact Us";
 }
 <partial name="~/Views/Partials/_Breadcrumb.cshtml" />
+
 <section class="contact-form">
     <div class="container">
-        <div class="title">Write something</div>
-
-        <form novalidate>
+        <div class="title">@ViewData["Title"]</div>
+        <form method="post" asp-controller="Contacts" asp-action="Index" enctype="multipart/form-data" novalidate>
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="name form-group">
-                <label for="name">Your Name*</label>
-                <input id="name" type="text" class="invalid" required>
-                <span class="error">Your name is required</span>
+                <label asp-for="Name"></label>
+                <input asp-for="Name" type="text" required>
+                <small class="text-danger"><span asp-validation-for="Name"></span></small>
             </div>
             <div class="email form-group">
-                <label for="email">Your Email*</label>
-                <input id="email" type="text" class="invalid">
-                <span class="error">Your email is required</span>
-            </div>
-            <div class="phoneNumber form-group">
-                <label for="phone">Phone Number (optional)</label>
-                <input id="phone" type="text">
+                <label asp-for="Email"></label>
+                <input asp-for="Email" type="text" required>
+                <small class="text-danger"><span asp-validation-for="Email"></span></small>
             </div>
             <div class="companyName form-group">
-                <label for="company">Company (optional)</label>
-                <input id="company" type="text">
+                <label asp-for="CompanyName"></label>
+                <input asp-for="CompanyName" type="text" >
+                <small class="text-danger"><span asp-validation-for="CompanyName"></span></small>
             </div>
-            <div class="message form-group">
-                <label for="message">Message*</label>
-                <textarea id="message" class="invalid"></textarea>
-                <span class="error">Message is required</span>
+            <div class="phoneNumber form-group">
+                <label asp-for="PhoneNumber"></label>
+                <input asp-for="PhoneNumber" type="text" >
+                <small class="text-danger"><span asp-validation-for="PhoneNumber"></span></small>
             </div>
+                <div class="message form-group">
+                <label asp-for="Message" ></label>
+                <textarea asp-for="Message" required></textarea>
+                <small class="text-danger"><span asp-validation-for="Message"></span></small>
+            </div>
+
             <div class="terms form-checkbox-group">
                 <label class="custom-checkbox">
-                    Save my name, email in the this browser for the next time I comment.
-                    <input type="checkbox" checked="checked">
+                    <label asp-for="RememberMe"></label>
+                    <input asp-for="RememberMe"  />
                     <span class="checkmark"></span>
                 </label>
+                <span asp-validation-for="RememberMe" class="text-danger"></span>
             </div>
+            
             <button class="btn-theme">Submit</button>
         </form>
     </div>
