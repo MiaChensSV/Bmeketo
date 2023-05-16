@@ -41,6 +41,18 @@ public class ProductEntity
 
         return _productModel;
 	}
+	public static implicit operator GridCollectionItemViewModel(ProductEntity entity)
+	{
+		var _gridCollectionItemViewModel = new GridCollectionItemViewModel
+		{
+			
+			Title = entity.Title,
+			Price = entity.Price,
+			ImageUrl = entity.ImageUrl,
+		};
+
+		return _gridCollectionItemViewModel;
+	}
 
 }
 

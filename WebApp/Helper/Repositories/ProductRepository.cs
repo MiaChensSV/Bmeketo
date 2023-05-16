@@ -32,16 +32,15 @@ public class ProductRepository : Repository<ProductEntity>
 					.ToListAsync();
 		return products;
 	}
-	//public async Task<IEnumerable<ProductEntity>> GetAllByTagNameAsync(string tagname)
-	//{
-	//	var products = await _context.Products
-	//				.Include(x => x.Tags)
-	//				.ThenInclude(x => x.Tag.TagName==tagname)
-	//				.ToListAsync();
-	//	return products;
-	//}
+    public IEnumerable<ProductEntity> GetAllByTagName(string tagname)
+    {
+        var _products = _context.Products
+                        .Where(p => p.Tags.Any(t => t.Tag.TagName == tagname))
+                        .ToList();
+        return _products;
+    }
 
-	public override async Task<ProductEntity> GetAsync(Expression<Func<ProductEntity, bool>> expression)
+    public override async Task<ProductEntity> GetAsync(Expression<Func<ProductEntity, bool>> expression)
 	{
 		var product = await _context.Products
 					.Include(x => x.Tags)

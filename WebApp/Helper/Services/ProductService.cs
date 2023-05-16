@@ -38,31 +38,31 @@ public class ProductService
 	{
 		return await _productRepo.GetAllAsync();
 	}
-	//public async Task<IEnumerable<ProductModel>> GetAllByTagNameAsync()
-	//{
-	//	var items = await _productRepo.GetAllAsync();
-	//	var list = new List<ProductModel>();
+	public async Task<List<ProductModel>> GetAllByTagNameAsync(string tagName)
+	{
+		var items = await _productRepo.GetAllAsync();
+		var list = new List<ProductModel>();
 
-	//	foreach (var item in items)
-	//	{
-	//		var tagList = new List<string>();
-	//			foreach(var tag in item.Tags) 
-	//			{					
-	//				tagList.Add(tag.Tag.TagName);
-	//			}
-	//		list.Add(new ProductModel
-	//		{
-	//			ArticleNumber = item.ArticleNumber,
-	//			Title = item.Title,
-	//			Description = item.Description,
-	//			CategoryName = item.Category.CategoryName,
-	//			Price = item.Price,
-	//			ImageUrl = item.ImageUrl,
-	//			Tags = tagList,
-	//		});
-	//	}
-	//	return list;
-	//}
+		foreach (var item in items)
+		{
+			var tagList = new List<string>();
+			foreach (var tag in item.Tags)
+			{
+				tagList.Add(tag.Tag.TagName);
+			}
+			list.Add(new ProductModel
+			{
+				ArticleNumber = item.ArticleNumber,
+				Title = item.Title,
+				Description = item.Description,
+				CategoryName = item.Category.CategoryName,
+				Price = item.Price,
+				ImageUrl = item.ImageUrl,
+				Tags = tagList,
+			});
+		}
+		return list;
+	}
 
 	public async Task<ProductModel> GetAsync(string articleNumber)
 	{
@@ -123,5 +123,9 @@ public class ProductService
 	{
 		return await _productRepo.DeleteAsync(x=>x.ArticleNumber==articleNumber);		
 	}
-	
+
+    internal object GetAllByTagNameAsync()
+    {
+        throw new NotImplementedException();
+    }
 }

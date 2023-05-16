@@ -3,5 +3,5 @@
 public class ProductsIndexViewModel
 {
 	public string Title { get; set; } = null!;
-	public GridCollectionViewModel All { get; set; } = null!;
+	public GridCollectionViewModel? All { get; set; } = null!;
 }

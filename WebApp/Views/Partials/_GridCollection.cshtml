@@ -1,43 +1,43 @@
 ﻿@model GridCollectionViewModel
 
-@if (Model != null)
-{
-    <div class="container d-flex justify-content-center">
-        <div class="grid-collection">
-            @if (string.IsNullOrEmpty(Model.Title))
-            {
-                <h1 class="title">@Model.Title</h1>
-            }
-            <div class="categories">
-                @if (Model.Categories != null)
-                {
-                    <ul class="categories">
-                        @foreach (var category in Model.Categories)
-                        {
-                            <li class="category-item">@category</li>
-                        }
-                    </ul>
-                }
-            </div>
-            <div>
-                @if (Model.GridItems != null)
-                {
-                    <div class="grid">
-                        @foreach (var item in Model.GridItems)
-                        {
-                            <partial name="~/Views/Partials/_GridCollectionItem.cshtml" model="item" />
-                        }
-                    </div>
-                }
-            </div>
-            <div class="load-more">
-                @if (Model.LoadMore)
-                {
-                    <div class="load-more">
-                        <button class="btn-outline-white">LOAD MORE <i class="fa-solid fa-rotate-right"></i></button>
-                    </div>
-                }
+<section class="grid-collection">
+    <h1 class="title">@Model.Title</h1>
+
+    @if (Model != null)
+    {
+        <div class="container d-flex justify-content-center">                    
+            <div class="grid-collection">            
+                <div class="categories">
+                    @if (Model.Categories != null)
+                    {
+                        <ul class="categories">
+                            @foreach (var category in Model.Categories)
+                            {
+                                <li class="category-item">@category</li>
+                            }
+                        </ul>
+                    }
+                </div>
+                <div>
+                    @if (Model.GridItems != null)
+                    {
+                        <div class="grid">
+                            @foreach (var item in Model.GridItems)
+                            {
+                                <partial name="~/Views/Partials/_GridCollectionItem.cshtml" model="item" />
+                            }
+                        </div>
+                    }
+                </div>
+                <div class="load-more">
+                    @if (Model.LoadMore)
+                    {
+                        <div class="load-more">
+                            <button class="btn-outline-white">LOAD MORE <i class="fa-solid fa-rotate-right"></i></button>
+                        </div>
+                    }
+                </div>
             </div>
         </div>
-    </div>
-}
+    }
+</section>
