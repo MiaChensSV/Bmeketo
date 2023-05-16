@@ -34,4 +34,8 @@ public class CategoryService
 	{
 		return await _categoryRepo.GetAllAsync();
 	}
+	public async Task<CategoryEntity> GetAsync(Guid categoryId)
+	{
+		return await _categoryRepo.GetAsync(x=>x.Id==categoryId);
+	}
 }

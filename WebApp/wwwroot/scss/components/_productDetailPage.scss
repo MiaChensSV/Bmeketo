@@ -1,0 +1,127 @@
+.product-detail {
+    padding: 20px 0 60px 0;
+    background-color: $color-white;
+    text-decoration: none;
+    display: block;
+    margin: 20px;
+
+    img {
+        width: 100%;
+        height: auto;
+    }
+
+    .body {
+        color: $color-dark-2;
+        font-family: $font-poppins;
+        padding: 10px;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        grid-template-areas: "product-img info";
+
+        .product-img {
+            grid-area: product-img;
+        }
+
+        .info {
+            grid-area: info;
+            font-family: $font-poppins;
+            padding: 10px;
+            margin: 10px;
+
+
+            .price {
+                grid-area: price;
+                font-size: 16px;
+                align-items: center;
+                font-weight: bold;
+                margin: 10px;
+                padding: 10px;
+            }
+
+            .short-description {
+                .title {
+                    grid-area: title;
+                    font-size: 18px;
+                    font-family: $font-poppins;
+                    font-weight: $font-weight-medium;
+                }
+
+                .hr {
+                    align-content: center;
+                    width: 100%;
+                }
+            }
+
+            .shoppingcart {
+                display: grid;
+                grid-template-columns: 1fr 1fr;
+                grid-template-areas: "quantity button";
+
+                .add-cart {
+                    grid-area: cart;
+                    text-align: right;
+                    align-items: center;
+                    padding: 2px;
+                    font-size: 24px;
+                    color: $color-dark-2;
+
+                    &:hover {
+                        color: $color-dark-4;
+                        text-decoration: none;
+                    }
+                }
+
+                @include xl {
+                    .add-cart {
+                        display: none;
+                    }
+
+                    &:hover {
+                        .add-cart {
+                            display: block;
+                        }
+                    }
+                }
+            }
+
+            .quantity {
+                grid-area: quantity;
+                display: grid;
+                grid-template-columns: 1fr 1fr 1fr;
+                grid-template-areas: "minus number plus";
+            }
+
+            .button {
+                grid-area: button;
+            }
+
+            .minus {
+                grid-area: minus;
+            }
+
+            .number {
+                grid-area: number;
+            }
+
+            .plus {
+                grid-area: plus;
+            }
+
+            .add-wish {
+                background-color: $color-white;
+                margin: 10px;
+                font-family: $font-poppins;
+                padding: 10px;
+            }
+        }
+    }
+
+    .description {
+        .title {
+            text-decoration: dashed;
+            font-family: $font-poppins;
+            color: $color-dark-3;
+            width:30%
+        }
+    }
+}

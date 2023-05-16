@@ -16,7 +16,7 @@ public class ProductsController : Controller
         _productService = productService;
     }
 
-    public async Task<IActionResult> Index()
+    public IActionResult Index()
 	{
 		var _gridProductsList = _productService.GetAllAsync().Result.ToList<ProductEntity>();
 		var _productsList = new List<GridCollectionItemViewModel>();

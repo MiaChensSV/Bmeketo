@@ -1,4 +1,4 @@
-﻿@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;900&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;700;900&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&display=swap");
@@ -232,7 +232,9 @@ input:not([type=checkbox]):focus {
   position: relative;
   padding-left: 35px;
   cursor: pointer;
-  user-select: none;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+          user-select: none;
 }
 .custom-checkbox input {
   position: absolute;
@@ -872,7 +874,8 @@ footer.fixed {
 }
 .contact-form form {
   display: grid;
-  column-gap: 30px;
+  -moz-column-gap: 30px;
+       column-gap: 30px;
   row-gap: 30px;
   grid-template-columns: 1fr;
   grid-template-areas: "name" "email" "phoneNumber" "companyName" "message" "terms" "button";
@@ -939,7 +942,8 @@ footer.fixed {
 }
 .login-form form {
   display: grid;
-  column-gap: 30px;
+  -moz-column-gap: 30px;
+       column-gap: 30px;
   row-gap: 30px;
   grid-template-columns: 1fr;
   grid-template-areas: "message" "email" "password" "rememberme" "button";
@@ -998,7 +1002,8 @@ footer.fixed {
 }
 .register-form form {
   display: grid;
-  column-gap: 30px;
+  -moz-column-gap: 30px;
+       column-gap: 30px;
   row-gap: 30px;
   grid-template-columns: 1fr;
   grid-template-areas: "firstname" "lastname" "streetname" "PostalCode" "City" "phoneNumber" "companyName" "email" "password" "confirmedpassword" "profilemage" "terms" "button";
@@ -1078,7 +1083,8 @@ footer.fixed {
 }
 .registerproduct-form form {
   display: grid;
-  column-gap: 30px;
+  -moz-column-gap: 30px;
+       column-gap: 30px;
   row-gap: 30px;
   grid-template-columns: 1fr;
   grid-template-areas: "articleNumber" "title" "description" "price" "imagefile" "category" "tag" "button";
@@ -1129,7 +1135,6 @@ footer.fixed {
   background-color: #FFFFFF;
   text-decoration: none;
   display: block;
-  margin: 20px;
 }
 .product-detail img {
   width: 100%;
@@ -1139,43 +1144,27 @@ footer.fixed {
   color: #292929;
   font-family: "Poppins", sans-serif;
   padding: 10px;
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  grid-template-areas: "product-img info";
 }
-.product-detail .body .product-img {
-  grid-area: product-img;
-}
-.product-detail .body .info {
-  grid-area: info;
-  font-family: "Poppins", sans-serif;
-  padding: 10px;
-  margin: 10px;
-}
-.product-detail .body .info .price {
-  grid-area: price;
-  font-size: 16px;
-  align-items: center;
-  font-weight: bold;
-  margin: 10px;
-  padding: 10px;
-}
-.product-detail .body .info .short-description .title {
+.product-detail .body .title {
   grid-area: title;
   font-size: 18px;
   font-family: "Poppins", sans-serif;
   font-weight: 500;
 }
-.product-detail .body .info .short-description .hr {
-  align-content: center;
-  width: 100%;
+.product-detail .body .info {
+  font-family: "Poppins", sans-serif;
+  padding: 2px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 40px;
 }
-.product-detail .body .info .shoppingcart {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  grid-template-areas: "quantity button";
+.product-detail .body .info .price {
+  grid-area: price;
+  font-size: 16px;
+  align-items: center;
 }
-.product-detail .body .info .shoppingcart .add-cart {
+.product-detail .body .info .add-cart {
   grid-area: cart;
   text-align: right;
   align-items: center;
@@ -1183,45 +1172,17 @@ footer.fixed {
   font-size: 24px;
   color: #292929;
 }
-.product-detail .body .info .shoppingcart .add-cart:hover {
+.product-detail .body .info .add-cart:hover {
   color: #AEAEAE;
+}
+.product-detail:hover {
   text-decoration: none;
 }
 @media (min-width: 1200px) {
-  .product-detail .body .info .shoppingcart .add-cart {
+  .product-detail .add-cart {
     display: none;
   }
-  .product-detail .body .info .shoppingcart:hover .add-cart {
+  .product-detail:hover .add-cart {
     display: block;
   }
-}
-.product-detail .body .info .quantity {
-  grid-area: quantity;
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
-  grid-template-areas: "minus number plus";
-}
-.product-detail .body .info .button {
-  grid-area: button;
-}
-.product-detail .body .info .minus {
-  grid-area: minus;
-}
-.product-detail .body .info .number {
-  grid-area: number;
-}
-.product-detail .body .info .plus {
-  grid-area: plus;
-}
-.product-detail .body .info .add-wish {
-  background-color: #FFFFFF;
-  margin: 10px;
-  font-family: "Poppins", sans-serif;
-  padding: 10px;
-}
-.product-detail .description .title {
-  text-decoration: dashed;
-  font-family: "Poppins", sans-serif;
-  color: #636363;
-  width: 30%;
 }

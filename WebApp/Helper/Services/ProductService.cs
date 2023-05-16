@@ -66,7 +66,20 @@ public class ProductService
 
 	public async Task<ProductModel> GetAsync(string articleNumber)
 	{
-		return await _productRepo.GetAsync(x=>x.ArticleNumber == articleNumber);
+		var productEntity= await _productRepo.GetAsync(x => x.ArticleNumber == articleNumber);
+		var categoryId= productEntity.CategoryId;
+		var categoryEntity=await _categoryService.GetAsync(categoryId);
+		var categoryName=categoryEntity.CategoryName;
+
+		return new ProductModel
+		{
+			ArticleNumber = productEntity.ArticleNumber,
+			Title = productEntity.Title,
+			Description = productEntity.Description,
+			CategoryName = categoryEntity.CategoryName,
+			Price = productEntity.Price,
+			ImageUrl = productEntity.ImageUrl,
+		};
 	}
 	public async Task<bool> UpdateAsync(ProductEntity entity)
 	{
