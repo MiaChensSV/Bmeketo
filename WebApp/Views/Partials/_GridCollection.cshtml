@@ -3,12 +3,12 @@
 @if (Model != null)
 {
     <div class="container d-flex justify-content-center">
-        <div>
+        <div class="grid-collection">
             @if (string.IsNullOrEmpty(Model.Title))
             {
                 <h1 class="title">@Model.Title</h1>
             }
-            <div>
+            <div class="categories">
                 @if (Model.Categories != null)
                 {
                     <ul class="categories">
@@ -30,7 +30,7 @@
                     </div>
                 }
             </div>
-            <div>
+            <div class="load-more">
                 @if (Model.LoadMore)
                 {
                     <div class="load-more">

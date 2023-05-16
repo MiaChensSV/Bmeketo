@@ -23,16 +23,19 @@ public class HomeController : Controller
 		_categoryService.GetAllAsync().Result.ToList<CategoryEntity>().ForEach(el => categoryNameList.Add(el.CategoryName));
 
 		var gridList = new List<GridCollectionItemViewModel>();
-		_productService.GetAllAsync().Result.ToList<ProductEntity>().ForEach(entity =>
+		var _griditems = _productService.GetAllAsync().Result.ToList<ProductEntity>();
+		
+		//get gridcollectionitems for maximum 8 or the length of the list
+		for (int i = 0; i < Math.Min(_griditems.Count, 8); i++)
 		{
 			gridList.Add(new GridCollectionItemViewModel
 			{
-				Id = entity.ArticleNumber,
-				ImageUrl = entity.ImageUrl,
-				Title = entity.Title,
-				Price = entity.Price,
+				Id = _griditems[i].ArticleNumber,
+				ImageUrl = _griditems[i].ImageUrl,
+				Title = _griditems[i].Title,
+				Price = _griditems[i].Price,
 			});
-		});
+		};		
 
 		var viewModel = new HomeViewModel
 		{
@@ -40,7 +43,6 @@ public class HomeController : Controller
 			BestCollection = new GridCollectionViewModel
 			{
 				Categories = categoryNameList,
-
 				GridItems = gridList,
 				LoadMore = false,
 			}
