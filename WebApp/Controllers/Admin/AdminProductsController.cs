@@ -50,6 +50,10 @@ public class AdminProductsController : Controller
 			ModelState.AddModelError("", "Something went wrong");
 
 		}
+		else
+		{
+			ModelState.AddModelError("", "Input are not all valid");
+		}
 		ViewBag.Tags = await _tagService.GetTagsAsync(tags);
 		return RedirectToAction("Create", "AdminProducts");
 	}
