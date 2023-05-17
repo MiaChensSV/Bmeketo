@@ -1,0 +1,75 @@
+﻿@model UserViewModel	
+@{
+	ViewData["Title"] = "My Account";
+}
+<partial name="~/Views/Partials/_Breadcrumb.cshtml" />
+
+<section class="user-form">
+	<div class="container userprofil">
+			<div asp-validation-summary="ModelOnly" class="form-group text-danger"></div>
+			<form method="put" enctype="multipart/form-data" >
+			<div class="profilimage">
+				<img src="/images/users/@Model.ProfileImageUrl" alt="@Model.FirstName+@Model.LastName" />
+			</div>
+			<div class="profil">
+				<div class="firstname form-group">
+					<label asp-for="FirstName"></label>
+					<input asp-for="FirstName" value="@Model.FirstName"/>
+					<small class="text-danger"><span asp-validation-for="FirstName"></span></small>
+				</div>
+				<div class="lastName form-group">
+					<label asp-for="LastName"></label>
+					<input asp-for="LastName" value="@Model.LastName" />
+					<small class="text-danger"><span asp-validation-for="LastName"></span></small>
+				</div>
+				<div class="streetName form-group">
+					<label asp-for="StreetName"></label>
+					<input asp-for="StreetName" value="@Model.StreetName" />
+					<small class="text-danger"><span asp-validation-for="StreetName"></span></small>
+				</div>
+				<div class="postalCode form-group">
+					<label asp-for="PostalCode"></label>
+					<input asp-for="PostalCode" value="@Model.PostalCode" />
+					<small class="text-danger"><span asp-validation-for="PostalCode"></span></small>
+				</div>
+				<div class="city form-group">
+					<label asp-for="City"></label>
+					<input asp-for="City" value="@Model.City" />
+					<small class="text-danger"><span asp-validation-for="City"></span></small>
+				</div>
+
+				<div class="phoneNumber form-group">
+					<label asp-for="PhoneNumber"></label>
+					<input asp-for="PhoneNumber" value="@Model.PhoneNumber" />
+					<small class="text-danger"><span asp-validation-for="PhoneNumber"></span></small>
+				</div>
+				<div class="companyName form-group">
+					<label asp-for="CompanyName"></label>
+					<input asp-for="CompanyName" value="@Model.CompanyName" />
+					<small class="text-danger"><span asp-validation-for="CompanyName"></span></small>
+				</div>
+				<div class="email form-group">
+					<label asp-for="Email"></label>
+					<input asp-for="Email" value="@Model.Email" />
+					<small class="text-danger"><span asp-validation-for="Email"></span></small>
+				</div>
+				<div class="password form-group">
+					<label asp-for="Password"></label>
+					<input asp-for="Password" />
+					<small class="text-danger"><span asp-validation-for="Password"></span></small>
+				</div>
+				<div class="newpassword form-group">
+					<label asp-for="NewPassword"></label>
+					<input asp-for="NewPassword" />
+					<small class="text-danger"><span asp-validation-for="NewPassword"></span></small>
+				</div>
+				<div class="confirmednewpassword form-group">
+					<label asp-for="ConfirmNewPassword"></label>
+					<input asp-for="ConfirmNewPassword" />
+					<small class="text-danger"><span asp-validation-for="ConfirmNewPassword"></span></small>
+				</div>
+				<button class="btn btn-success">Register</button>
+			</div>
+			</form>
+	</div>
+</section>

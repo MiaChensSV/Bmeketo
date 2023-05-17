@@ -1,0 +1,105 @@
+﻿
+.user-form {
+    padding: 20px 0 60px 0;
+
+    @include lg {
+        padding: 60px 0;
+    }
+
+    .container {
+        border: 0px solid $color-dark-5;
+        padding: 30px;
+
+        @include md {
+            border: 1px solid $color-dark-5;
+        }
+    }
+
+    .title {
+        margin-bottom: 40px;
+    }
+
+    .userprofil {
+        display: grid;
+        column-gap: 30px;
+        row-gap: 30px;
+        grid-template-columns: 1fr;
+        grid-template-areas: "profilimage" "profil";
+
+        @include lg {
+            grid-template-columns: 1fr 1fr;
+            grid-template-areas: "profilimage profil";
+        }
+
+        .profilimage {
+            grid-area: profilimage
+        }
+
+        .profil {
+            grid-area: profil;
+            display: grid;
+            column-gap: 30px;
+            row-gap: 30px;
+            grid-template-columns: 1fr;
+            grid-template-areas: "firstname" "lastname" "streetname" "PostalCode" "City" "phoneNumber" "companyName" "email" "password" "newpassword" "confirmednewpassword" "button";
+
+            @include lg {
+                grid-template-columns: 1fr 1fr;
+                grid-template-areas: "firstname lastname" "streetname streetname" "PostalCode City" "phoneNumber companyName" "email email" "password password" "newpassword newpassword" "confirmednewpassword confirmednewpassword" "button button";
+            }
+
+            .firstname {
+                grid-area: firstname;
+            }
+
+            .lastname {
+                grid-area: lastname;
+            }
+
+            .streetname {
+                grid-area: streetname;
+            }
+
+            .PostalCode {
+                grid-area: PostalCode;
+            }
+
+            .City {
+                grid-area: City;
+            }
+
+            .phoneNumber {
+                grid-area: phoneNumber;
+            }
+
+            .companyName {
+                grid-area: companyName;
+            }
+
+            .email {
+                grid-area: email;
+            }
+
+            .password {
+                grid-area: password;
+            }
+
+            .newpassword {
+                grid-area: newpassword;
+            }
+
+            .confirmednewpassword {
+                grid-area: confirmednewpassword;
+            }
+
+            button {
+                grid-area: button;
+
+                @include lg {
+                    display: flex;
+                    justify-self: flex-start;
+                }
+            }
+        }
+    }
+}

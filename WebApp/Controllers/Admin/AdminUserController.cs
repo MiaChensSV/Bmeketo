@@ -1,7 +1,5 @@
 ﻿using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
-using WebApp.Helper.Services;
 using WebApp.Models.Identity;
 using WebApp.ViewModels.Admin.Users;
 

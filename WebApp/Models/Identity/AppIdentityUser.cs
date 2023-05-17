@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Identity;
 using WebApp.Models.Entity;
+using WebApp.ViewModels.Account;
 
 namespace WebApp.Models.Identity;
 
@@ -22,6 +23,7 @@ public class AppIdentityUser:IdentityUser
     {
         var _newUserModel=new UserModel
         {
+            UserId= user.Id,
             FirstName = user.FirstName,
             LastName = user.LastName,
             CompanyName = user.CompanyName,

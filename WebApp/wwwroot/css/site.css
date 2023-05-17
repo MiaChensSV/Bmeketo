@@ -1225,3 +1225,96 @@ footer.fixed {
   color: #636363;
   width: 30%;
 }
+
+.user-form {
+  padding: 20px 0 60px 0;
+}
+@media (min-width: 992px) {
+  .user-form {
+    padding: 60px 0;
+  }
+}
+.user-form .container {
+  border: 0px solid #E1E1E1;
+  padding: 30px;
+}
+@media (min-width: 768px) {
+  .user-form .container {
+    border: 1px solid #E1E1E1;
+  }
+}
+.user-form .title {
+  margin-bottom: 40px;
+}
+.user-form .userprofil {
+  display: grid;
+  column-gap: 30px;
+  row-gap: 30px;
+  grid-template-columns: 1fr;
+  grid-template-areas: "profilimage" "profil";
+}
+@media (min-width: 992px) {
+  .user-form .userprofil {
+    grid-template-columns: 1fr 1fr;
+    grid-template-areas: "profilimage profil";
+  }
+}
+.user-form .userprofil .profilimage {
+  grid-area: profilimage;
+}
+.user-form .userprofil .profil {
+  grid-area: profil;
+  display: grid;
+  column-gap: 30px;
+  row-gap: 30px;
+  grid-template-columns: 1fr;
+  grid-template-areas: "firstname" "lastname" "streetname" "PostalCode" "City" "phoneNumber" "companyName" "email" "password" "newpassword" "confirmednewpassword" "button";
+}
+@media (min-width: 992px) {
+  .user-form .userprofil .profil {
+    grid-template-columns: 1fr 1fr;
+    grid-template-areas: "firstname lastname" "streetname streetname" "PostalCode City" "phoneNumber companyName" "email email" "password password" "newpassword newpassword" "confirmednewpassword confirmednewpassword" "button button";
+  }
+}
+.user-form .userprofil .profil .firstname {
+  grid-area: firstname;
+}
+.user-form .userprofil .profil .lastname {
+  grid-area: lastname;
+}
+.user-form .userprofil .profil .streetname {
+  grid-area: streetname;
+}
+.user-form .userprofil .profil .PostalCode {
+  grid-area: PostalCode;
+}
+.user-form .userprofil .profil .City {
+  grid-area: City;
+}
+.user-form .userprofil .profil .phoneNumber {
+  grid-area: phoneNumber;
+}
+.user-form .userprofil .profil .companyName {
+  grid-area: companyName;
+}
+.user-form .userprofil .profil .email {
+  grid-area: email;
+}
+.user-form .userprofil .profil .password {
+  grid-area: password;
+}
+.user-form .userprofil .profil .newpassword {
+  grid-area: newpassword;
+}
+.user-form .userprofil .profil .confirmednewpassword {
+  grid-area: confirmednewpassword;
+}
+.user-form .userprofil .profil button {
+  grid-area: button;
+}
+@media (min-width: 992px) {
+  .user-form .userprofil .profil button {
+    display: flex;
+    justify-self: flex-start;
+  }
+}
