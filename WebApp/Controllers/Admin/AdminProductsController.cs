@@ -70,7 +70,7 @@ public class AdminProductsController : Controller
 	}
 
 	[HttpPost]
-	[Route("edit")]
+	[Route("edit/{id}")]
 	public async Task<IActionResult> EditAsync(ProductRegistrationViewModel viewmodel, string[] tags)
 	{
 		if (ModelState.IsValid)

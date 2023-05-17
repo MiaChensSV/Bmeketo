@@ -1,9 +1,10 @@
 ﻿using Microsoft.AspNetCore.Identity;
+using WebApp.Models.Identity;
 
 namespace WebApp.ViewModels.Admin.Users;
 
 public class AdminUsersViewModel
 {
-    public List<IdentityUser> Users { get; set; }=new List<IdentityUser>();
-    public ICollection<IdentityUser> Admins { get; set; } = new List<IdentityUser>();
+    public IList<AppIdentityUser> Users { get; set; }=new List<AppIdentityUser>();
+    public IList<AppIdentityUser> Admins { get; set; } = new List<AppIdentityUser>();
 }

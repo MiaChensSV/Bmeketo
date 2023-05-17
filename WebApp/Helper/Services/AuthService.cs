@@ -33,16 +33,16 @@ public class AuthService
 	public async Task<UserModel> RegisterUserAsync(RegistrationViewModel viewmodel)
     {
         await _seeds.SeedRoleAsync();
-        var _roleName = "user";
+        var _standardRole = "user";
         if(!await _userManager.Users.AnyAsync())
         {
-            _roleName= "admin";
+			_standardRole = "admin";
         }
         AppIdentityUser appUser = viewmodel;
         var result = await _userManager.CreateAsync(appUser, viewmodel.Password);
         if (result.Succeeded)
         {
-			await _userManager.AddToRoleAsync(appUser, _roleName);
+			await _userManager.AddToRoleAsync(appUser, _standardRole);
 			var addressEntity =await _addressService.GetOrCreateAsync(viewmodel);
             if (addressEntity != null)
             {

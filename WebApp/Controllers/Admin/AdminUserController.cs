@@ -1,19 +1,32 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using WebApp.Helper.Services;
+using WebApp.Models.Identity;
+using WebApp.ViewModels.Admin.Users;
 
 namespace WebApp.Controllers.Admin;
 [Route("admin/users")]
 public class AdminUserController : Controller
 {
-	private readonly UserService _userService;
+	private readonly UserManager<AppIdentityUser> _userManager;
 
-	public AdminUserController(UserService userService)
+	public AdminUserController(UserManager<AppIdentityUser> userManager)
 	{
-		_userService = userService;
+		_userManager = userManager;
 	}
 
 	public async Task<IActionResult> Index()
 	{
-		return View(await _userService.GetAllAsync());
+		var users = await _userManager.GetUsersInRoleAsync("user");
+		var admins = await _userManager.GetUsersInRoleAsync("admin");
+
+		var viewmodel = new AdminUsersViewModel
+		{
+			Users = users,
+			Admins = admins,
+		};
+
+		return View(viewmodel);
 	}
 }
