@@ -7,13 +7,15 @@ namespace WebApp.Helper.Services;
 public class CategoryService
 {
 	private readonly CategoryRepository _categoryRepo;
+	private readonly ProductRepository _productRepo;
 
-	public CategoryService(CategoryRepository categoryRepo)
+	public CategoryService(CategoryRepository categoryRepo, ProductRepository productRepo)
 	{
 		_categoryRepo = categoryRepo;
+		_productRepo = productRepo;
 	}
 
-	
+
 
 
 	public async Task<CategoryEntity> GetOrCreateCategoryAsync(ProductRegistrationViewModel viewmodel)
@@ -37,5 +39,10 @@ public class CategoryService
 	public async Task<CategoryEntity> GetAsync(Guid categoryId)
 	{
 		return await _categoryRepo.GetAsync(x=>x.Id==categoryId);
+	}
+	public async Task<CategoryEntity> GetProductCategoryAsync(string articleNumber)
+	{
+		var _productEntity=await _productRepo.GetAsync(x=>x.ArticleNumber==articleNumber);
+		return await _categoryRepo.GetAsync(x => x.Id == _productEntity.CategoryId);
 	}
 }

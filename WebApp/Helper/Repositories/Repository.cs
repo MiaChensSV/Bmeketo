@@ -34,7 +34,11 @@ public abstract class Repository<TEntity>where TEntity : class
     }
     public virtual async Task<TEntity> UpdateAsync(TEntity entity)
     {
-        _webContext.Set<TEntity>().Update(entity);
+		if (entity != null)
+		{
+			_webContext.Entry<TEntity>(entity).State = EntityState.Modified;
+		}
+		_webContext.Set<TEntity>().Update(entity);
         await _webContext.SaveChangesAsync();
         return entity;
     }

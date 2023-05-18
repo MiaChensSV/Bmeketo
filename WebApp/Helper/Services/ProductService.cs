@@ -22,14 +22,14 @@ public class ProductService
 	}
 	public async Task<ProductModel> CreateAsync(ProductRegistrationViewModel viewmodel)
 	{
-		var _productEntity = await _productRepo.GetAsync(x=>x.ArticleNumber== viewmodel.ArticleNumber);
-		if (_productEntity == null)
+		ProductModel _productModel = await _productRepo.GetAsync(x=>x.ArticleNumber== viewmodel.ArticleNumber);
+		if (_productModel == null)
 		{
 			var _categoryEntity = _categoryService.GetOrCreateCategoryAsync(viewmodel).Result;
 			viewmodel.CatagoryId = _categoryEntity.Id.ToString();
 			
-			_productEntity = await _productRepo.AddAsync(viewmodel);
-			return _productEntity;
+			_productModel = await _productRepo.AddAsync(viewmodel);
+			return _productModel;
 		}
 		else return null!;
 	}
@@ -66,41 +66,40 @@ public class ProductService
 
 	public async Task<ProductModel> GetAsync(string articleNumber)
 	{
-		var productEntity= await _productRepo.GetAsync(x => x.ArticleNumber == articleNumber);
+		ProductEntity productEntity= await _productRepo.GetAsync(x => x.ArticleNumber == articleNumber);
 		var categoryId= productEntity.CategoryId;
-		var categoryEntity=await _categoryService.GetAsync(categoryId);
-		var categoryName=categoryEntity.CategoryName;
+		var categoryName= (await _categoryService.GetAsync(categoryId)).CategoryName;
 
 		return new ProductModel
 		{
 			ArticleNumber = productEntity.ArticleNumber,
 			Title = productEntity.Title,
 			Description = productEntity.Description,
-			CategoryName = categoryEntity.CategoryName,
+			CategoryName = categoryName,
 			Price = productEntity.Price,
 			ImageUrl = productEntity.ImageUrl,
 		};
 	}
-	public async Task<bool> UpdateAsync(ProductEntity entity)
+	public async Task<ProductModel> UpdateAsync(ProductRegistrationViewModel viewmodel )
 	{
-		var _productEntity= await _productRepo.GetAsync(x => x.Id == entity.Id);
-		if (_productEntity != null)
+		ProductModel _productModel= await _productRepo.GetAsync(x => x.ArticleNumber == viewmodel.ArticleNumber);
+		if (_productModel != null)
 		{
-			if(string.IsNullOrEmpty(_productEntity.Title))
-			{
-				_productEntity.Title=entity.Title;
-			};
-			if (string.IsNullOrEmpty(_productEntity.Description))
-			{
-				_productEntity.Description = entity.Description;
-			};
-			_productEntity.Price = entity.Price;
-			if (string.IsNullOrEmpty(_productEntity.ImageUrl))
-			{
-				_productEntity.ImageUrl = entity.ImageUrl;
-			};
-			return true;
-		}return false;
+			
+			_productModel.Title= viewmodel.Title;
+		
+			_productModel.Description = viewmodel.Description;
+			
+			_productModel.Price = viewmodel.Price;
+			
+			_productModel.CategoryName = viewmodel.CategoryName;
+			await _categoryService.GetOrCreateCategoryAsync(viewmodel);
+			
+
+			_productModel = await _productRepo.UpdateAsync(_productModel);
+
+			return _productModel;
+		}return null!;
 	}
 	public async Task AddProductTagsAsync(ProductRegistrationViewModel viewmodel, string[]tags)
 	{
@@ -137,8 +136,4 @@ public class ProductService
 		return await _productRepo.DeleteAsync(x=>x.ArticleNumber==articleNumber);		
 	}
 
-    internal object GetAllByTagNameAsync()
-    {
-        throw new NotImplementedException();
-    }
 }

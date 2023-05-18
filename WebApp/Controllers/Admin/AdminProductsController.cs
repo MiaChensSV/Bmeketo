@@ -1,5 +1,9 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using System.Collections.Generic;
+using System.Net.WebSockets;
+using Microsoft.AspNetCore.Mvc;
 using WebApp.Helper.Services;
+using WebApp.Models;
+using WebApp.Models.Entity;
 using WebApp.ViewModels.Admin.Products;
 
 namespace WebApp.Controllers;
@@ -36,12 +40,12 @@ public class AdminProductsController : Controller
 	{
 		if (ModelState.IsValid)
 		{
-			var product = await _productService.CreateAsync(viewmodel);
-			if (product!=null)
+			ProductModel _productModel = await _productService.CreateAsync(viewmodel);
+			if (_productModel != null)
 			{
 				if(viewmodel.ImageFile!= null)
 				{
-					await _productService.UploadImageAsync(product, viewmodel.ImageFile!);
+					await _productService.UploadImageAsync(_productModel, viewmodel.ImageFile!);
 				}				
 				await _productService.AddProductTagsAsync(viewmodel, tags);
 				return RedirectToAction("Index", "AdminProducts");
@@ -58,39 +62,49 @@ public class AdminProductsController : Controller
 	}
 
 	[HttpGet]
-	[Route("edit/{articleNumber}")]
+	[Route("product/edit/{articleNumber}")]
 	public async Task<IActionResult> EditAsync(string articleNumber)
 	{
 		if (ModelState.IsValid)
 		{
-			var _productEntity = await _productService.GetAsync(articleNumber);
-			if (_productEntity != null)
+			ViewBag.Tags = await _tagService.GetProductTagsAsync(articleNumber);
+			ProductRegistrationViewModel _productRegistrationViewModel = await _productService.GetAsync(articleNumber);
+
+			if (_productRegistrationViewModel != null)
 			{
-				return View(_productEntity);
+				_productRegistrationViewModel.CategoryName =(await _categoryService.GetProductCategoryAsync(articleNumber)).CategoryName;
+				return View(_productRegistrationViewModel);
 			}
 		}
 		return RedirectToAction("Admin", "AdminProducts");
 	}
 
 	[HttpPost]
-	[Route("edit/{id}")]
+	[Route("product/edit/{articleNumber}")]
+
 	public async Task<IActionResult> EditAsync(ProductRegistrationViewModel viewmodel, string[] tags)
 	{
 		if (ModelState.IsValid)
 		{
-			await _categoryService.GetOrCreateCategoryAsync(viewmodel);
-
-			var result = await _productService.UpdateAsync(viewmodel);
-			if (result)
+			ProductModel _productModel = await _productService.UpdateAsync(viewmodel);
+			if (_productModel != null)
 			{
+				if (viewmodel.ImageFile != null)
+				{
+					await _productService.UploadImageAsync(_productModel, viewmodel.ImageFile!);
+				}
 				await _productService.AddProductTagsAsync(viewmodel, tags);
 				return RedirectToAction("Index", "AdminProducts");
 			}
 			ModelState.AddModelError("", "Something went wrong");
 
 		}
+		else
+		{
+			ModelState.AddModelError("", "Input are not all valid");
+		}
 		ViewBag.Tags = await _tagService.GetTagsAsync(tags);
-		return RedirectToAction("Index", "AdminProducts");
+		return RedirectToAction("Create", "AdminProducts");
 	}
 
 	[Route("admin/products/remove/{articleNumber}")]

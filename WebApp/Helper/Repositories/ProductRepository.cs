@@ -1,5 +1,6 @@
 ﻿using System.Linq.Expressions;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Query.SqlExpressions;
 using WebApp.Contexts;
 using WebApp.Models.Entity;
 using WebApp.ViewModels.Admin.Products;
@@ -48,4 +49,6 @@ public class ProductRepository : Repository<ProductEntity>
 					.FirstOrDefaultAsync(expression);
 		return product!;
 	}
+
+
 }

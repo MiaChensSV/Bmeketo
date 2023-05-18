@@ -1,30 +1,42 @@
-﻿@model ProductEntity
-
+﻿@model ProductRegistrationViewModel
 @{
 	ViewData["Title"] = "Edit Product";
 }
 
-<partial name="~/Views/Partials/_Breadcrumb.cshtml" />
 <section class="registerproduct-form">
 	<div class="bg-body-tertiary container">
-		<form method="post" enctype="multipart/form-data" novalidate>
+		<div class="title">@ViewData["Title"]</div>
+		<form method="post"  novalidate>
 			<div asp-validation-summary="ModelOnly" class="text-danger"></div>
+			<div class="articleNumber form-group">
+				<label asp-for="ArticleNumber"></label>
+				<div>@Model.ArticleNumber</div>
+			</div>
 			<div class="title form-group">
-				<label asp-for="Title">Title</label>
-				<input asp-for="Title" />
+				<label asp-for="Title"></label>
+				<input asp-for="Title" value="@Model.Title"/>
 				<span asp-validation-for="Title" class="small text-danger"></span>
 			</div>
 			<div class="description form-group">
-				<label asp-for="Description">Description</label>
-				<textarea asp-for="Description"></textarea>
+				<label asp-for="Description"></label>
+				<textarea asp-for="Description">@Model.Description</textarea>
 				<span asp-validation-for="Description" class="small text-danger"></span>
 			</div>
 			<div class="price form-group">
 				<label asp-for="Price"></label>
-				<input asp-for="Price" />
+				<input asp-for="Price" value="@Model.Price"/>
 				<span asp-validation-for="Price" class="small text-danger"></span>
 			</div>
-			
+			<div class="imagefile form-group">
+				<label asp-for="ImageFile"></label>
+				<input asp-for="ImageFile" />
+				<span asp-validation-for="ImageFile" class="small text-danger"></span>
+			</div>
+			<div class="category form-group">
+				<label asp-for="CategoryName"></label>
+				<input asp-for="CategoryName" />
+				<span asp-validation-for="CategoryName" class="small text-danger"></span>
+			</div>
 			<div class="tag form-group">
 				@foreach (SelectListItem tag in ViewBag.Tags)
 				{
@@ -35,7 +47,7 @@
 				}
 			</div>
 			<div class="button">
-				<button class="btn btn-secondary py-2">Register</button>
+				<button class="btn btn-secondary py-2">Save</button>
 			</div>
 
 		</form>

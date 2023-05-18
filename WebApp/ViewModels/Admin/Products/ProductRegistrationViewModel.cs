@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using System.ComponentModel.DataAnnotations;
+using WebApp.Models;
 using WebApp.Models.Entity;
 
 namespace WebApp.ViewModels.Admin.Products;
@@ -37,7 +38,6 @@ public class ProductRegistrationViewModel
             Title = viewmodel.Title,
             Description = viewmodel.Description,
             Price = viewmodel.Price,
-            CategoryId = Guid.Parse(viewmodel.CatagoryId!),
         };
         if (viewmodel.ImageFile != null)
         {
@@ -52,5 +52,20 @@ public class ProductRegistrationViewModel
 			CategoryName= viewmodel.CategoryName,
 		};
 	}
-
+	public static implicit operator ProductModel(ProductRegistrationViewModel viewmodel)
+	{
+		var _entity = new ProductModel
+		{
+			ArticleNumber = viewmodel.ArticleNumber,
+			Title = viewmodel.Title,
+			Description = viewmodel.Description,
+			Price = viewmodel.Price,
+			CategoryName = viewmodel.CategoryName,
+		};
+		if (viewmodel.ImageFile != null)
+		{
+			_entity.ImageUrl = $"{viewmodel.ArticleNumber}_{viewmodel.ImageFile.FileName}";
+		}
+		return _entity;
+	}
 }
