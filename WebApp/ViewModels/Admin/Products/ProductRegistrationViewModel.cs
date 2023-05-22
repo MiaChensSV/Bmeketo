@@ -32,12 +32,14 @@ public class ProductRegistrationViewModel
 
     public static implicit operator ProductEntity(ProductRegistrationViewModel viewmodel)
     {
+		Guid cataId = Guid.Parse(viewmodel.CatagoryId!);
         var _entity= new ProductEntity
         {
             ArticleNumber = viewmodel.ArticleNumber,
             Title = viewmodel.Title,
             Description = viewmodel.Description,
             Price = viewmodel.Price,
+			CategoryId = cataId,
         };
         if (viewmodel.ImageFile != null)
         {

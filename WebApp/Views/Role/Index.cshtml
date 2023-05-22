@@ -1,0 +1,32 @@
+﻿@model List<IdentityRole>
+@{
+	ViewData["Title"]="Roles";
+}
+<partial name="~/Views/Partials/_Breadcrumb.cshtml" />
+
+<h1>Role List</h1>
+<div class="container">
+	<table class="table table-bordered table-striped">
+		<thead>
+			<tr>
+				<td>Id</td>
+				<td>Role</td>
+				<td>Action</td>
+			</tr>
+		</thead>
+		<tbody>
+			@foreach(var item in Model)
+			{
+				<tr>
+					<td>@item.Id</td>
+					<td>@item.Name</td>
+					<td><a class="btn btn-warning" asp-route-Id="@item.Id" asp-action="Edit" asp-controller="Role">Edit Roles</a>
+						<a class="btn btn-warning" asp-route-Id="@item.Id" asp-action="Delete" asp-controller="Role">Delete Roles</a>
+					</td>
+				</tr>
+			}
+		</tbody>
+	</table>
+	<a class="btn btn-warning" asp-controller="Role" asp-action="Add">Add Roles</a>
+
+</div>

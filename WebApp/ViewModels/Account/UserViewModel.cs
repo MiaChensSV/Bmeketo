@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using WebApp.Models;
 using WebApp.Models.Entity;
 using WebApp.Models.Identity;
 
@@ -36,6 +37,7 @@ public class UserViewModel
 	[Compare(nameof(NewPassword), ErrorMessage = "Passwords do not match")]
 	[DataType(DataType.Password)]
 	public string ConfirmNewPassword { get; set; } = null!;
+	public string? Role { get; set; }
 
 	public static implicit operator AppIdentityUser(UserViewModel viewmodel)
 	{
@@ -47,7 +49,6 @@ public class UserViewModel
 			PhoneNumber=viewmodel.PhoneNumber,
 			CompanyName=viewmodel.CompanyName,
 			ProfileImageUrl=viewmodel.ProfileImageUrl,
-			PasswordHash=viewmodel.NewPassword,
 		};
 		return _newUser;
 	}
@@ -61,5 +62,6 @@ public class UserViewModel
 		};
 		return _newAddress;
 	}
+	
 
 }

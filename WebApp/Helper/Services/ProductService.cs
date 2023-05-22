@@ -22,7 +22,7 @@ public class ProductService
 	}
 	public async Task<ProductModel> CreateAsync(ProductRegistrationViewModel viewmodel)
 	{
-		ProductModel _productModel = await _productRepo.GetAsync(x=>x.ArticleNumber== viewmodel.ArticleNumber);
+		var _productModel = await _productRepo.GetAsync(x=>x.ArticleNumber== viewmodel.ArticleNumber);
 		if (_productModel == null)
 		{
 			var _categoryEntity = _categoryService.GetOrCreateCategoryAsync(viewmodel).Result;
@@ -85,7 +85,7 @@ public class ProductService
 		ProductModel _productModel= await _productRepo.GetAsync(x => x.ArticleNumber == viewmodel.ArticleNumber);
 		if (_productModel != null)
 		{
-			
+			_productModel.ArticleNumber = "565656";
 			_productModel.Title= viewmodel.Title;
 		
 			_productModel.Description = viewmodel.Description;
@@ -114,9 +114,7 @@ public class ProductService
 					TagId = int.Parse(tag),
 				});
 			}
-		}
-
-		
+		}		
 	}
 
 	public async Task<bool> UploadImageAsync(ProductModel product,IFormFile imageFile)

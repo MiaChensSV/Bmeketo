@@ -1,13 +1,13 @@
-﻿@model UserViewModel	
+﻿@model UserModel
 @{
-	ViewData["Title"] = "My Account";
+	ViewData["Title"] = "User Information";
 }
 <partial name="~/Views/Partials/_Breadcrumb.cshtml" />
 
 <section class="user-form">
 	<div class="container ">
-			<div asp-validation-summary="ModelOnly" class="form-group text-danger"></div>
-			<form method="put" enctype="multipart/form-data" >
+		<div asp-validation-summary="ModelOnly" class="form-group text-danger"></div>
+		<form method="post" enctype="multipart/form-data">
 			<div class="userprofil">
 				<div class="profilimage">
 					<img src="/images/users/@Model.ProfileImageUrl" alt="@Model.FirstName+@Model.LastName" />
@@ -15,7 +15,7 @@
 				<div class="profil">
 					<div class="firstname form-group">
 						<label asp-for="FirstName"></label>
-						<input asp-for="FirstName" value="@Model.FirstName"/>
+						<input asp-for="FirstName" value="@Model.FirstName" />
 						<small class="text-danger"><span asp-validation-for="FirstName"></span></small>
 					</div>
 					<div class="lastName form-group">
@@ -49,29 +49,23 @@
 						<input asp-for="CompanyName" value="@Model.CompanyName" />
 						<small class="text-danger"><span asp-validation-for="CompanyName"></span></small>
 					</div>
-					<div class="email form-group">
+					<div class="email form-group" >
 						<label asp-for="Email"></label>
 						<input asp-for="Email" value="@Model.Email" />
 						<small class="text-danger"><span asp-validation-for="Email"></span></small>
 					</div>
-					<div class="password form-group">
-						<label asp-for="Password"></label>
-						<input asp-for="Password" />
-						<small class="text-danger"><span asp-validation-for="Password"></span></small>
+					<div class="role form-group">
+						<label asp-for="Role"></label>
+						<select asp-for="Role">
+							@foreach (SelectListItem role in await roleService.GetRolesAsync())
+							{
+								<option value="@role.Text">@role.Text</option>
+							}
+						</select>
 					</div>
-					<div class="newpassword form-group">
-						<label asp-for="NewPassword"></label>
-						<input asp-for="NewPassword" />
-						<small class="text-danger"><span asp-validation-for="NewPassword"></span></small>
-					</div>
-					<div class="confirmednewpassword form-group">
-						<label asp-for="ConfirmNewPassword"></label>
-						<input asp-for="ConfirmNewPassword" />
-						<small class="text-danger"><span asp-validation-for="ConfirmNewPassword"></span></small>
-					</div>
-					<button class="btn btn-success">Register</button>
+					<button class="btn btn-success">Save</button>
 				</div>
 			</div>
-			</form>
+		</form>
 	</div>
 </section>

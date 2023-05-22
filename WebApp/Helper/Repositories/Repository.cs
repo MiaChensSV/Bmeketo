@@ -38,9 +38,9 @@ public abstract class Repository<TEntity>where TEntity : class
 		{
 			_webContext.Entry<TEntity>(entity).State = EntityState.Modified;
 		}
-		_webContext.Set<TEntity>().Update(entity);
+		_webContext.Set<TEntity>().Update(entity!);
         await _webContext.SaveChangesAsync();
-        return entity;
+        return entity!;
     }
     public virtual async Task<bool> DeleteAsync(Expression<Func<TEntity, bool>> expression)
     {

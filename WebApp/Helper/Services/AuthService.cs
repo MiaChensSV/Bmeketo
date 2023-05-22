@@ -47,8 +47,7 @@ public class AuthService
             if (addressEntity != null)
             {
                 await _addressService.AddAdressAsync(appUser, addressEntity);
-			}
-            
+			}            
 			return appUser;
 
 		}

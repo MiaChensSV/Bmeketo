@@ -27,10 +27,12 @@ public class Program
 		builder.Services.AddScoped<CategoryService>();
 		builder.Services.AddScoped<UserService>();
         builder.Services.AddScoped<ContactService>();
+		builder.Services.AddScoped<RoleService>();
 
 
 
-        builder.Services.AddScoped<AddressRepository>();
+
+		builder.Services.AddScoped<AddressRepository>();
 		builder.Services.AddScoped<UserAddressRepository>();
         builder.Services.AddScoped<TagRepository>();
 		builder.Services.AddScoped<ProductRepository>();

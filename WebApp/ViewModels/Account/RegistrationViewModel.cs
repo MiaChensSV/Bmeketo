@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using WebApp.Models;
 using WebApp.Models.Entity;
 using WebApp.Models.Identity;
 
@@ -55,7 +56,10 @@ public class RegistrationViewModel
     [Required(ErrorMessage = "You must read and accept the terms and agreements")]
     public bool TermsAndAgreement { get; set; } = false;
 
-    public static implicit operator AppIdentityUser(RegistrationViewModel viewModel)
+	public string Role { get; set; }=null!;
+
+
+	public static implicit operator AppIdentityUser(RegistrationViewModel viewModel)
     {
         var _newUser= new AppIdentityUser
         {
@@ -64,6 +68,7 @@ public class RegistrationViewModel
             LastName = viewModel.LastName,
             Email = viewModel.Email,
             PhoneNumber = viewModel.PhoneNumber,
+            
         };
         if(viewModel.ImageFile!= null )
         {
@@ -78,6 +83,20 @@ public class RegistrationViewModel
             StreetName = viewModel.StreetName,
             PostalCode = viewModel.PostalCode,
             City = viewModel.City,
+        };
+    }
+    public static implicit operator UserModel(RegistrationViewModel viewModel)
+    {
+        return new UserModel
+        {
+            FirstName = viewModel.FirstName,
+            LastName = viewModel.LastName,
+            Email = viewModel.Email,
+            PhoneNumber = viewModel.PhoneNumber,
+            StreetName = viewModel.StreetName,
+            PostalCode = viewModel.PostalCode,
+            City = viewModel.City,
+            Role = viewModel.Role,
         };
     }
 }

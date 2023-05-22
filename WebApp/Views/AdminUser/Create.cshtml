@@ -1,0 +1,85 @@
+﻿@model RegistrationViewModel
+@{
+	ViewData["Title"] = "Register your account";
+
+}
+
+<partial name="~/Views/Partials/_Breadcrumb.cshtml" />
+<section class="register-form">
+	<div class="container">
+		<div class="title">@ViewData["Title"]</div>
+		<form method="post" enctype="multipart/form-data">
+			<div asp-validation-summary="ModelOnly" class="form-group text-danger"></div>
+			<div class="firstname form-group">
+				<label asp-for="FirstName"></label>
+				<input asp-for="FirstName" />
+				<small class="text-danger"><span asp-validation-for="FirstName"></span></small>
+			</div>
+			<div class="lastName form-group">
+				<label asp-for="LastName"></label>
+				<input asp-for="LastName" />
+				<small class="text-danger"><span asp-validation-for="LastName"></span></small>
+			</div>
+			<div class="streetName form-group">
+				<label asp-for="StreetName"></label>
+				<input asp-for="StreetName" />
+				<small class="text-danger"><span asp-validation-for="StreetName"></span></small>
+			</div>
+			<div class="postalCode form-group">
+				<label asp-for="PostalCode"></label>
+				<input asp-for="PostalCode" />
+				<small class="text-danger"><span asp-validation-for="PostalCode"></span></small>
+			</div>
+			<div class="city form-group">
+				<label asp-for="City"></label>
+				<input asp-for="City" />
+				<small class="text-danger"><span asp-validation-for="City"></span></small>
+			</div>
+
+			<div class="phoneNumber form-group">
+				<label asp-for="PhoneNumber"></label>
+				<input asp-for="PhoneNumber" />
+				<small class="text-danger"><span asp-validation-for="PhoneNumber"></span></small>
+			</div>
+			<div class="companyName form-group">
+				<label asp-for="CompanyName"></label>
+				<input asp-for="CompanyName" />
+				<small class="text-danger"><span asp-validation-for="CompanyName"></span></small>
+			</div>
+			<div class="email form-group">
+				<label asp-for="Email"></label>
+				<input asp-for="Email" />
+				<small class="text-danger"><span asp-validation-for="Email"></span></small>
+			</div>
+			<div class="password form-group">
+				<label asp-for="Password"></label>
+				<input asp-for="Password" />
+				<small class="text-danger"><span asp-validation-for="Password"></span></small>
+			</div>
+			<div class="confirmedpassword form-group">
+				<label asp-for="ConfirmPassword"></label>
+				<input asp-for="ConfirmPassword" />
+				<small class="text-danger"><span asp-validation-for="ConfirmPassword"></span></small>
+			</div>
+			<div class="profileimage form-group">
+				<label asp-for="ImageFile"></label>
+				<input asp-for="ImageFile" />
+				<small class="text-danger"><span asp-validation-for="ImageFile"></span></small>
+			</div>
+
+			<div class="role form-group">
+				<label asp-for="Role"></label>
+				<select asp-for="Role">
+					@foreach(SelectListItem role in await roleService.GetRolesAsync())
+					{
+						<option value="@role.Text" >@role.Text</option>						
+					}					
+				</select>
+				<small class="text-danger"><span asp-validation-for="Role"></span></small>
+			</div>
+
+			<button class="btn btn-success">Register</button>
+
+		</form>
+	</div>
+</section>

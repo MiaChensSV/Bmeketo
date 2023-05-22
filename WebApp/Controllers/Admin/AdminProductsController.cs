@@ -40,7 +40,7 @@ public class AdminProductsController : Controller
 	{
 		if (ModelState.IsValid)
 		{
-			ProductModel _productModel = await _productService.CreateAsync(viewmodel);
+			var _productModel = await _productService.CreateAsync(viewmodel);
 			if (_productModel != null)
 			{
 				if(viewmodel.ImageFile!= null)

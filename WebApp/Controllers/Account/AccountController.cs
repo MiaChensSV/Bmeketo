@@ -34,14 +34,16 @@ public class AccountController : Controller
 			StreetName = _user.StreetName,
 			ProfileImageUrl = _user.ProfileImageUrl,
 			PostalCode = _user.PostalCode,
+			PhoneNumber= _user.PhoneNumber,
 		};
 		return View(_userViewModel);
 	}
 
-	[HttpPut]
+	[HttpPost]
 	[Route("MyAccount/{id}")]
 	public IActionResult MyAccount(UserViewModel viewmodel)
 	{
+
 		var user = _userService.UpdateAsync(viewmodel);
 		
 		return View(user);

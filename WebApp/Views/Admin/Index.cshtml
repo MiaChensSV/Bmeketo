@@ -2,10 +2,24 @@
 
 <partial name="~/Views/Partials/_Breadcrumb.cshtml" />
 <div class="mb-5">
-	<a asp-controller="AdminProducts" asp-action="Create">Register a product</a>
-	<a asp-controller="AdminUser" asp-action="index">Register a user</a>
-	<a asp-controller="AdminUser" asp-action="allAccount">View all account</a>
-	<a asp-controller="AdminProducts" asp-action="Index">View all products</a>
+	<div class="mb-5">
+		<a asp-controller="Role" asp-action="Index" class="btn btn-secondary">View All roles</a>
 
+	</div>
+	<div class="mb-5">
+		<a asp-controller="AdminProducts" asp-action="Create" class="btn btn-secondary">Register a product</a>
+
+	</div>
+	<div class="mb-5">
+		<a asp-controller="AdminUser" asp-action="index" class="btn  btn-secondary">Register a user</a>
+
+	</div>
+	<div class="mb-5">
+		<a asp-controller="AdminUser" asp-action="Index" class="btn btn-secondary">View all account</a>
+
+	</div>
+	<div class="mb-5">
+		<a asp-controller="AdminProducts" asp-action="Index" class="btn btn-secondary">View all products</a>
+	</div>
 
 </div>

@@ -20,7 +20,7 @@ public class UserModel
 	public string? City { get; set; }
 	public string Email { get; set; } = null!;
 	public string? PhoneNumber { get; set; }
-	public string Roles { get; set; }=null!;
+	public string Role { get; set; }=null!;
 
 	
 }

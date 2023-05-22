@@ -1243,6 +1243,10 @@ footer.fixed {
     border: 1px solid #E1E1E1;
   }
 }
+.user-form img {
+  width: 100%;
+  height: auto;
+}
 .user-form .title {
   margin-bottom: 40px;
 }
@@ -1316,5 +1320,24 @@ footer.fixed {
   .user-form .userprofil .profil button {
     display: flex;
     justify-self: flex-start;
+  }
+}
+
+.product-list {
+  padding: 20px 0 60px 0;
+}
+@media (min-width: 992px) {
+  .product-list {
+    padding: 60px 0;
+  }
+}
+.product-list .container {
+  border: 0px solid #E1E1E1;
+  padding: 30px;
+}
+@media (min-width: 768px) {
+  .product-list .container {
+    border: 1px solid #E1E1E1;
+    width: 80%;
   }
 }
