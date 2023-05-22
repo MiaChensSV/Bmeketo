@@ -6,7 +6,7 @@ namespace WebApp.Contexts;
 
 public class WebContext:DbContext
 {
-    public WebContext(DbContextOptions<WebContext> options) : base(options)
+	public WebContext(DbContextOptions<WebContext> options) : base(options)
     {
     }
     public DbSet<CategoryEntity> Categories { get; set; }

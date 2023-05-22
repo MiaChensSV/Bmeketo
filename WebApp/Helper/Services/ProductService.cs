@@ -11,25 +11,29 @@ public class ProductService
 {
 	private readonly ProductRepository _productRepo;
 	private readonly ProductTagRepository _productTagRepo;
+	private readonly CategoryRepository _categoryRepo;
 	private readonly CategoryService _categoryService;
 	private readonly IWebHostEnvironment _webHostEnvironment;
+
 	public ProductService(ProductRepository productRepo, ProductTagRepository productTagRepo, CategoryRepository categoryRepo, CategoryService categoryService, IWebHostEnvironment webHostEnvironment)
 	{
 		_productRepo = productRepo;
 		_productTagRepo = productTagRepo;
+		_categoryRepo = categoryRepo;
 		_categoryService = categoryService;
 		_webHostEnvironment = webHostEnvironment;
 	}
-	public async Task<ProductModel> CreateAsync(ProductRegistrationViewModel viewmodel)
+
+	public async Task<ProductEntity> CreateAsync(ProductRegistrationViewModel viewmodel)
 	{
-		var _productModel = await _productRepo.GetAsync(x=>x.ArticleNumber== viewmodel.ArticleNumber);
-		if (_productModel == null)
+		var _productEntity = await _productRepo.GetAsync(x=>x.ArticleNumber== viewmodel.ArticleNumber);
+		if (_productEntity == null)
 		{
 			var _categoryEntity = _categoryService.GetOrCreateCategoryAsync(viewmodel).Result;
 			viewmodel.CatagoryId = _categoryEntity.Id.ToString();
-			
-			_productModel = await _productRepo.AddAsync(viewmodel);
-			return _productModel;
+
+			_productEntity = await _productRepo.AddAsync(viewmodel);
+			return _productEntity;
 		}
 		else return null!;
 	}
@@ -80,26 +84,35 @@ public class ProductService
 			ImageUrl = productEntity.ImageUrl,
 		};
 	}
-	public async Task<ProductModel> UpdateAsync(ProductRegistrationViewModel viewmodel )
+	public async Task<ProductEntity> UpdateAsync(ProductRegistrationViewModel viewmodel )
 	{
-		ProductModel _productModel= await _productRepo.GetAsync(x => x.ArticleNumber == viewmodel.ArticleNumber);
-		if (_productModel != null)
+		var _productEntity= await _productRepo.GetAsync(x => x.ArticleNumber == viewmodel.ArticleNumber);
+		var _categoryEntity= await _categoryRepo.GetAsync(x=>x.CategoryName== viewmodel.CategoryName);
+
+		_productEntity.Title = viewmodel.Title;
+		_productEntity.Description = viewmodel.Description;
+		_productEntity.Price = viewmodel.Price;
+
+		if (_categoryEntity != null)
 		{
-			_productModel.ArticleNumber = "565656";
-			_productModel.Title= viewmodel.Title;
-		
-			_productModel.Description = viewmodel.Description;
+			_categoryEntity.CategoryName = viewmodel.CategoryName;
+			var _newCategroyEntity=await _categoryRepo.UpdateAsync(_categoryEntity);
 			
-			_productModel.Price = viewmodel.Price;
-			
-			_productModel.CategoryName = viewmodel.CategoryName;
-			await _categoryService.GetOrCreateCategoryAsync(viewmodel);
-			
+			_productEntity.CategoryId = _newCategroyEntity.Id;
 
-			_productModel = await _productRepo.UpdateAsync(_productModel);
+			await _productRepo.UpdateAsync(_productEntity);
+		}
+		else
+		{
+			var _newCategroyEntity=await _categoryService.GetOrCreateCategoryAsync(viewmodel);
+			_productEntity.CategoryId = _newCategroyEntity.Id;
 
-			return _productModel;
-		}return null!;
+			await _productRepo.UpdateAsync(_productEntity);
+		}
+		return _productEntity;
+
+
+
 	}
 	public async Task AddProductTagsAsync(ProductRegistrationViewModel viewmodel, string[]tags)
 	{
@@ -117,12 +130,27 @@ public class ProductService
 		}		
 	}
 
-	public async Task<bool> UploadImageAsync(ProductModel product,IFormFile imageFile)
+	public async Task UpdateProductTagsAsync(ProductRegistrationViewModel viewmodel, string[] tags)
+	{
+		var _productEntity = await _productRepo.GetAsync(x => x.ArticleNumber == viewmodel.ArticleNumber);
+		List<ProductTagEntity> tagsList=(await _productTagRepo.GetAllAsync(x=>x.Product.Id==_productEntity.Id)).ToList();
+		if(tagsList.Count >0)
+		{
+			foreach(var tag in tagsList)
+			{
+			    _productTagRepo.Delete(tag);
+			}
+		}
+		await AddProductTagsAsync(viewmodel, tags);
+	}
+
+	public async Task<bool> UploadImageAsync(ProductEntity product,IFormFile imageFile)
 	{
 		try
 		{
 			string imagePath = $"{_webHostEnvironment.WebRootPath}/images/products/{product.ImageUrl}";
 			await imageFile.CopyToAsync(new FileStream(imagePath,FileMode.Create));
+
 			return true;
 		}
 		catch { return false; }

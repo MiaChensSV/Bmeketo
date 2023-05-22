@@ -86,14 +86,14 @@ public class AdminProductsController : Controller
 	{
 		if (ModelState.IsValid)
 		{
-			ProductModel _productModel = await _productService.UpdateAsync(viewmodel);
-			if (_productModel != null)
+			ProductEntity _productEntity = await _productService.UpdateAsync(viewmodel);
+			if (_productEntity != null)
 			{
 				if (viewmodel.ImageFile != null)
 				{
-					await _productService.UploadImageAsync(_productModel, viewmodel.ImageFile!);
+					await _productService.UploadImageAsync(_productEntity, viewmodel.ImageFile!);
 				}
-				await _productService.AddProductTagsAsync(viewmodel, tags);
+				await _productService.UpdateProductTagsAsync(viewmodel, tags);
 				return RedirectToAction("Index", "AdminProducts");
 			}
 			ModelState.AddModelError("", "Something went wrong");
