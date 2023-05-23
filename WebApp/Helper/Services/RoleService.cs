@@ -14,16 +14,16 @@ public class RoleService
 
 	public async Task<List<SelectListItem>> GetRolesAsync()
 	{
-		var roles = new List<SelectListItem>();
+		var _roles = new List<SelectListItem>();
 		foreach (var role in await _roleManager.Roles.ToListAsync())
 		{
-			roles.Add(new SelectListItem
+            _roles.Add(new SelectListItem
 			{
 				Value = role.Id.ToString(),
 				Text = role.Name,
 				Selected = false
 			});
 		}
-		return roles;
+		return _roles;
 	}
 }

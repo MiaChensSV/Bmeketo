@@ -16,17 +16,20 @@ public class UserService
 	private readonly UserManager<AppIdentityUser> _userManager;
 	private readonly AddressService _addressService;
 	private readonly IWebHostEnvironment _webHostEnvironment;
-	public UserService(UserRepository userRepo, IWebHostEnvironment webHostEnvironment, AddressRepository addressRepo, UserAddressRepository userAddressRepo, UserManager<AppIdentityUser> userManager, AddressService addressService)
-	{
-		_userRepo = userRepo;
-		_webHostEnvironment = webHostEnvironment;
-		_addressRepo = addressRepo;
-		_userAddressRepo = userAddressRepo;
-		_userManager = userManager;
-		_addressService = addressService;
-	}
+    private readonly RoleManager<IdentityRole> _roleManager;
 
-	public async Task<IEnumerable<AppIdentityUser>> GetAllAsync()
+    public UserService(UserRepository userRepo, IWebHostEnvironment webHostEnvironment, AddressRepository addressRepo, UserAddressRepository userAddressRepo, UserManager<AppIdentityUser> userManager, AddressService addressService, RoleManager<IdentityRole> roleManager)
+    {
+        _userRepo = userRepo;
+        _webHostEnvironment = webHostEnvironment;
+        _addressRepo = addressRepo;
+        _userAddressRepo = userAddressRepo;
+        _userManager = userManager;
+        _addressService = addressService;
+        _roleManager = roleManager;
+    }
+
+    public async Task<IEnumerable<AppIdentityUser>> GetAllAsync()
 	{
 		return await _userRepo.GetAllAsync();
 	}
@@ -113,10 +116,19 @@ public class UserService
 		_appUser.PhoneNumber = viewmodel.PhoneNumber;
 		await _userRepo.UpdateAsync(_appUser);
 
-		await _userManager.AddToRoleAsync(_appUser, viewmodel.Role!);
+		//delete existing role
+		var _roles =await _userManager.GetRolesAsync(_appUser);
+		foreach (var role in _roles) 
+		{ 
+			await _userManager.RemoveFromRoleAsync(_appUser,role);
+		}
+		//add new role to user
+		await _userManager.AddToRoleAsync(_appUser, viewmodel.Role);
+		
+		
 
-		var userAddressEntity = await _userAddressRepo.GetAsync(x => x.UserId == _appUser.Id);
-		if (userAddressEntity == null)
+		var _userAddressEntity = await _userAddressRepo.GetAsync(x => x.UserId == _appUser.Id);
+		if (_userAddressEntity == null)
 		{
 			var _adressEntity = new AddressEntity
 			{
@@ -125,12 +137,12 @@ public class UserService
 				PostalCode = viewmodel.PostalCode,
 			};
 			await _addressRepo.AddAsync(_adressEntity);
-			userAddressEntity = new UserAddressEntity { UserId= _appUser.Id,AddressId= _adressEntity.Id };
-			await _userAddressRepo.AddAsync(userAddressEntity);		
+            _userAddressEntity = new UserAddressEntity { UserId= _appUser.Id,AddressId= _adressEntity.Id };
+			await _userAddressRepo.AddAsync(_userAddressEntity);		
 		}
 		else
 		{
-			var _adressEntity = await _addressRepo.GetAsync(x => x.Id == userAddressEntity.AddressId);
+			var _adressEntity = await _addressRepo.GetAsync(x => x.Id == _userAddressEntity.AddressId);
 			_adressEntity.StreetName = viewmodel.StreetName;
 			_adressEntity.City = viewmodel.City;
 			_adressEntity.PostalCode = viewmodel.PostalCode;
@@ -140,15 +152,15 @@ public class UserService
 
 	public async Task<UserModel> CreateUserAsync(RegistrationViewModel viewmodel)
 	{
-		AppIdentityUser appUser = viewmodel;
-		var result = await _userManager.CreateAsync(appUser, viewmodel.Password);
-		if (result.Succeeded)
+		AppIdentityUser _appUser = viewmodel;
+		var _result = await _userManager.CreateAsync(_appUser, viewmodel.Password);
+		if (_result.Succeeded)
 		{
-			await _userManager.AddToRoleAsync(appUser, viewmodel.Role);
-			var addressEntity = await _addressService.GetOrCreateAsync(viewmodel);
-			if (addressEntity != null)
+			await _userManager.AddToRoleAsync(_appUser, viewmodel.Role);
+			var _addressEntity = await _addressService.GetOrCreateAsync(viewmodel);
+			if (_addressEntity != null)
 			{
-				await _addressService.AddAdressAsync(appUser, addressEntity);
+				await _addressService.AddAdressAsync(_appUser, _addressEntity);
 			}
 			return new UserModel
 			{

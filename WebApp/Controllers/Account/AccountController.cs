@@ -44,9 +44,9 @@ public class AccountController : Controller
 	public IActionResult MyAccount(UserViewModel viewmodel)
 	{
 
-		var user = _userService.UpdateAsync(viewmodel);
+		var _user = _userService.UpdateAsync(viewmodel);
 		
-		return View(user);
+		return View(_user);
 	}
 
 

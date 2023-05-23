@@ -25,8 +25,8 @@ public class AuthService
 
 	public async Task<bool> UserExistAsync(Expression<Func<AppIdentityUser, bool>> expression)
 	{
-		var result = await _userManager.Users.AnyAsync(expression);
-		return result;
+		var _result = await _userManager.Users.AnyAsync(expression);
+		return _result;
 	}
 
 	public async Task<UserModel> RegisterUserAsync(RegistrationViewModel viewmodel)
@@ -38,14 +38,14 @@ public class AuthService
 			_standardRole = "admin";
         }
         AppIdentityUser appUser = viewmodel;
-        var result = await _userManager.CreateAsync(appUser, viewmodel.Password);
-        if (result.Succeeded)
+        var _result = await _userManager.CreateAsync(appUser, viewmodel.Password);
+        if (_result.Succeeded)
         {
 			await _userManager.AddToRoleAsync(appUser, _standardRole);
-			var addressEntity =await _addressService.GetOrCreateAsync(viewmodel);
-            if (addressEntity != null)
+			var _addressEntity =await _addressService.GetOrCreateAsync(viewmodel);
+            if (_addressEntity != null)
             {
-                await _addressService.AddAdressAsync(appUser, addressEntity);
+                await _addressService.AddAdressAsync(appUser, _addressEntity);
 			}            
 			return appUser;
 
@@ -55,10 +55,10 @@ public class AuthService
 
     public async Task<bool> LoginAsync(LoginViewModel viewmodel)
     {
-        var appUser=await _userManager.Users.FirstOrDefaultAsync(x=>x.Email== viewmodel.Email);
-        if(appUser!= null)
+        var _appUser=await _userManager.Users.FirstOrDefaultAsync(x=>x.Email== viewmodel.Email);
+        if(_appUser != null)
         {
-            var result=await _signInManager.PasswordSignInAsync(appUser, viewmodel.Password,viewmodel.RememberMe,false);
+            var result=await _signInManager.PasswordSignInAsync(_appUser, viewmodel.Password,viewmodel.RememberMe,false);
             return result.Succeeded;
         }
         return false;

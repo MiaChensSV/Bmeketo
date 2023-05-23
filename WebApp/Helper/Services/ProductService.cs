@@ -44,17 +44,17 @@ public class ProductService
 	}
 	public async Task<List<ProductModel>> GetAllByTagNameAsync(string tagName)
 	{
-		var items = await _productRepo.GetAllAsync();
-		var list = new List<ProductModel>();
+		var _items = await _productRepo.GetAllAsync();
+		var _list = new List<ProductModel>();
 
-		foreach (var item in items)
+		foreach (var item in _items)
 		{
-			var tagList = new List<string>();
+			var _tagList = new List<string>();
 			foreach (var tag in item.Tags)
 			{
-				tagList.Add(tag.Tag.TagName);
+                _tagList.Add(tag.Tag.TagName);
 			}
-			list.Add(new ProductModel
+            _list.Add(new ProductModel
 			{
 				ArticleNumber = item.ArticleNumber,
 				Title = item.Title,
@@ -62,26 +62,26 @@ public class ProductService
 				CategoryName = item.Category.CategoryName,
 				Price = item.Price,
 				ImageUrl = item.ImageUrl,
-				Tags = tagList,
+				Tags = _tagList,
 			});
 		}
-		return list;
+		return _list;
 	}
 
 	public async Task<ProductModel> GetAsync(string articleNumber)
 	{
-		ProductEntity productEntity= await _productRepo.GetAsync(x => x.ArticleNumber == articleNumber);
-		var categoryId= productEntity.CategoryId;
-		var categoryName= (await _categoryService.GetAsync(categoryId)).CategoryName;
+		ProductEntity _productEntity= await _productRepo.GetAsync(x => x.ArticleNumber == articleNumber);
+		var _categoryId= _productEntity.CategoryId;
+		var _categoryName= (await _categoryService.GetAsync(_categoryId)).CategoryName;
 
 		return new ProductModel
 		{
-			ArticleNumber = productEntity.ArticleNumber,
-			Title = productEntity.Title,
-			Description = productEntity.Description,
-			CategoryName = categoryName,
-			Price = productEntity.Price,
-			ImageUrl = productEntity.ImageUrl,
+			ArticleNumber = _productEntity.ArticleNumber,
+			Title = _productEntity.Title,
+			Description = _productEntity.Description,
+			CategoryName = _categoryName,
+			Price = _productEntity.Price,
+			ImageUrl = _productEntity.ImageUrl,
 		};
 	}
 	public async Task<ProductEntity> UpdateAsync(ProductRegistrationViewModel viewmodel )

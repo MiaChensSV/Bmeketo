@@ -2,7 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 
 namespace WebApp.Controllers;
-[Authorize(Roles ="admin")]
+[Authorize(Roles = "admin,manager")]
 [Route("admin")]
 public class AdminController : Controller
 {

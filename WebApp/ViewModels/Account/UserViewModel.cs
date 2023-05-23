@@ -18,7 +18,7 @@ public class UserViewModel
 	public string? City { get; set; }
 	public string Email { get; set; } = null!;
 	public string? PhoneNumber { get; set; }
-	public string Roles { get; set; } = null!;
+	public string Role { get; set; } = null!;
 
 	[Display(Name = "Please type in your current password if you want to change")]
 	[DataType(DataType.Password)]
@@ -34,7 +34,6 @@ public class UserViewModel
 	[Compare(nameof(NewPassword), ErrorMessage = "Passwords do not match")]
 	[DataType(DataType.Password)]
 	public string ConfirmNewPassword { get; set; } = null!;
-	public string? Role { get; set; }
 
 	public static implicit operator AppIdentityUser(UserViewModel viewmodel)
 	{

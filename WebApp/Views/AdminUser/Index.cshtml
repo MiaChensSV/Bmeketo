@@ -29,6 +29,7 @@
 					else if (await userManager.IsInRoleAsync(user, "admin"))
 					{
 						<div>Roles:Admin</div>
+						<a asp-controller="AdminUser" asp-action="Edit" asp-route-id="@user.Id">Edit</a>
 					}
 					else
 					{

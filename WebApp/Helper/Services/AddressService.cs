@@ -17,12 +17,12 @@ public class AddressService
 
 	public async Task<AddressEntity> GetOrCreateAsync(AddressEntity addressEntity)
 	{
-		var entity=await _addressRepo.GetAsync(x=>
+		var _entity=await _addressRepo.GetAsync(x=>
 			x.StreetName == addressEntity.StreetName && 
 			x.PostalCode == addressEntity.PostalCode && 
 			x.City == addressEntity.City
 			);
-		if(entity == null) 
+		if(_entity == null) 
 		{
 			if (addressEntity.City!=null || addressEntity.StreetName!= null || addressEntity.PostalCode != null)
 			{
@@ -30,7 +30,7 @@ public class AddressService
 				return newAdressEntity;
 			}
 			else return null!;
-		}else return entity;
+		}else return _entity;
 	}
 
 	public async Task AddAdressAsync(AppIdentityUser appUser, AddressEntity addressEntity)

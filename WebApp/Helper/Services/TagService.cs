@@ -19,48 +19,48 @@ public class TagService
 
 	public async Task<List<SelectListItem>> GetTagsAsync()
     {
-        var tags=new List<SelectListItem>();    
+        var _tags=new List<SelectListItem>();    
         foreach(var tag in await _tagRepo.GetAllAsync())
         {
-            tags.Add(new SelectListItem
+            _tags.Add(new SelectListItem
             {
                 Value = tag.Id.ToString(),
                 Text = tag.TagName
             });
         }
-        return tags;
+        return _tags;
     }
 
 	public async Task<List<SelectListItem>> GetTagsAsync(string[] selectedTags)
 	{
-		var tags = new List<SelectListItem>();
+		var _tags = new List<SelectListItem>();
 		foreach (var tag in await _tagRepo.GetAllAsync())
 		{
-			tags.Add(new SelectListItem
+            _tags.Add(new SelectListItem
 			{
 				Value = tag.Id.ToString(),
 				Text = tag.TagName,
                 Selected=selectedTags.Contains(tag.Id.ToString())
 			});
 		}
-		return tags;
+		return _tags;
 	}
     public async Task<List<SelectListItem>> GetProductTagsAsync(string articleNumber)
     {
-		List<ProductTagEntity> tagList = _productTagRepo.GetAllAsync(x => x.ArticleNumber == articleNumber).Result.ToList<ProductTagEntity>();
-		List<string> tagListStr = new List<string>();
-		tagList.ForEach(x => tagListStr.Add(x.TagId.ToString()));
-		var tags=new List<SelectListItem>();
+		List<ProductTagEntity> _tagList = _productTagRepo.GetAllAsync(x => x.ArticleNumber == articleNumber).Result.ToList<ProductTagEntity>();
+		List<string> _tagListStr = new List<string>();
+        _tagList.ForEach(x => _tagListStr.Add(x.TagId.ToString()));
+		var _tags=new List<SelectListItem>();
 		foreach(var tag in await _tagRepo.GetAllAsync())
 		{
-			tags.Add(new SelectListItem
+            _tags.Add(new SelectListItem
 			{
 
 				Value = tag.Id.ToString(),
 				Text = tag.TagName,
-				Selected = tagListStr.Contains(tag.Id.ToString())
+				Selected = _tagListStr.Contains(tag.Id.ToString())
 			});
 		}
-		return tags;
+		return _tags;
     }
 }

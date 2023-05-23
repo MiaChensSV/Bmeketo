@@ -11,7 +11,7 @@ public class SeedService
 {
 	public static async void Initialize(IServiceProvider serviceProvider)
 	{
-		using (var context = new WebContext(serviceProvider.GetRequiredService<DbContextOptions<WebContext>>()))
+        using (var context = new WebContext(serviceProvider.GetRequiredService<DbContextOptions<WebContext>>()))
 		{
 			CategoryRepository categoryRepo = new CategoryRepository(context);
 			TagRepository tagRepo = new TagRepository(context);
