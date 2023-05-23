@@ -24,20 +24,28 @@ public class RegisterController : Controller
 	{
 		if(ModelState.IsValid)
 		{
-			if(await _auth.UserExistAsync(x=>x.Email==viewmodel.Email))
+			if (viewmodel.TermsAndAgreement)
 			{
-				ModelState.AddModelError("", "Email is already exist");
+				if (await _auth.UserExistAsync(x => x.Email == viewmodel.Email))
+				{
+					ModelState.AddModelError("", "Email is already exist");
+				}
+				else
+				{
+					var _user = await _auth.RegisterUserAsync(viewmodel);
+					if (_user != null)
+						if (viewmodel.ImageFile != null)
+						{
+							await _userService.UploadImageAsync(_user, viewmodel.ImageFile);
+						}
+					return RedirectToAction("Index", "Login");
+				}
 			}
 			else
 			{
-				var _user = await _auth.RegisterUserAsync(viewmodel);
-				if (_user!=null)
-					if(viewmodel.ImageFile!=null)
-					{
-						await _userService.UploadImageAsync(_user,viewmodel.ImageFile);
-					}
-					return RedirectToAction("Index", "Login");
-			}			
+				ModelState.AddModelError("", "You have to agree on the Terms in order to proceed");
+			}
+
 		}
 		ModelState.AddModelError("", "Invaild input");
 		return View(viewmodel);

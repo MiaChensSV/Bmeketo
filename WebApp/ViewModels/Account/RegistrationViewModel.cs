@@ -55,7 +55,7 @@ public class RegistrationViewModel
     [Display(Name = "I have read and accept the terms and agreements")]
     [Required(ErrorMessage = "You must read and accept the terms and agreements")]
     public bool TermsAndAgreement { get; set; } = false;
-	public string Role { get; set; }=null!;
+	public string? Role { get; set; }
 
 	public static implicit operator AppIdentityUser(RegistrationViewModel viewModel)
     {
@@ -94,7 +94,7 @@ public class RegistrationViewModel
             StreetName = viewModel.StreetName,
             PostalCode = viewModel.PostalCode,
             City = viewModel.City,
-            Role = viewModel.Role,
+            Role = viewModel.Role!,
         };
     }
 }

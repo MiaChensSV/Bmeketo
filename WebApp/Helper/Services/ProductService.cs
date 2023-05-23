@@ -71,18 +71,22 @@ public class ProductService
 	public async Task<ProductModel> GetAsync(string articleNumber)
 	{
 		ProductEntity _productEntity= await _productRepo.GetAsync(x => x.ArticleNumber == articleNumber);
-		var _categoryId= _productEntity.CategoryId;
-		var _categoryName= (await _categoryService.GetAsync(_categoryId)).CategoryName;
-
-		return new ProductModel
+		if (_productEntity != null)
 		{
-			ArticleNumber = _productEntity.ArticleNumber,
-			Title = _productEntity.Title,
-			Description = _productEntity.Description,
-			CategoryName = _categoryName,
-			Price = _productEntity.Price,
-			ImageUrl = _productEntity.ImageUrl,
-		};
+			var _categoryId = _productEntity.CategoryId;
+			var _categoryName = (await _categoryService.GetAsync(_categoryId)).CategoryName;
+
+			return new ProductModel
+			{
+				ArticleNumber = _productEntity.ArticleNumber,
+				Title = _productEntity.Title,
+				Description = _productEntity.Description,
+				CategoryName = _categoryName,
+				Price = _productEntity.Price,
+				ImageUrl = _productEntity.ImageUrl,
+			};
+		}
+		else return null!;		
 	}
 	public async Task<ProductEntity> UpdateAsync(ProductRegistrationViewModel viewmodel )
 	{
