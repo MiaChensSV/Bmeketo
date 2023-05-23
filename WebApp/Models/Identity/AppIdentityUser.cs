@@ -20,9 +20,9 @@ public class AppIdentityUser:IdentityUser
 
     public static implicit operator UserModel(AppIdentityUser user)
     {
-        var _newUserModel=new UserModel
+        var _newUserModel = new UserModel
         {
-            UserId= user.Id,
+            UserId = user.Id,
             FirstName = user.FirstName,
             LastName = user.LastName,
             CompanyName = user.CompanyName,

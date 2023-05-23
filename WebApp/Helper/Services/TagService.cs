@@ -6,17 +6,14 @@ using WebApp.Helper.Repositories;
 using WebApp.Models.Entity;
 
 namespace WebApp.Helper.Services;
-
 public class TagService
 {
     private readonly TagRepository _tagRepo;
-    private readonly ProductRepository _productRepo;
 	private readonly ProductTagRepository _productTagRepo;
 
-	public TagService(TagRepository tagRepo, ProductRepository productRepo, ProductTagRepository productTagRepo)
+	public TagService(TagRepository tagRepo, ProductTagRepository productTagRepo)
 	{
 		_tagRepo = tagRepo;
-		_productRepo = productRepo;
 		_productTagRepo = productTagRepo;
 	}
 

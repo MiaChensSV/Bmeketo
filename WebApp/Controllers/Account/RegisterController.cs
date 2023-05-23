@@ -37,8 +37,7 @@ public class RegisterController : Controller
 						await _userService.UploadImageAsync(_user,viewmodel.ImageFile);
 					}
 					return RedirectToAction("Index", "Login");
-			}
-			
+			}			
 		}
 		ModelState.AddModelError("", "Invaild input");
 		return View(viewmodel);

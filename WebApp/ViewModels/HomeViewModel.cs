@@ -9,8 +9,4 @@ public class HomeViewModel
     public GridCollectionItemViewModel? UpToSellItem1;
     public GridCollectionItemViewModel? UpToSellItem2;
     public GridCollectionViewModel? TopSellingCollection;
-
-
-
-
 }

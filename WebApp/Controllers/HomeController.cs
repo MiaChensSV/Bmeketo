@@ -1,8 +1,5 @@
-﻿
-using System.Linq;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using WebApp.Helper.Services;
-using WebApp.Models;
 using WebApp.Models.Entity;
 using WebApp.ViewModels;
 

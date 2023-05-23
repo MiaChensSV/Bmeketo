@@ -14,12 +14,9 @@ public class UserService
 	private readonly AddressRepository _addressRepo;
 	private readonly UserAddressRepository _userAddressRepo;
 	private readonly UserManager<AppIdentityUser> _userManager;
-	private readonly RoleManager<IdentityRole> _roleManager;
 	private readonly AddressService _addressService;
-	private readonly RoleService _roleService;
 	private readonly IWebHostEnvironment _webHostEnvironment;
-
-	public UserService(UserRepository userRepo, IWebHostEnvironment webHostEnvironment, AddressRepository addressRepo, UserAddressRepository userAddressRepo, UserManager<AppIdentityUser> userManager, AddressService addressService, RoleManager<IdentityRole> roleManager, RoleService roleService)
+	public UserService(UserRepository userRepo, IWebHostEnvironment webHostEnvironment, AddressRepository addressRepo, UserAddressRepository userAddressRepo, UserManager<AppIdentityUser> userManager, AddressService addressService)
 	{
 		_userRepo = userRepo;
 		_webHostEnvironment = webHostEnvironment;
@@ -27,8 +24,6 @@ public class UserService
 		_userAddressRepo = userAddressRepo;
 		_userManager = userManager;
 		_addressService = addressService;
-		_roleManager = roleManager;
-		_roleService = roleService;
 	}
 
 	public async Task<IEnumerable<AppIdentityUser>> GetAllAsync()
@@ -170,6 +165,4 @@ public class UserService
 		}
 		return null!;
 	}
-
-
 }

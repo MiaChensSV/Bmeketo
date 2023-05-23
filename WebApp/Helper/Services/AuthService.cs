@@ -15,7 +15,6 @@ public class AuthService
     private readonly AddressService _addressService;
     private readonly SeedRoleService _seeds;
 
-
 	public AuthService(UserManager<AppIdentityUser> userManager, AddressService addressService, SignInManager<AppIdentityUser> signInManager, SeedRoleService seeds)
 	{
 		_userManager = userManager;

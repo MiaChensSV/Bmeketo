@@ -144,7 +144,7 @@ public class ProductService
 		await AddProductTagsAsync(viewmodel, tags);
 	}
 
-	public async Task<bool> UploadImageAsync(ProductEntity product,IFormFile imageFile)
+	public async Task<bool> UploadImageAsync(ProductModel product,IFormFile imageFile)
 	{
 		try
 		{
@@ -161,5 +161,4 @@ public class ProductService
 	{
 		return await _productRepo.DeleteAsync(x=>x.ArticleNumber==articleNumber);		
 	}
-
 }

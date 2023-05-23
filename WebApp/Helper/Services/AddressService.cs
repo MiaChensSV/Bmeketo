@@ -1,8 +1,6 @@
-﻿using WebApp.Contexts;
-using WebApp.Helper.Repositories;
+﻿using WebApp.Helper.Repositories;
 using WebApp.Models.Entity;
 using WebApp.Models.Identity;
-using WebApp.ViewModels;
 
 namespace WebApp.Services;
 
@@ -32,8 +30,6 @@ public class AddressService
 				return newAdressEntity;
 			}
 			else return null!;
-
-
 		}else return entity;
 	}
 

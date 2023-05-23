@@ -41,5 +41,4 @@ public class ContactFormViewModel
         };
         return  _contactFormEntity;
     }
-
 }

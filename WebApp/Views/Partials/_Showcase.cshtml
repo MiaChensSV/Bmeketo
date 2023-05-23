@@ -10,7 +10,7 @@
             <div class="content">
             <div class="ingress">@showcase.Ingress</div>
             <div class="title">@showcase.Title</div>
-            @if (!string.IsNullOrEmpty(showcase.Button.Url) && !string.IsNullOrEmpty(showcase.Button.LinkText))
+            @if (!string.IsNullOrEmpty(showcase.Button!.Url) && !string.IsNullOrEmpty(showcase.Button.LinkText))
             {
                     <a asp-controller="Products" asp-action="Index" class="btn-theme">@showcase.Button.LinkText</a>
 

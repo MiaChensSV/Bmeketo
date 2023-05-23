@@ -1,12 +1,12 @@
-﻿using System.Collections.Generic;
-using System.Net.WebSockets;
+﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using WebApp.Helper.Services;
-using WebApp.Models;
 using WebApp.Models.Entity;
 using WebApp.ViewModels.Admin.Products;
 
 namespace WebApp.Controllers;
+[Authorize(Roles ="admin,manager")]
+
 public class AdminProductsController : Controller
 {
 	private readonly TagService _tagService;
@@ -51,7 +51,6 @@ public class AdminProductsController : Controller
 				return RedirectToAction("Index", "AdminProducts");
 			}
 			ModelState.AddModelError("", "Something went wrong");
-
 		}
 		else
 		{
@@ -97,7 +96,6 @@ public class AdminProductsController : Controller
 				return RedirectToAction("Index", "AdminProducts");
 			}
 			ModelState.AddModelError("", "Something went wrong");
-
 		}
 		else
 		{
@@ -119,7 +117,6 @@ public class AdminProductsController : Controller
 				return RedirectToAction("Index", "AdminProducts");
 			}
 			ModelState.AddModelError("", "Something went wrong");
-
 		}
 		return RedirectToAction("Index", "AdminProducts");
 	}

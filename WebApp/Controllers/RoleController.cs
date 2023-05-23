@@ -1,11 +1,12 @@
-﻿using Microsoft.AspNetCore.Identity;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using WebApp.Migrations.DataContext;
 using WebApp.Models.Identity;
 using WebApp.ViewModels;
 
 namespace WebApp.Controllers;
+[Authorize(Roles = "admin")]
 
 public class RoleController : Controller
 {
@@ -101,7 +102,6 @@ public class RoleController : Controller
 				ModelState.AddModelError("", error.Description);
 			}
 			return View(viewmodel);
-
 		}
 		else
 		{
@@ -110,57 +110,4 @@ public class RoleController : Controller
 
 		}
 	}
-
-	//public async Task<IActionResult> ChangeRoleToAdmin()
-	//{
-
-	//}
-	//public async Task<IActionResult> AddRoleToUser(string roleId)
-	//{
-	//	var role = await _roleManager.FindByIdAsync(roleId);
-	//	if (role == null)
-	//	{
-	//		return RedirectToAction("Index");
-	//	}
-	//	var viewmodel = new UserRoleViewModel
-	//	{
-	//		RoleId = roleId
-	//	};
-	//	var allUser = await _userManager.Users.ToListAsync();
-	//	foreach (var u in allUser)
-	//	{
-	//		if (!await _userManager.IsInRoleAsync(u, role.Name))
-	//		{
-	//			viewmodel.Users.Add(u);
-	//		}
-	//	}
-	//	return View(viewmodel);
-	//}
-
-	//[HttpPost]
-	//public async Task<IActionResult> AddRoleToUser(UserRoleViewModel viewmodel)
-	//{
-	//	if (!ModelState.IsValid)
-	//	{
-	//		ModelState.AddModelError("", "somthing went wrong");
-	//		return View(viewmodel);
-	//	}
-	//	var user = await _userManager.FindByIdAsync(viewmodel.UserId);
-	//	var role = await _roleManager.FindByIdAsync(viewmodel.RoleId);
-	//	if (role == null || user == null)
-	//	{
-	//		ModelState.AddModelError("", "User or Role is not exist");
-	//		return View();
-	//	}
-	//	var result = await _userManager.AddToRoleAsync(user, role.Name);
-	//	if (result.Succeeded)
-	//	{
-	//		return RedirectToAction("Edit", new { Id = viewmodel.RoleId });
-	//	}
-	//	foreach (var error in result.Errors)
-	//	{
-	//		ModelState.AddModelError("", error.Description);
-	//	}
-	//	return View(viewmodel);
-	//}
 }

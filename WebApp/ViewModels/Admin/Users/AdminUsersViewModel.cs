@@ -7,5 +7,5 @@ public class AdminUsersViewModel
 {
     public IList<AppIdentityUser> Users { get; set; }=new List<AppIdentityUser>();
     public IList<AppIdentityUser> Admins { get; set; } = new List<AppIdentityUser>();
-    public IList<IdentityRole> Roles { get; set; }
+    public IList<IdentityRole> Roles { get; set; }=new List<IdentityRole>();
 }

@@ -8,7 +8,6 @@ namespace WebApp.Controllers;
 
 public class ProductsController : Controller
 {
-
 	private readonly ProductService _productService;
 
     public ProductsController(ProductService productService)
@@ -46,5 +45,4 @@ public class ProductsController : Controller
 		var _product = await _productService.GetAsync(articleNumber);
 		return View(_product);
 	}
-
 }

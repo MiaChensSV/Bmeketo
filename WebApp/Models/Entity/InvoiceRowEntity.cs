@@ -9,7 +9,6 @@ public class InvoiceRowEntity
 	[ForeignKey(nameof(Invoice))]
 	public Guid InvoiceRowId { get; set; }
 	public InvoiceEntity Invoice { get; set; } = null!;
-
 	public Guid ProductId { get; set; } 
 
 	[Column(TypeName ="money")]

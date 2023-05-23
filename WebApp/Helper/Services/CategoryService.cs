@@ -14,10 +14,6 @@ public class CategoryService
 		_categoryRepo = categoryRepo;
 		_productRepo = productRepo;
 	}
-
-
-
-
 	public async Task<CategoryEntity> GetOrCreateCategoryAsync(ProductRegistrationViewModel viewmodel)
 	{
 		var _categoryEntity = await _categoryRepo.GetAsync(x => x.CategoryName.ToUpper() == viewmodel.CategoryName.ToUpper());
@@ -27,7 +23,6 @@ public class CategoryService
 							{
 								CategoryName = viewmodel.CategoryName,
 							}) ;
-
 		}
 		return _categoryEntity!;
 	}

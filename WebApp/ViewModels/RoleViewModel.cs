@@ -6,6 +6,6 @@ public class RoleViewModel
 {
 	public string Id { get; set; } = null!;
 	[Required]
-	[Display(Name ="Role")]
-	public string RoleName { get; set; } 
+	[Display(Name = "Role")]
+	public string RoleName { get; set; } = null!;
 }
