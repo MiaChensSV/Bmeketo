@@ -40,37 +40,33 @@ public class AdminProductsController : Controller
 	{
 		if (ModelState.IsValid)
 		{
-			var _product = await _productService.GetAsync(viewmodel.ArticleNumber);
-			if (_product != null)
+			var product = await _productService.GetAsync(viewmodel.ArticleNumber);
+
+            if (product!=null)
 			{
-				ModelState.AddModelError("", "The articleNumber is already exist");
-				return RedirectToAction("Create", "AdminProducts");
+				ModelState.AddModelError("", "ArticleNumber is already exist");
 			}
 			else
 			{
-				var _productModel = await _productService.CreateAsync(viewmodel);
-				if (_productModel != null)
-				{
-					if (viewmodel.ImageFile != null)
-					{
-						await _productService.UploadImageAsync(_productModel, viewmodel.ImageFile!);
-					}
-					await _productService.AddProductTagsAsync(viewmodel, tags);
-					return RedirectToAction("Index", "AdminProducts");
-				}
-				ModelState.AddModelError("", "Something went wrong");
-			}
+                var _productModel = await _productService.CreateAsync(viewmodel);
+                if (_productModel != null)
+                {
+                    if (viewmodel.ImageFile != null)
+                    {
+                        await _productService.UploadImageAsync(_productModel, viewmodel.ImageFile);
+                    }
+                    await _productService.AddProductTagsAsync(viewmodel, tags);
+                    return RedirectToAction("Index", "AdminProducts");
+                }
+            }
 		}
-		else
-		{
-			ModelState.AddModelError("", "Input are not all valid");
-		}
+		
+		ModelState.AddModelError("", "Input are not all valid");		
 		ViewBag.Tags = await _tagService.GetTagsAsync(tags);
-		ModelState.AddModelError("", "Input are not all valid");
-		return RedirectToAction("Create", "AdminProducts");
-	}
+		return RedirectToAction("Create", "AdminProducts");	
+    }
 
-	[HttpGet]
+    [HttpGet]
 	[Route("product/edit/{articleNumber}")]
 	public async Task<IActionResult> EditAsync(string articleNumber)
 	{

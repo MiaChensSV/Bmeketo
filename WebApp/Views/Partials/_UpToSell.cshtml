@@ -1,4 +1,4 @@
-﻿@model GridCollectionItemViewModel
+﻿@model GridCollectionViewModel
 
 <section class="up-to-sell">
     <div class="container">
@@ -7,9 +7,13 @@
                 <!-- collection-item start -->
                     @if (Model != null)
                     {
-                        <div class="grid">                           
-                            <partial name="~/Views/Partials/_GridCollectionItem.cshtml"/>                            
+                    foreach(var item in Model.GridItems)
+                    {
+                         <div class="grid">                           
+                            <partial name="~/Views/Partials/_GridCollectionItem.cshtml" model="@Model.GridItems"/>                            
                         </div>
+                    }
+
                     }
                 <!-- collection-item end -->
             </div>
@@ -26,16 +30,16 @@
                 </div>
                 <!-- collection-content end -->
             </div>
-            <div class="item-2">
+           @* <div class="item-2">
                 <!-- collection-item start -->
                  @if (Model != null)
                     {
-                        <div class="grid">                           
-                            <partial name="~/Views/Partials/_GridCollectionItem.cshtml"/>                            
-                        </div>
+                        <div class="grid">
+                        <partial name="~/Views/Partials/_GridCollectionItem.cshtml" model="@Model.GridItems" />
+                    </div>
                     }                
                 <!-- collection-item end -->
-            </div>
+            </div>*@
         </div>
     </div>
 </section>

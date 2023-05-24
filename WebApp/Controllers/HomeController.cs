@@ -37,8 +37,10 @@ public class HomeController : Controller
 		};
 
 		//get radom product in uptoSell
-        Random r = new Random();
-        int uptoSellRandomNr1 =r.Next(0, _griditemslist.Count);
+        Random r1 = new Random();
+		Random r2 = new Random();
+
+		int uptoSellRandomNr1 =r1.Next(0, _griditemslist.Count);
 
         GridCollectionItemViewModel upToSellItem1 = new ()
 		{
@@ -48,7 +50,7 @@ public class HomeController : Controller
             Price = _griditemslist[uptoSellRandomNr1].Price,
         };
 
-        int uptoSellRandomNr2 = r.Next(0, _griditemslist.Count);
+        int uptoSellRandomNr2 = r2.Next(0, _griditemslist.Count);
         GridCollectionItemViewModel upToSellItem2 = new()
         {
             Id = _griditemslist[uptoSellRandomNr2].ArticleNumber,
@@ -56,6 +58,8 @@ public class HomeController : Controller
             Title = _griditemslist[uptoSellRandomNr2].Title,
             Price = _griditemslist[uptoSellRandomNr2].Price,
         };
+
+        var uptosellList= new List<GridCollectionItemViewModel> { upToSellItem1, upToSellItem2 };
 
 		var topSellingList= new List<GridCollectionItemViewModel>();
         var _topitemslist =await _productService.GetAllByTagNameAsync("Popular");
@@ -81,9 +85,12 @@ public class HomeController : Controller
 				GridItems = gridList,
 				LoadMore = false,
 			},
-			UpToSellItem1=upToSellItem1,
-			UpToSellItem2=upToSellItem2,
-			TopSellingCollection =new GridCollectionViewModel
+            //UpToSellItem = new GridCollectionViewModel
+            //{
+            //    GridItems = uptosellList,
+            //},
+
+            TopSellingCollection =new GridCollectionViewModel
 			{
 				Title="Top selling products in this week",
 				GridItems=topSellingList,

@@ -96,7 +96,10 @@ public class ProductService
 		_productEntity.Title = viewmodel.Title;
 		_productEntity.Description = viewmodel.Description;
 		_productEntity.Price = viewmodel.Price;
-
+		if (viewmodel.ImageFile != null)
+		{
+			_productEntity.ImageUrl = $"{viewmodel.ArticleNumber}_{viewmodel.ImageFile.FileName}";
+		}
 		if (_categoryEntity != null)
 		{
 			_categoryEntity.CategoryName = viewmodel.CategoryName;
