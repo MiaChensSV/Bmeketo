@@ -38,32 +38,29 @@ public class AdminProductsController : Controller
 	[Route("admin/products/create")]
 	public async Task<IActionResult> CreateAsync(ProductRegistrationViewModel viewmodel, string[] tags)
 	{
-		if (ModelState.IsValid)
-		{
-			var product = await _productService.GetAsync(viewmodel.ArticleNumber);
+		var product = await _productService.GetAsync(viewmodel.ArticleNumber);
 
-            if (product!=null)
-			{
-				ModelState.AddModelError("", "ArticleNumber is already exist");
-			}
-			else
-			{
-                var _productModel = await _productService.CreateAsync(viewmodel);
-                if (_productModel != null)
+		if (product!=null)
+		{
+			ModelState.AddModelError("", "ArticleNumber is already exist");
+		}
+		else if (ModelState.IsValid)
+		{
+			var _productModel = await _productService.CreateAsync(viewmodel);
+            if (_productModel != null)
+            {
+                if (viewmodel.ImageFile != null)
                 {
-                    if (viewmodel.ImageFile != null)
-                    {
-                        await _productService.UploadImageAsync(_productModel, viewmodel.ImageFile);
-                    }
-                    await _productService.AddProductTagsAsync(viewmodel, tags);
-                    return RedirectToAction("Index", "AdminProducts");
+                    await _productService.UploadImageAsync(_productModel, viewmodel.ImageFile);
                 }
+                await _productService.AddProductTagsAsync(viewmodel, tags);
+                return RedirectToAction("Index", "AdminProducts");
             }
 		}
 		
 		ModelState.AddModelError("", "Input are not all valid");		
 		ViewBag.Tags = await _tagService.GetTagsAsync(tags);
-		return RedirectToAction("Create", "AdminProducts");	
+		return View(viewmodel);	
     }
 
     [HttpGet]

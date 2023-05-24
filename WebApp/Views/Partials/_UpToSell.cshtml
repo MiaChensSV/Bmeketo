@@ -5,16 +5,12 @@
         <div class="collection-grid">
             <div class="item-1">
                 <!-- collection-item start -->
-                    @if (Model != null)
-                    {
-                    foreach(var item in Model.GridItems)
-                    {
-                         <div class="grid">                           
-                            <partial name="~/Views/Partials/_GridCollectionItem.cshtml" model="@Model.GridItems"/>                            
-                        </div>
-                    }
-
-                    }
+                @if (Model != null)
+                {
+                    <div class="grid">
+                        <partial name="~/Views/Partials/_GridCollectionItem.cshtml" model="@Model.GridItems.ToArray<GridCollectionItemViewModel>()[0]" />
+                    </div>
+                }                               
                 <!-- collection-item end -->
             </div>
             <div class="discover">
@@ -30,16 +26,16 @@
                 </div>
                 <!-- collection-content end -->
             </div>
-           @* <div class="item-2">
+            <div class="item-2">
                 <!-- collection-item start -->
                  @if (Model != null)
-                    {
-                        <div class="grid">
-                        <partial name="~/Views/Partials/_GridCollectionItem.cshtml" model="@Model.GridItems" />
+                {
+                    <div class="grid">
+                        <partial name="~/Views/Partials/_GridCollectionItem.cshtml" model="@Model.GridItems.ToArray<GridCollectionItemViewModel>()[1]" />
                     </div>
-                    }                
+                }       
                 <!-- collection-item end -->
-            </div>*@
+            </div>
         </div>
     </div>
 </section>

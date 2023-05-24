@@ -156,7 +156,7 @@ public class UserService
 		var _result = await _userManager.CreateAsync(_appUser, viewmodel.Password);
 		if (_result.Succeeded)
 		{
-			await _userManager.AddToRoleAsync(_appUser, viewmodel.Role);
+			await _userManager.AddToRoleAsync(_appUser, viewmodel.Role!);
 			var _addressEntity = await _addressService.GetOrCreateAsync(viewmodel);
 			if (_addressEntity != null)
 			{
@@ -170,7 +170,7 @@ public class UserService
 				StreetName= viewmodel.StreetName,
 				City= viewmodel.City,
 				PostalCode= viewmodel.PostalCode,
-				Role= viewmodel.Role,
+				Role= viewmodel.Role!,
 				Email= viewmodel.Email,
 				PhoneNumber= viewmodel.PhoneNumber,
 			};

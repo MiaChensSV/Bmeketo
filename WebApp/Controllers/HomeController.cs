@@ -37,10 +37,9 @@ public class HomeController : Controller
 		};
 
 		//get radom product in uptoSell
-        Random r1 = new Random();
-		Random r2 = new Random();
+        Random r = new Random();
 
-		int uptoSellRandomNr1 =r1.Next(0, _griditemslist.Count);
+		int uptoSellRandomNr1 =r.Next(0, _griditemslist.Count);
 
         GridCollectionItemViewModel upToSellItem1 = new ()
 		{
@@ -50,7 +49,7 @@ public class HomeController : Controller
             Price = _griditemslist[uptoSellRandomNr1].Price,
         };
 
-        int uptoSellRandomNr2 = r2.Next(0, _griditemslist.Count);
+        int uptoSellRandomNr2 = r.Next(0, _griditemslist.Count);
         GridCollectionItemViewModel upToSellItem2 = new()
         {
             Id = _griditemslist[uptoSellRandomNr2].ArticleNumber,
@@ -85,10 +84,10 @@ public class HomeController : Controller
 				GridItems = gridList,
 				LoadMore = false,
 			},
-            //UpToSellItem = new GridCollectionViewModel
-            //{
-            //    GridItems = uptosellList,
-            //},
+            UpToSellItem = new GridCollectionViewModel
+            {
+                GridItems = uptosellList,
+            },
 
             TopSellingCollection =new GridCollectionViewModel
 			{
