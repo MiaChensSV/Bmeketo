@@ -10,6 +10,7 @@ namespace WebApp.Models.Entity;
 
 public class ProductEntity
 {
+	private decimal _price = 0;
     public Guid Id { get; set; }= Guid.NewGuid();
 
 	[Display(Name = "Article Number*")]
@@ -18,7 +19,11 @@ public class ProductEntity
     public string? Description { get; set; }
 
     [Column(TypeName = "money")]
-    public decimal Price { get; set; }
+    public decimal Price {
+	
+		get { return _price; } 
+		set { _price = Math.Round(value, 2); } 
+	}
     public string? ImageUrl { get; set; }
     public Guid CategoryId { get; set; }
     [ForeignKey("CategoryId")]

@@ -7,8 +7,10 @@ using WebApp.Models.Entity;
 namespace WebApp.ViewModels.Admin.Products;
 [Index(nameof(ArticleNumber), IsUnique = true)]
 public class ProductRegistrationViewModel
-{   
-	[Display(Name = "Article Number*")]
+{
+    private decimal _price = 0;
+
+    [Display(Name = "Article Number*")]
 	[Required(ErrorMessage = "Article Number must be unique")]
 	public string ArticleNumber { get; set; } = null!;
 
@@ -19,8 +21,12 @@ public class ProductRegistrationViewModel
     public string? Description { get; set; }
     [Display(Name = "Price (i SEK)*")]
 	[Required(ErrorMessage = "Price is required")]
-	public decimal Price { get; set; }
+    public decimal Price
+    {
 
+        get { return _price; }
+        set { _price = Math.Round(value, 2); }
+    }
     [Display(Name = "Upload Product Image (options) ")]
     [DataType(DataType.Upload)]
     public IFormFile? ImageFile { get; set; }

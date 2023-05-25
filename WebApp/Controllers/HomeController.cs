@@ -35,7 +35,6 @@ public class HomeController : Controller
             {
                 GridItems =_homeService.GetUpToSellList(),
             },
-
             TopSellingCollection =new GridCollectionViewModel
 			{
 				Title="Top selling products in this week",

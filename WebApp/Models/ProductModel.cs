@@ -9,12 +9,17 @@ namespace WebApp.Models;
 
 public class ProductModel
 {
-	public Guid Id { get; set; } 
+    private decimal _price = 0;
+    public Guid Id { get; set; } 
 	public string ArticleNumber { get; set; } = null!;
 	public string Title { get; set; } = null!;
 	public string? Description { get; set; }
-	public decimal Price { get; set; }
-	public string? ImageUrl { get; set; }
+    public decimal Price
+    {
+        get { return _price; }
+        set { _price = Math.Round(value, 2); }
+    }
+    public string? ImageUrl { get; set; }
 	public string CategoryName { get; set; } = null!;
 	public List<string> Tags { get; set; } = new List<string>();
 
