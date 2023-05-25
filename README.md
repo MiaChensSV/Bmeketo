@@ -35,6 +35,9 @@ The first user registered will be automatic as Administrator, the others user wi
 ### Create tables in your database
 ```
 Add-migration "Initialize" -Context WebContext -OutputDir Migrations\WebData
+Uppdate-database -Context WebContext
 
 Add-migration "Initialize" -Context IdentityContext -OutputDir Migrations\IdentityData
+Uppdate-database -Context IdentityContext
+
 ```
