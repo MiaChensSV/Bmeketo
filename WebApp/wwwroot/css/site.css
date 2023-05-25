@@ -13,7 +13,7 @@ html, body {
 
 .open-menu {
   width: 100vw !important;
-  opacity: 0.99;
+  opacity: 0.75;
   transform: translateX(-100%);
 }
 
@@ -1344,7 +1344,98 @@ footer.fixed {
 .user-section card {
   margin-bottom: 1rem;
 }
-.user-section .product-list {
+.user-section .user-list {
+  display: grid;
+  column-gap: 10px;
+  row-gap: 10px;
+  grid-template-columns: 1fr;
+  grid-template-areas: "info" "roles";
+}
+@media (min-width: 992px) {
+  .user-section .user-list {
+    grid-template-columns: 9fr 3fr;
+    column-gap: 30px;
+    row-gap: 30px;
+    grid-template-areas: "info roles";
+  }
+}
+.user-section .user-list .info {
+  grid-area: info;
+  margin-bottom: 1rem;
+  margin-bottom: 1rem;
+  display: flex;
+  align-items: center;
+}
+.user-section .user-list .info .user-image {
+  height: 80px;
+  width: 80px;
+}
+.user-section .user-list .info .detail {
+  margin-left: 0.5rem;
+  column-gap: 20px;
+  row-gap: 30px;
+  grid-template-columns: 1fr;
+  grid-template-areas: "name" "email" "phoneNumber";
+}
+@media (min-width: 992px) {
+  .user-section .user-list .info .detail {
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-areas: "name email phoneNumber";
+  }
+}
+.user-section .user-list .info .detail .name {
+  grid-area: name;
+}
+.user-section .user-list .info .detail .email {
+  grid-area: email;
+}
+.user-section .user-list .info .detail .phoneNumber {
+  grid-area: phoneNumber;
+}
+.user-section .user-list .roles {
+  grid-area: roles;
+  display: grid;
+  column-gap: 10px;
+  grid-template-columns: 1fr 1fr;
+  grid-template-areas: "name edit";
+}
+.user-section .user-list .roles .name {
+  grid-area: name;
+  display: flex;
+  align-items: center;
+}
+.user-section .user-list .roles .edit {
+  grid-area: edit;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.user-section .user-list .roles .btn-theme {
+  text-decoration: none;
+}
+
+.product-section {
+  padding: 20px 0 60px 0;
+}
+@media (min-width: 992px) {
+  .product-section {
+    padding: 60px 0;
+  }
+}
+.product-section .container {
+  border: 0px solid #E1E1E1;
+  padding: 30px;
+}
+@media (min-width: 768px) {
+  .product-section .container {
+    border: 1px solid #E1E1E1;
+    width: 80%;
+  }
+}
+.product-section card {
+  margin-bottom: 1rem;
+}
+.product-section .product-list {
   display: grid;
   column-gap: 30px;
   row-gap: 30px;
@@ -1352,41 +1443,41 @@ footer.fixed {
   grid-template-areas: "info" "button";
 }
 @media (min-width: 992px) {
-  .user-section .product-list {
+  .product-section .product-list {
     grid-template-columns: 9fr 3fr;
     grid-template-areas: "info button";
   }
 }
-.user-section .product-list .info {
+.product-section .product-list .info {
   grid-area: info;
   margin-bottom: 1rem;
   display: flex;
   align-items: center;
 }
-.user-section .product-list .info .product-image {
+.product-section .product-list .info .product-image {
   height: 60px;
   width: 60px;
 }
-.user-section .product-list .info .title {
+.product-section .product-list .info .title {
   margin-left: 0.5rem;
 }
-.user-section .product-list .button {
+.product-section .product-list .button {
   grid-area: button;
   display: grid;
   column-gap: 10px;
   grid-template-columns: 1fr 1fr;
   grid-template-areas: "edit remove";
 }
-.user-section .product-list .button .edit {
+.product-section .product-list .button .edit {
   grid-area: edit;
   display: flex;
   align-items: center;
 }
-.user-section .product-list .button .remove {
+.product-section .product-list .button .remove {
   grid-area: remove;
   display: flex;
   align-items: center;
 }
-.user-section .product-list .button .btn-them {
+.product-section .product-list .button .btn-them {
   text-decoration: none;
 }

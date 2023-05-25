@@ -5,42 +5,45 @@
 }
 
 <partial name="~/Views/Partials/_Breadcrumb.cshtml" />
-<section class="user-section"></section>
-<div class="container mt-5">
-	@foreach (var user in Model)
-	{
-			<div class="d-flex justify-content-between align-items-center">
-				<div class="mb-3 d-flex align-items-center">
-				<img height="60" width="60" src="/images/users/@user.ProfileImageUrl" alt="@user.FirstName" />
-					<div class="ms-2">
-						<div class="display-6"><strong>@user.FirstName-@user.LastName</strong></div>
-						<div>@user.Email</div>
-						<div>@user.PhoneNumber</div>
-
+<section class="user-section">
+	<div class="container">
+		@foreach (var user in Model)
+		{
+			<div class="card">
+				<div class="user-list">
+					<div class="info">
+						<img class="user-image"height="60" width="60" src="/images/users/@user.ProfileImageUrl" alt="@user.FirstName" />
+						<div class="detail">
+							<div class="name"><strong>UserName:</strong>@user.FirstName-@user.LastName</div>
+							<div class="email"><strong>Email:</strong>@user.Email</div>
+							<div class="phoneNumber"><strong>PhoneNumber:</strong>@user.PhoneNumber</div>
+						</div>
 					</div>
-					<div class="ms-2">
-						<p></p>
+					<div class="roles">
+						
 					@if (await userManager.IsInRoleAsync(user, "user"))
 					{
-						<div>
-							<div>Roles:User</div>
-							<a asp-controller="AdminUser" asp-action="Edit" asp-route-id="@user.Id">Edit</a>
-						</div>
+							
+						<div class="name">Roles:User</div>
+						<a asp-controller="AdminUser" asp-action="Edit" asp-route-id="@user.Id" class="edit btn-theme">Edit</a>
+							
 					}
 					else if (await userManager.IsInRoleAsync(user, "admin"))
 					{
-						<div>Roles:Admin</div>
-						<a asp-controller="AdminUser" asp-action="Edit" asp-route-id="@user.Id">Edit</a>
+						<div class="name">Roles:Admin</div>
+						<a asp-controller="AdminUser" asp-action="Edit" asp-route-id="@user.Id" class="edit btn-theme">Edit</a>
 					}
 					else
 					{
-						<div>Roles:Manager</div>
-						<a asp-controller="AdminUser" asp-action="Edit" asp-route-id="@user.Id">Edit</a>
+						<div class="name">Roles:Manager</div>
+						<a asp-controller="AdminUser" asp-action="Edit" asp-route-id="@user.Id" class="edit btn-theme">Edit</a>
 					}
 					</div>
-				</div>
 				
+				
+				</div>
 			</div>
-	}
-</div>
+		}
+	</div>
 
+</section>

@@ -19,55 +19,80 @@
         margin-bottom: 1rem;
     }
 
-    .product-list {
+    .user-list {
         display: grid;
-        column-gap: 30px;
-        row-gap: 30px;
+        column-gap: 10px;
+        row-gap: 10px;
         grid-template-columns: 1fr;
-        grid-template-areas: "info" "button";
+        grid-template-areas: "info" "roles";
 
         @include lg {
             grid-template-columns: 9fr 3fr;
-            grid-template-areas: "info button";
+            column-gap: 30px;
+            row-gap: 30px;
+            grid-template-areas: "info roles";
         }
+
 
         .info {
             grid-area: info;
-
-            .product-image {
-                height: 60px;
-                width: 60px;
-            }
-
+            margin-bottom: 1rem;
             margin-bottom: 1rem;
             display: flex;
             align-items: center;
 
-            .title {
+            .user-image {
+                height: 80px;
+                width: 80px;
+            }
+
+            .detail {
                 margin-left: 0.5rem;
+                column-gap: 20px;
+                row-gap: 30px;
+                grid-template-columns: 1fr;
+                grid-template-areas: "name" "email" "phoneNumber";
+
+                @include lg {
+                    grid-template-columns: 1fr 1fr 1fr;
+                    grid-template-areas: "name email phoneNumber";
+                }
+
+                .name {
+                    grid-area: name;
+                }
+
+                .email {
+                    grid-area: email;
+                }
+
+                .phoneNumber {
+                    grid-area: phoneNumber;
+                }
             }
         }
 
-        .button {
-            grid-area: button;
+        .roles {
+            grid-area: roles;
             display: grid;
             column-gap: 10px;
             grid-template-columns: 1fr 1fr;
-            grid-template-areas: "edit remove";
+            grid-template-areas: "name edit";
+
+            .name {
+                grid-area: name;
+                display: flex;
+                align-items: center;
+            }
 
             .edit {
                 grid-area: edit;
                 display: flex;
+                justify-content: center;
                 align-items: center;
             }
 
-            .remove {
-                grid-area: remove;
-                display: flex;
-                align-items: center;
-            }
-
-            .btn-them {
+            .btn-theme {
                 text-decoration: none;
             }
         }
