@@ -1,4 +1,4 @@
-﻿.product-section {
+﻿.user-section {
     padding: 20px 0 60px 0;
 
     @include lg {
@@ -33,10 +33,12 @@
 
         .info {
             grid-area: info;
+
             .product-image {
                 height: 60px;
                 width: 60px;
             }
+
             margin-bottom: 1rem;
             display: flex;
             align-items: center;

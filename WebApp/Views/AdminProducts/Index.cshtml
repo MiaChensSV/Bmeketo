@@ -3,21 +3,19 @@
 @{ViewData["Title"]="All Products";}
 
 <partial name="~/Views/Partials/_Breadcrumb.cshtml" />
-<section class="product-list">
+<section class="product-section">
 	<div class="container">
 		@foreach(var item in Model){
-			<div class="card mb-3">
+			<div class="card">
 				<div class="card-body">
-					<div class=" d-flex justify-content-between align-items-center">
-						<div class="mb-3 d-flex align-items-center">
-							<img height="60" width="60" src="/images/products/@item.ImageUrl" alt="@item.Title" />
-							<div class="ms-2">
-								<div class="display-6"><strong>@item.Title</strong></div>
-							</div>
+					<div class="product-list">
+						<div class="info">
+							<img class="product-image" src="/images/products/@item.ImageUrl" alt="@item.Title" />
+							<div class="title"><strong>@item.Title</strong></div>
 						</div>
-						<div>
-							<a asp-route-articleNumber="@item.ArticleNumber" asp-action="edit" asp-controller="adminproducts" class="btn-theme" style="text-decoration:none"> Update</a>
-							<a asp-route-articleNumber="@item.ArticleNumber" asp-action="remove" asp-controller="adminproducts" class="btn-theme" style="text-decoration:none">delete</a>
+						<div class="button">
+							<a asp-route-articleNumber="@item.ArticleNumber" asp-action="edit" asp-controller="adminproducts" class="btn-theme edit" > Update</a>
+							<a asp-route-articleNumber="@item.ArticleNumber" asp-action="remove" asp-controller="adminproducts" class="btn-theme remove">Delete</a>
 						</div>
 					</div>
 				</div>

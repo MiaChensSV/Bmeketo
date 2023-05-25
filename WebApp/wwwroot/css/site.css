@@ -1323,21 +1323,70 @@ footer.fixed {
   }
 }
 
-.product-list {
+.user-section {
   padding: 20px 0 60px 0;
 }
 @media (min-width: 992px) {
-  .product-list {
+  .user-section {
     padding: 60px 0;
   }
 }
-.product-list .container {
+.user-section .container {
   border: 0px solid #E1E1E1;
   padding: 30px;
 }
 @media (min-width: 768px) {
-  .product-list .container {
+  .user-section .container {
     border: 1px solid #E1E1E1;
     width: 80%;
   }
+}
+.user-section card {
+  margin-bottom: 1rem;
+}
+.user-section .product-list {
+  display: grid;
+  column-gap: 30px;
+  row-gap: 30px;
+  grid-template-columns: 1fr;
+  grid-template-areas: "info" "button";
+}
+@media (min-width: 992px) {
+  .user-section .product-list {
+    grid-template-columns: 9fr 3fr;
+    grid-template-areas: "info button";
+  }
+}
+.user-section .product-list .info {
+  grid-area: info;
+  margin-bottom: 1rem;
+  display: flex;
+  align-items: center;
+}
+.user-section .product-list .info .product-image {
+  height: 60px;
+  width: 60px;
+}
+.user-section .product-list .info .title {
+  margin-left: 0.5rem;
+}
+.user-section .product-list .button {
+  grid-area: button;
+  display: grid;
+  column-gap: 10px;
+  grid-template-columns: 1fr 1fr;
+  grid-template-areas: "edit remove";
+}
+.user-section .product-list .button .edit {
+  grid-area: edit;
+  display: flex;
+  align-items: center;
+}
+.user-section .product-list .button .remove {
+  grid-area: remove;
+  display: flex;
+  align-items: center;
+}
+.user-section .product-list .button .btn-them {
+  text-decoration: none;
 }
