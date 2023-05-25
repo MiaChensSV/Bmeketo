@@ -875,12 +875,12 @@ footer.fixed {
   column-gap: 30px;
   row-gap: 30px;
   grid-template-columns: 1fr;
-  grid-template-areas: "name" "email" "phoneNumber" "companyName" "message" "terms" "button";
+  grid-template-areas: "name" "email" "phoneNumber" "companyName" "title" "message" "terms" "button";
 }
 @media (min-width: 992px) {
   .contact-form form {
     grid-template-columns: 1fr 1fr;
-    grid-template-areas: "name email" "phoneNumber companyName" "message message" "terms terms" "button button";
+    grid-template-areas: "name email" "phoneNumber companyName" "title title" "message message" "terms terms" "button button";
   }
 }
 .contact-form form .name {
@@ -898,6 +898,9 @@ footer.fixed {
 .contact-form form .terms {
   grid-area: terms;
   margin: 10px 0;
+}
+.contact-form form .title {
+  grid-area: title;
 }
 .contact-form form .message {
   grid-area: message;
@@ -1480,4 +1483,43 @@ footer.fixed {
 }
 .product-section .product-list .button .btn-them {
   text-decoration: none;
+}
+
+admin-section {
+  padding: 20px 0 60px 0;
+}
+@media (min-width: 992px) {
+  admin-section {
+    padding: 60px 0;
+  }
+}
+admin-section .container {
+  border: 1px solid #E1E1E1;
+  padding: 30px;
+}
+@media (min-width: 768px) {
+  admin-section .container {
+    border: 1px solid #E1E1E1;
+    width: 80%;
+  }
+}
+admin-section .admin-panel {
+  display: grid;
+  column-gap: 30px;
+  row-gap: 30px;
+  grid-template-columns: 3fr 9fr;
+  grid-template-areas: "function-list content";
+}
+admin-section .admin-panel .function-list {
+  grid-area: function-list;
+}
+admin-section .admin-panel .content {
+  grid-area: content;
+}
+admin-section .admin-panel .content .title {
+  margin-bottom: 40px;
+}
+admin-section .admin-panel .content .contact-issue {
+  padding: 20px 0 60px 0;
+  margin: 20px;
 }

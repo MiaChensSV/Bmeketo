@@ -60,6 +60,7 @@ public class Program
             x.LoginPath = "/login";
             x.LogoutPath = "/";
             x.AccessDeniedPath = "/denied";
+           
         });
 
 		builder.Services.AddDbContext<WebContext>(x => x.UseSqlServer(builder.Configuration.GetConnectionString("Sql")));

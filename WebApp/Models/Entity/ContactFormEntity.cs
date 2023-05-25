@@ -13,6 +13,7 @@ public class ContactFormEntity
     public string Email { get; set; } = null!;
     public string? PhoneNumber { get; set; }
     public string? CompanyName { get; set; }
+    public string Title { get; set; } = null!;
     public string Message { get; set; } = null!;
     public DateTime Created { get; set; }=DateTime.Now;
     public bool RememberMe { get; set; } = false;

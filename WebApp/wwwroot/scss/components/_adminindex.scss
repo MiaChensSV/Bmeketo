@@ -1,0 +1,47 @@
+﻿admin-section {
+    padding: 20px 0 60px 0;
+
+    @include lg {
+        padding: 60px 0;
+    }
+
+    .container {
+        border: 1px solid $color-dark-5;
+        padding: 30px;
+
+
+        @include md {
+            border: 1px solid $color-dark-5;
+            width: 80%
+        }
+    }
+
+
+
+    .admin-panel {
+        display: grid;
+        column-gap: 30px;
+        row-gap: 30px;
+        grid-template-columns: 3fr 9fr;
+        grid-template-areas: "function-list content";
+
+
+
+        .function-list {
+            grid-area: function-list;
+        }
+
+        .content {
+            grid-area: content;
+
+            .title {
+                margin-bottom: 40px;
+            }
+
+            .contact-issue {
+                padding: 20px 0 60px 0;
+                margin:20px;
+            }
+        }
+    }
+}

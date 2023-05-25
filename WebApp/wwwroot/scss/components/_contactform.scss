@@ -23,11 +23,11 @@
         column-gap: 30px;
         row-gap: 30px;
         grid-template-columns: 1fr;
-        grid-template-areas: "name" "email" "phoneNumber" "companyName" "message" "terms" "button";
+        grid-template-areas: "name" "email" "phoneNumber" "companyName" "title" "message" "terms" "button";
 
         @include lg {
             grid-template-columns: 1fr 1fr;
-            grid-template-areas: "name email" "phoneNumber companyName" "message message" "terms terms" "button button";
+            grid-template-areas: "name email" "phoneNumber companyName" "title title" "message message" "terms terms" "button button";
         }
 
         .name {
@@ -49,6 +49,9 @@
         .terms {
             grid-area: terms;
             margin: 10px 0;
+        }
+        .title{
+            grid-area:title;
         }
 
         .message {

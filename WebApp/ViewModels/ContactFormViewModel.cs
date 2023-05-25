@@ -22,7 +22,11 @@ public class ContactFormViewModel
     [Display(Name = "Company Name(options)")]
     public string? CompanyName { get; set; }
 
-    [Display(Name = "Something write*")]
+	[Display(Name = "Shortly describe  subject *")]
+	public string Title { get; set; } = null!;
+
+
+	[Display(Name = "Something write *")]
     public string Message { get; set; }= null!;
 
     [Display(Name = "Save my name, email in the this browser for the next time I comment.")]
@@ -36,6 +40,7 @@ public class ContactFormViewModel
             Email = model.Email,
             PhoneNumber = model.PhoneNumber,
             CompanyName = model.CompanyName,
+            Title= model.Title,
             Message = model.Message,
             RememberMe = model.RememberMe
         };

@@ -1,25 +1,36 @@
-﻿@{ViewData["Title"]="Admin Dashboard ";}
+﻿@model AdminViewModel
+
+@{ViewData["Title"]="Admin Dashboard ";}
 
 <partial name="~/Views/Partials/_Breadcrumb.cshtml" />
-<div class="mb-5">
-	<div class="mb-5">
-		<a asp-controller="Role" asp-action="Index" class="btn btn-secondary">View All roles</a>
+<section class="admin-section">
+	<div class="container" >
+		<div class="admin-panel">
+			<div class="function-list" >		
+			
+					<a asp-controller="Role" asp-action="Index" class="btn btn-secondary view" >View All roles</a>			
+					<a asp-controller="AdminProducts" asp-action="Create" class="btn btn-secondary register">Register a product</a>
+					<a asp-controller="AdminProducts" asp-action="Index" class="btn btn-secondary view">View all products</a>
+					<a asp-controller="AdminUser" asp-action="Create" class="btn  btn-secondary register">Register a user</a>
+					<a asp-controller="AdminUser" asp-action="Index" class="btn btn-secondary view">View all account</a>
 
-	</div>
-	<div class="mb-5">
-		<a asp-controller="AdminProducts" asp-action="Create" class="btn btn-secondary">Register a product</a>
 
-	</div>
-	<div class="mb-5">
-		<a asp-controller="AdminUser" asp-action="Create" class="btn  btn-secondary">Register a user</a>
 
-	</div>
-	<div class="mb-5">
-		<a asp-controller="AdminUser" asp-action="Index" class="btn btn-secondary">View all account</a>
+			</div>
+			<div class="content">
+				<div class="title">Contact Issues</div>
+				<div class="contact-issue">
+					@foreach(var contact in Model.ContactIssues)
+					{
+						<div class="card">
+							<div class="title">@contact.Title</div>
+							<div class="name">@contact.Name | @contact.Email</div>
+							<div class="message">@contact.Message</div>
+						</div>
+					}				
+				</div>
+			</div>
 
+		</div>
 	</div>
-	<div class="mb-5">
-		<a asp-controller="AdminProducts" asp-action="Index" class="btn btn-secondary">View all products</a>
-	</div>
-
-</div>
+</section>

@@ -1,9 +1,7 @@
 ﻿using System.Linq.Expressions;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Query.SqlExpressions;
 using WebApp.Contexts;
 using WebApp.Models.Entity;
-using WebApp.ViewModels.Admin.Products;
 
 namespace WebApp.Helper.Repositories;
 
@@ -15,7 +13,7 @@ public class ProductRepository : Repository<ProductEntity>
 		_context = context;
 	}
 
-	public override async Task<IEnumerable<ProductEntity>> GetAllAsync()
+	public override async Task<IList<ProductEntity>> GetAllAsync()
 	{
 		var products =await  _context.Products
 					.Include(x => x.Tags)

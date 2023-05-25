@@ -30,6 +30,11 @@
                 <input asp-for="PhoneNumber" type="text" >
                 <small class="text-danger"><span asp-validation-for="PhoneNumber"></span></small>
             </div>
+            <div class="title form-group">
+                <label asp-for="Title"></label>
+                <input asp-for="Title" type="text">
+                <small class="text-danger"><span asp-validation-for="Title"></span></small>
+            </div>
                 <div class="message form-group">
                 <label asp-for="Message" ></label>
                 <textarea asp-for="Message" required></textarea>

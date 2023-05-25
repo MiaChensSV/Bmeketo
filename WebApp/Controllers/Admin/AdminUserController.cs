@@ -1,4 +1,6 @@
-﻿using Microsoft.AspNetCore.Identity;
+﻿using Microsoft.AspNetCore.Authorization;
+using System.Data;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using WebApp.Helper.Services;
@@ -8,6 +10,8 @@ using WebApp.ViewModels.Account;
 
 
 namespace WebApp.Controllers.Admin;
+[Authorize(Roles = "admin")]
+
 public class AdminUserController : Controller
 {
 	private readonly UserManager<AppIdentityUser> _userManager;

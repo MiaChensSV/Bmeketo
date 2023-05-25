@@ -17,4 +17,8 @@ public class ContactService
     {
         return await _contactRepo.AddAsync(viewmodel);
     }
+    public async Task<IList<ContactFormEntity>> GetAllAsync()
+    {
+        return await _contactRepo.GetAllAsync() ;
+    }
 }
