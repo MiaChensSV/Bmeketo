@@ -1,4 +1,4 @@
-﻿admin-section {
+﻿.admin-section {
     padding: 20px 0 60px 0;
 
     @include lg {
@@ -8,6 +8,7 @@
     .container {
         border: 1px solid $color-dark-5;
         padding: 30px;
+
 
 
         @include md {
@@ -22,25 +23,70 @@
         display: grid;
         column-gap: 30px;
         row-gap: 30px;
-        grid-template-columns: 3fr 9fr;
+        grid-template-columns: 2fr 10fr;
         grid-template-areas: "function-list content";
 
 
 
         .function-list {
             grid-area: function-list;
+            display: grid;
+            justify-content: center;
+            align-items: center;
+            column-gap: 30px;
+            row-gap: 30px;
+            grid-template-columns: 1fr;
+            grid-template-areas: "view-role" "register-product" "view-product" "register-user" "view-users";
+
+            .view-role {
+                grid-area: view-role;
+            }
+
+            .register-product {
+                grid-area: register-product;
+            }
+
+            .view-product {
+                grid-area: view-product;
+            }
+
+            .register-user {
+                grid-area: register-user;
+            }
+
+            .view-users {
+                grid-area: view-users;
+            }
         }
 
         .content {
             grid-area: content;
+            border: 1px solid $color-dark-5;
 
             .title {
-                margin-bottom: 40px;
+                margin-top: 20px;
+                text-align: center;
+                font-size: x-large;
+                font-weight: bold;
             }
 
             .contact-issue {
-                padding: 20px 0 60px 0;
-                margin:20px;
+                padding: 20px 20px 20px 0;
+                margin: 20px;
+
+                .title {
+                    text-align: left;
+                    margin: 20px 0 0 20px;
+                    font-size: large;
+                }
+
+                .name {
+                    padding: 20px;
+                }
+
+                .message {
+                    padding: 20px;
+                }
             }
         }
     }

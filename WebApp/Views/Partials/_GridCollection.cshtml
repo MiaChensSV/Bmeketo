@@ -5,8 +5,8 @@
 
     @if (Model != null)
     {
-        <div class="container d-flex justify-content-center">                    
-            <div class="grid-collection">            
+        <div class="container">                    
+            <div class="items">            
                 <div class="categories">
                     @if (Model.Categories != null)
                     {
@@ -18,7 +18,7 @@
                         </ul>
                     }
                 </div>
-                <div>
+                <div >
                     @if (Model.GridItems != null)
                     {
                         <div class="grid">

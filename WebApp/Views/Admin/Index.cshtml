@@ -4,18 +4,15 @@
 
 <partial name="~/Views/Partials/_Breadcrumb.cshtml" />
 <section class="admin-section">
-	<div class="container" >
+	<div class="container " >
 		<div class="admin-panel">
-			<div class="function-list" >		
-			
-					<a asp-controller="Role" asp-action="Index" class="btn btn-secondary view" >View All roles</a>			
-					<a asp-controller="AdminProducts" asp-action="Create" class="btn btn-secondary register">Register a product</a>
-					<a asp-controller="AdminProducts" asp-action="Index" class="btn btn-secondary view">View all products</a>
-					<a asp-controller="AdminUser" asp-action="Create" class="btn  btn-secondary register">Register a user</a>
-					<a asp-controller="AdminUser" asp-action="Index" class="btn btn-secondary view">View all account</a>
+			<div class="function-list" >
 
-
-
+				<a asp-controller="Role" asp-action="Index" class="btn btn-secondary view-role">View All roles</a>
+				<a asp-controller="AdminProducts" asp-action="Create" class="btn btn-secondary register-product">Register a product</a>
+				<a asp-controller="AdminProducts" asp-action="Index" class="btn btn-secondary view-product">View all products</a>
+				<a asp-controller="AdminUser" asp-action="Create" class="btn  btn-secondary register-user">Register a user</a>
+				<a asp-controller="AdminUser" asp-action="Index" class="btn btn-secondary view-users">View all account</a>
 			</div>
 			<div class="content">
 				<div class="title">Contact Issues</div>
@@ -23,7 +20,7 @@
 					@foreach(var contact in Model.ContactIssues)
 					{
 						<div class="card">
-							<div class="title">@contact.Title</div>
+							<div class="title">@contact.Title</div><hr/>
 							<div class="name">@contact.Name | @contact.Email</div>
 							<div class="message">@contact.Message</div>
 						</div>

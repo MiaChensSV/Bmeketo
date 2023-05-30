@@ -1,7 +1,18 @@
 .collection-item {
     background-color: $color-white;
-    text-decoration: none;
-    display: block;
+
+
+    .item {
+        text-decoration: none;
+        display: block;
+        .image{
+            height:294px;
+            width:100%;
+            display:flex;
+            justify-content:center;
+            align-items:center;
+        }
+    }
 
     img {
         width: 100%;
@@ -12,6 +23,11 @@
         color: $color-dark-2;
         font-family: $font-poppins;
         padding: 10px;
+        height:141px;
+        display:flex;
+        flex-direction:column;
+        justify-content:space-between;
+        align-items:center;
 
         .title {
             grid-area: title;
@@ -41,14 +57,12 @@
                 padding: 2px;
                 font-size: 24px;
                 color: $color-dark-2;
-    
+
                 &:hover {
                     color: $color-dark-4;
                 }
             }
         }
-
-
     }
 
     &:hover {
