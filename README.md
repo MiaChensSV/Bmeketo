@@ -1,10 +1,10 @@
 # Bmeketo
-This is a shopping website used with pre-designed template.
+This is a shopping website used with pre-designed template, it is created with ASP NET Core and Entity Framework Core as part of my ASP.NET course.
 
 ## About this app
--Bmeketo is a simple shopping website used with pre-designed template.
+- Bmeketo is a simple shopping website used with pre-designed template.
 The first user registered will be automatic as Administrator, the others user will be automatic registered as User.
-### The database schema is set up with Entity Framework using a code-first approach and the data is stored in a local SQL Server file.
+- The database schema is set up with Entity Framework using a code-first approach and the data is stored in a local SQL Server file. The website uses ASP NET Core identity to handle users and user roles. It includes seed files that seeds all categories, tags and over 10 products. 
 
 ### As a user, you can 
 1. Add product into shopping cart.
@@ -12,7 +12,7 @@ The first user registered will be automatic as Administrator, the others user wi
 
 ### As a manager, you can 
 1. View all users and products.
-2. Register a user and assign a roll for the user; 
+2. Register a user and assign a roll for the user.
 3. Register a product and change product information.
 
 ### As an administrater, you can all function that manager has and also "add and edit roles in the system"
@@ -41,3 +41,35 @@ Add-migration "Initialize" -Context IdentityContext -OutputDir Migrations\Identi
 Uppdate-database -Context IdentityContext
 
 ```
+
+### Home Page
+| ![home-page-screenshot](Screenshots/home-1.PNG) | ![home-page-screenshot](Screenshots/home-2.PNG) |
+|:---:|:---:|
+
+### Products Page 
+![Products-page-screenshot](Screenshots/allproduct.PNG) 
+
+### Contact Page 
+![contact-page-screenshot](Screenshots/contact_form.PNG) 
+
+### Account Pages 
+| ![register-page-screenshot](Screenshots/register-customer.PNG) | ![login-page-screenshot](Screenshots/login.PNG) |![user-page-screenshot](Screenshots/user-profile.PNG) |
+|:---:|:---:|:---:|
+
+### Admin
+
+| ![dashboard-screenshot](Screenshots/admin-dashboard.PNG) 
+
+| ![admin-registerProduct](Screenshots/admin-registerProduct.PNG) | ![admin-view-products-screenshot](Screenshots/admin-allProducts.PNG) |
+|:---:|:---:|
+
+| ![admin-registerUser](Screenshots/admin-registerUser.PNG) | ![admin-view-users-screenshot](Screenshots/admin-alluser.PNG) |
+|:---:|:---:|
+
+As an administrater, you can 
+1. View all users and products.
+2. Register a user and assign a roll for the user.
+3. Register a product and change product information.
+4. Add and edit roles in the system/
+
+
