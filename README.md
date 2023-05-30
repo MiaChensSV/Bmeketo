@@ -50,7 +50,7 @@ Uppdate-database -Context IdentityContext
 ![Products-page-screenshot](Screenshots/allproduct.PNG) 
 
 ### Contact Page 
-![contact-page-screenshot](Screenshots/contact_form.PNG) 
+![contact-page-screenshot](Screenshots/contact-form.PNG) 
 
 ### Account Pages 
 | ![register-page-screenshot](Screenshots/register-customer.PNG) | ![login-page-screenshot](Screenshots/login.PNG) |![user-page-screenshot](Screenshots/user-profile.PNG) |
