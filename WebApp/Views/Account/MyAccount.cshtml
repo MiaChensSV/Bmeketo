@@ -6,11 +6,12 @@
 
 <section class="user-form">
 	<div class="container ">
+		<form method="post" enctype="multipart/form-data" >
 			<div asp-validation-summary="ModelOnly" class="form-group text-danger"></div>
-			<form method="put" enctype="multipart/form-data" >
 			<div class="userprofil">
 				<div class="profilimage">
-					<img src="/images/users/@Model.ProfileImageUrl" alt="@Model.FirstName+@Model.LastName" />
+					<img  asp-for="ProfileImageUrl" src="/images/users/@Model.ProfileImageUrl" alt="@Model.FirstName+@Model.LastName" />
+					<div class="hidden"><input asp-for="ProfileImageUrl" value="@Model.ProfileImageUrl" /></div>
 				</div>
 				<div class="profil">
 					<div class="firstname form-group">
@@ -51,7 +52,7 @@
 					</div>
 					<div class="email form-group">
 						<label asp-for="Email"></label>
-						<input asp-for="Email" value="@Model.Email" />
+						<input asp-for="Email" value="@Model.Email" readonly="readonly" />
 						<small class="text-danger"><span asp-validation-for="Email"></span></small>
 					</div>
 					<div class="password form-group">
@@ -69,9 +70,14 @@
 						<input asp-for="ConfirmNewPassword" />
 						<small class="text-danger"><span asp-validation-for="ConfirmNewPassword"></span></small>
 					</div>
-					<button class="btn btn-success">Register</button>
+						<div class="role form-group">
+						<label asp-for="Role"></label>
+						<input asp-for="Role" value="@Model.Role" readonly="readonly" />
+						<small class="text-danger"><span asp-validation-for="Role"></span></small>
+				</div>
+					<button class="btn btn-success">Save</button>
 				</div>
 			</div>
-			</form>
+		</form>
 	</div>
 </section>

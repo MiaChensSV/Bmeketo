@@ -1290,6 +1290,9 @@ footer.fixed {
 .user-form .userprofil .profilimage {
   grid-area: profilimage;
 }
+.user-form .userprofil .profilimage .hidden {
+  display: none;
+}
 .user-form .userprofil .profil {
   grid-area: profil;
   display: grid;

@@ -37,7 +37,10 @@
         }
 
         .profilimage {
-            grid-area: profilimage
+            grid-area: profilimage;
+                .hidden{
+                display:none;
+            }
         }
 
         .profil {

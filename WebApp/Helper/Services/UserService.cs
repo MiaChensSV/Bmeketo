@@ -47,6 +47,7 @@ public class UserService
 	public async Task<UserModel> GetAsync(string id)
 	{
 		AppIdentityUser _appUser=await _userRepo.GetAsync(x=>x.Id==id);
+		var role =await _userManager.GetRolesAsync(_appUser);
 		UserAddressEntity _userAddressEntity = await _userAddressRepo.GetAsync(x => x.UserId == id);
 		if (_userAddressEntity!= null)
 		{
@@ -62,6 +63,7 @@ public class UserService
 				City = _addressEntity.City,
 				Email = _appUser.Email!,
 				PhoneNumber = _appUser.PhoneNumber,
+				Role = role[0],
 			};
 		}
 		else return new UserModel
@@ -72,6 +74,7 @@ public class UserService
 			ProfileImageUrl = _appUser.ProfileImageUrl,
 			Email = _appUser.Email!,
 			PhoneNumber = _appUser.PhoneNumber,
+			Role = role[0],
 		};
 	}
 
@@ -109,15 +112,18 @@ public class UserService
 
 	public async Task UpdateAsync(UserViewModel viewmodel)
 	{
+
 		var _appUser =  await _userRepo.GetAsync(x => x.Email == viewmodel.Email);
+		var _roles = await _userManager.GetRolesAsync(_appUser);
+
 		_appUser.FirstName = viewmodel.FirstName;
 		_appUser.LastName = viewmodel.LastName;
 		_appUser.CompanyName = viewmodel.CompanyName;
 		_appUser.PhoneNumber = viewmodel.PhoneNumber;
+
 		await _userRepo.UpdateAsync(_appUser);
 
 		//delete existing role
-		var _roles =await _userManager.GetRolesAsync(_appUser);
 		foreach (var role in _roles) 
 		{ 
 			await _userManager.RemoveFromRoleAsync(_appUser,role);

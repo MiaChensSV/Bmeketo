@@ -35,18 +35,19 @@ public class AccountController : Controller
 			ProfileImageUrl = _user.ProfileImageUrl,
 			PostalCode = _user.PostalCode,
 			PhoneNumber= _user.PhoneNumber,
+			Role= _user.Role,
 		};
 		return View(_userViewModel);
 	}
 
 	[HttpPost]
 	[Route("MyAccount/{id}")]
-	public IActionResult MyAccount(UserViewModel viewmodel)
+	public async Task<IActionResult> MyAccountAsync(UserViewModel viewmodel)
 	{
 
-		var _user = _userService.UpdateAsync(viewmodel);
+		await _userService.UpdateAsync(viewmodel);
 		
-		return View(_user);
+		return View(viewmodel);
 	}
 
 
