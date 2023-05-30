@@ -110,8 +110,8 @@ html, body {
   align-items: center;
 }
 .collection-item img {
-  width: 100%;
-  height: auto;
+  max-width: 100%;
+  max-height: 294px;
 }
 .collection-item .body {
   color: #292929;
