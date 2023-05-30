@@ -70,6 +70,6 @@ As an administrater, you can
 1. View all users and products.
 2. Register a user and assign a roll for the user.
 3. Register a product and change product information.
-4. Add and edit roles in the system/
+4. Add and edit roles in the system.
 
 
