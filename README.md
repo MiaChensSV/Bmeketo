@@ -43,27 +43,27 @@ Uppdate-database -Context IdentityContext
 ```
 
 ### Home Page
-| ![home-page-screenshot](Screenshots/home-1.PNG) | ![home-page-screenshot](Screenshots/home-2.PNG) |
+| ![home-page-screenshot](Screenshots/home-1.png) | ![home-page-screenshot](Screenshots/home-2.png) |
 |:---:|:---:|
 
 ### Products Page 
-![Products-page-screenshot](Screenshots/allproduct.PNG) 
+![Products-page-screenshot](Screenshots/allproduct.png) 
 
 ### Contact Page 
-![contact-page-screenshot](Screenshots/contact-form.PNG) 
+![contact-page-screenshot](Screenshots/contact-form.png) 
 
 ### Account Pages 
-| ![register-page-screenshot](Screenshots/register-customer.PNG) | ![login-page-screenshot](Screenshots/login.PNG) |![user-page-screenshot](Screenshots/user-profile.PNG) |
+| ![register-page-screenshot](Screenshots/register-customer.png) | ![login-page-screenshot](Screenshots/login.png) |![user-page-screenshot](Screenshots/user-profile.png) |
 |:---:|:---:|:---:|
 
 ### Admin
 
-| ![dashboard-screenshot](Screenshots/admin-dashboard.PNG) 
+| ![dashboard-screenshot](Screenshots/admin-dashboard.png) 
 
-| ![admin-registerProduct](Screenshots/admin-registerProduct.PNG) | ![admin-view-products-screenshot](Screenshots/admin-allProducts.PNG) |
+| ![admin-registerProduct](Screenshots/admin-registerProduct.png) | ![admin-view-products-screenshot](Screenshots/admin-allProducts.png) |
 |:---:|:---:|
 
-| ![admin-registerUser](Screenshots/admin-registerUser.PNG) | ![admin-view-users-screenshot](Screenshots/admin-alluser.PNG) |
+| ![admin-registerUser](Screenshots/admin-registerUser.png) | ![admin-view-users-screenshot](Screenshots/admin-alluser.png) |
 |:---:|:---:|
 
 As an administrater, you can 
